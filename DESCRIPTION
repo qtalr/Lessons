@@ -1,0 +1,13 @@
+Package: Lessons
+Title: R interactive lessons for the QTALR textbook
+Version: 0.1.0
+Authors@R: 
+    person("Jerid", "Francom", email = "francojc@wfu.edu", role = c("aut", "cre"))
+Description: |
+  These are a set of interactive lessons for the QTALR textbook. The lessons are for beginning R users.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    R (>= 4.3.1),
+    ggplot2 (>= 3.4.2)

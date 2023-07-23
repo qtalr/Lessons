@@ -1,0 +1,6 @@
+.DS_Store
+.Rproj.user
+.Rhistory
+_*
+outline.R
+*code-workspace

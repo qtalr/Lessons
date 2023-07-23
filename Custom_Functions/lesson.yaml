@@ -1,0 +1,17 @@
+- Class: meta
+  Course: R_Lessons
+  Lesson: Custom Functions
+  Author: Jerid Francom
+  Type: Standard
+  Organization: Wake Forest University
+  Version: 0.1.0
+
+
+- Class: text
+  Output: Hello
+
+- Class: cmd_question
+  Output: Let's see what objects are currently in our R session. Use the `ls()` function.
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Type `ls()` and hit ENTER.

@@ -1,10 +1,10 @@
 - Class: meta
-  Course: R lessons
+  Course: Lessons
   Lesson: 1. Variables and Vectors
-  Author: your name goes here
+  Author: Jerid Francom
   Type: Standard
-  Organization: your organization's name goes here
-  Version: 2.4.5
+  Organization: Wake Forest University
+  Version: 0.1.0
 
 # [ ] Review and update lesson
 

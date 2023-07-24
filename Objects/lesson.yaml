@@ -1,9 +1,139 @@
 - Class: meta
-  Course: R lessons
+  Course: Lessons
   Lesson: Objects
-  Author: your name goes here
+  Author: Jerid Francom
   Type: Standard
-  Organization: your organization's name goes here
-  Version: 2.4.5
+  Organization: Wake Forest University
+  Version: 0.1.0
 
 # [ ] Create less based on the outline template
+
+- Class: text
+  Output: Welcome to this lesson on R objects! We will start with vectors, one of the primary data structures in R. Vectors are used to store 1-dimensional data, like a column of a data frame. There are different types of vectors, such as numeric/integer and character vectors. Let's dive in!
+
+- Class: mult_question
+  Output: Which of the following statements are true?
+  CorrectAnswer: Vectors are used to store 1-dimensional data; Data frames are used to store 2-dimensional data
+  AnswerChoices: Vectors are used to store 1-dimensional data; Data frames are used to store 2-dimensional data; Vectors can only contain numbers; Data frames can only contain numbers
+  AnswerTests: omnitest(correctVal=c('Vectors are used to store 1-dimensional data', 'Data frames are used to store 2-dimensional data'))
+  Hint: Vectors are used to store 1-dimensional data and data frames are used to store 2-dimensional data.
+
+- Class: cmd_question
+  Output: Let's start by creating a numeric vector. A numeric vector is a sequence of numbers. In R, we can create a numeric vector using the `c()` function. The `c()` function combines its arguments to form a vector. Let's create a numeric vector with the numbers 1 through 5. Please assign this vector to a variable named `vec_1_num`.
+  CorrectAnswer: vec_1_num <- c(1, 2, 3, 4, 5)
+  AnswerTests: omnitest(correctExpr='vec_1_num <- c(1, 2, 3, 4, 5)')
+  Hint: Just type `vec_1_num <- c(1, 2, 3, 4, 5)`.
+
+- Class: cmd_question
+  Output: Great! Now, let's create another numeric vector, but this time using the `seq()` function. The `seq()` function generates a sequence of numbers. It takes three arguments... `from`, `to`, and `by`. `from` is the starting number, `to` is the ending number, and `by` is the increment. Let's create a vector that also contains the numbers 1 through 5, but this time using `seq()`. Assign it to a variable named `vec_2_num`.
+  CorrectAnswer: vec_2_num <- seq(1, 5, by = 1)
+  AnswerTests: omnitest(correctExpr='vec_2_num <- seq(1, 5, by = 1)')
+  Hint: Just type `vec_2_num <- seq(1, 5, by = 1)`.
+
+- Class: cmd_question
+  Output: Now, you might be wondering if the vectors `vec_1_num` and `vec_2_num` we created are the same, even though we used different functions to create them. In R, we can check if two objects are exactly the same using the `identical()` function. Use this function to check if `vec_1_num` and `vec_2_num` are identical.
+  CorrectAnswer: identical(vec_1_num, vec_2_num)
+  AnswerTests: omnitest(correctExpr='identical(vec_1_num, vec_2_num)')
+  Hint: Just type `identical(vec_1_num, vec_2_num)`.
+
+- Class: cmd_question
+  Output: Now, let's create a character vector. A character vector is a sequence of characters or strings. In R, we can create a character vector using the `c()` function, just like we did with the numeric vector. Except this time we need to quote each letter. Let's create a character vector with the letters "a" through "e". Please assign this vector to a variable named `vec_4_char`.
+  CorrectAnswer: vec_4_char <- c("a", "b", "c", "d", "e")
+  AnswerTests: omnitest(correctExpr='vec_4_char <- c("a", "b", "c", "d", "e")')
+  Hint: Just type `vec_4_char <- c("a", "b", "c", "d", "e")`.
+
+- Class: cmd_question
+  Output: Great! Now, let's create another character vector, but this time using the `letters` object in R. The `letters` object is a built-in character vector that contains the 26 lowercase letters of the alphabet. Let's create a character vector that also contains the letters "a" through "e", but this time using `letters`. Assign it to a variable named `vec_5_char`.
+  CorrectAnswer: vec_5_char <- letters[1:5]
+  AnswerTests: omnitest(correctExpr='vec_5_char <- letters[1:5]')
+  Hint: Just type `vec_5_char <- letters[1:5]`.
+
+- Class: cmd_question
+  Output: Now, let's check if the character vectors `vec_4_char` and `vec_5_char` we created are the same. Use the `identical()` function to do this.
+  CorrectAnswer: identical(vec_4_char, vec_5_char)
+  AnswerTests: omnitest(correctExpr='identical(vec_4_char, vec_5_char)')
+  Hint: Just type `identical(vec_4_char, vec_5_char)`.
+
+- Class: cmd_question
+  Output: In R, we can check the type of an object using the `class()` function. The `class()` function returns the class of the object, which tells us what type of object it is. Let's check the class of `vec_1_num`. 
+  CorrectAnswer: class(vec_1_num)
+  AnswerTests: omnitest(correctExpr='class(vec_1_num)')
+  Hint: Just type `class(vec_1_num)`.
+
+- Class: cmd_question
+  Output: Now, let's check the class of `vec_5_char`.
+  CorrectAnswer: class(vec_5_char)
+  AnswerTests: omnitest(correctExpr='class(vec_5_char)')
+  Hint: Just type `class(vec_5_char)`.
+
+- Class: cmd_question
+  Output: In R, we can change the type of an object using coercion functions. For example, we can change a numeric vector to a character vector using the `as.character()` function. Let's change `vec_1_num` to a character vector. Assign the result to a variable named `vec_1_char`.
+  CorrectAnswer: vec_1_char <- as.character(vec_1_num)
+  AnswerTests: omnitest(correctExpr='vec_1_char <- as.character(vec_1_num)')
+  Hint: Just type `vec_1_char <- as.character(vec_1_num)`.
+
+- Class: cmd_question
+  Output: Now, let's try to change `vec_4_char` to a numeric vector using the `as.numeric()` function. Assign the result to a variable named `vec_4_num`.
+  CorrectAnswer: vec_4_num <- as.numeric(vec_4_char)
+  AnswerTests: omnitest(correctExpr='vec_4_num <- as.numeric(vec_4_char)')
+  Hint: Just type `vec_4_num <- as.numeric(vec_4_char)`.
+
+- Class: cmd_question
+  Output: In R, we can subset a vector using the `[ ]` operator. The `[ ]` operator selects elements from a vector. Let's subset `vec_1_num` to get the 2nd element.
+  CorrectAnswer: vec_1_num[2]
+  AnswerTests: omnitest(correctExpr='vec_1_num[2]')
+  Hint: Just type `vec_1_num[2]`.
+
+- Class: cmd_question
+  Output: Now, let's subset `vec_1_num` to get the elements that are greater than 3.
+  CorrectAnswer: vec_1_num[vec_1_num > 3]
+  AnswerTests: omnitest(correctExpr='vec_1_num[vec_1_num > 3]')
+  Hint: Just type `vec_1_num[vec_1_num > 3]`.
+
+- Class: cmd_question
+  Output: Now, let's subset `vec_4_char` to get the elements that are in "b" and "d".
+  CorrectAnswer: vec_4_char[vec_4_char %in% c("b", "d")]
+  AnswerTests: omnitest(correctExpr='vec_4_char[vec_4_char %in% c("b", "d")]')
+  Hint: Just type `vec_4_char[vec_4_char %in% c("b", "d")]`.
+
+- Class: text
+  Output: Now that we've covered vectors, let's move on to data frames. A data frame is a data structure in R that is used to store 2-dimensional data. All columns in a data frame must be the same length, but they can be different types.
+
+- Class: cmd_question
+  Output: Let's create a data frame using the `data.frame()` function. The `data.frame()` function combines its arguments to form a data frame. Let's create a data frame with `vec_1_num` and `vec_4_char`. Assign it to a variable named `df_1`.
+  CorrectAnswer: df_1 <- data.frame(vec_1_num, vec_4_char)
+  AnswerTests: omnitest(correctExpr='df_1 <- data.frame(vec_1_num, vec_4_char)')
+  Hint: Just type `df_1 <- data.frame(vec_1_num, vec_4_char)`.
+
+- Class: cmd_question
+  Output: In R, we can subset a data frame using the `[ ]` operator. The `[ ]` operator selects rows and columns from a data frame. Let's subset `df_1` to get the 1st row.
+  CorrectAnswer: df_1[1, ]
+  AnswerTests: omnitest(correctExpr='df_1[1, ]')
+  Hint: Just type `df_1[1, ]`.
+
+- Class: cmd_question
+  Output: Now, let's subset `df_1` to get the 1st and 3rd rows.
+  CorrectAnswer: df_1[c(1, 3), ]
+  AnswerTests: omnitest(correctExpr='df_1[c(1, 3), ]')
+  Hint: Just type `df_1[c(1, 3), ]`.
+
+- Class: cmd_question
+  Output: Now, let's subset `df_1` to get the 1st column. We can do this using the `$` operator. The `$` operator selects a column from a data frame by its name.
+  CorrectAnswer: df_1$vec_1_num
+  AnswerTests: omnitest(correctExpr='df_1$vec_1_num')
+  Hint: Just type `df_1$vec_1_num`.
+
+- Class: cmd_question
+  Output: Now, let's subset `df_1` to get the 1st column, but this time using the `[ ]` operator.
+  CorrectAnswer: df_1[, 1]
+  AnswerTests: omnitest(correctExpr='df_1[, 1]')
+  Hint: Just type `df_1[, 1]`.
+
+- Class: cmd_question
+  Output: Finally, let's subset `df_1` to get the 1st through 3rd rows and the 2nd column.
+  CorrectAnswer: df_1[1:3, 2]
+  AnswerTests: omnitest(correctExpr='df_1[1:3, 2]')
+  Hint: Just type `df_1[1:3, 2]`.
+
+- Class: text
+  Output: Congratulations! You've completed this lesson on R objects. You've learned about vectors and data frames, how to create them, how to check their type, how to change their type, and how to subset them. Great job!

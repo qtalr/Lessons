@@ -7,3 +7,94 @@
   Version: 0.1.0
 
 # [ ] Create less based on the outline template
+
+# # Plot example
+# - Class: figure
+#   Output: Check out this figure!
+#   Figure: plot-ex.R
+#   FigureType: new
+
+# # Page example
+# - Class: figure
+#   Output: Check out this content!
+#   Figure: page-ex.R
+#   FigureType: new
+
+- Class: text
+  Output: Welcome to Understanding Packages and Functions! In this lesson, you will learn about the role of packages and functions in R.
+
+- Class: text
+  Output: Let's start with packages. A package in R is a collection of functions, sample data, and compiled code in a well-defined format.
+
+- Class: text
+  Output: The tidyverse is a collection of R packages that share common philosophies and are designed to work together. It is particularly useful for data science and text analysis.
+
+- Class: cmd_question
+  Output: Install the tidyverse package using the install.packages() function.
+  CorrectAnswer: install.packages("tidyverse")
+  AnswerTests: omnitest(correctExpr='install.packages("tidyverse")')
+  Hint: The syntax is install.packages("package_name").
+
+- Class: text
+  Output: Great! Now, let's learn about functions. Functions are the fundamental building blocks of R code.
+
+- Class: text
+  Output: A function is a set of statements organized together to perform a specific task. In R, you can create your own functions, or you can use functions that are provided by packages.
+
+- Class: text
+  Output: You can access a function from a package using the library() function or the `::` operator.
+
+- Class: cmd_question
+  Output: Load the tidyverse package using the library() function.
+  CorrectAnswer: library(tidyverse)
+  AnswerTests: omnitest(correctExpr='library(tidyverse)')
+  Hint: The syntax is library(package_name).
+
+- Class: text
+  Output: Great! Now you can use the functions provided by the tidyverse package.
+
+- Class: text
+  Output: Functions return values. This is the result of the function. Some functions also take arguments, which are the inputs to the function.
+
+- Class: text
+  Output: Some functions have optional arguments. These are arguments that you can provide, but if you don't, the function will use a default value.
+
+- Class: text
+  Output: Finally, remember that you can always get help on a function using the ? operator.
+
+- Class: text
+  Output: Let's use the `select()` function from the `dplyr` package as an example.
+
+- Class: cmd_question
+  Output: Display the documentation of the `select()` function.
+  CorrectAnswer: ?dplyr::select
+  AnswerTests: omnitest(correctExpr='?dplyr::select')
+  Hint: Remember, to access the documentation of a function, you can use the ? operator followed by the function name.
+
+- Class: text
+  Output: The first line of the documentation provides a brief description of what the function does. 
+
+- Class: text
+  Output: The `Usage` section shows how to use the function. It lists the arguments that the function expects.
+
+- Class: text
+  Output: The `Arguments` section provides a detailed explanation of what each argument does. 
+
+- Class: text
+  Output: The `Value` section describes the output that the function returns.
+
+- Class: text
+  Output: The `Examples` section at the bottom of the help file provides some examples of how to use the function.
+
+- Class: cmd_question
+  Output: Now, let's practice using a function. Use the `select()` function from the `dplyr` package to select the `mpg` column from the `mtcars` dataset.
+  CorrectAnswer: dplyr::select(mtcars, mpg)
+  AnswerTests: omnitest(correctExpr='dplyr::select(mtcars, mpg)')
+  Hint: Remember, you can use the `::` operator to access functions from a package. The syntax of the `select()` function is `select(data, column)`.
+
+- Class: text
+  Output: Great job! Now, you have a basic understanding of how to use functions in R. Remember, practice is key when learning a new programming language.
+
+- Class: text
+  Output: That's the end of this lesson. Keep practicing and exploring the many packages and functions that R has to offer. Happy coding!
+

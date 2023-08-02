@@ -6,4 +6,26 @@
   Organization: Wake Forest University
   Version: 0.1.0
 
-# [ ] Create less based on the outline template
+- Class: text
+  Output: This is a test of a plot
+
+# Plot example
+- Class: figure
+  Output: Check out this figure!
+  Figure: plot-ex.R
+  FigureType: new
+
+- Class: text
+  Output: Cool. Let's look at an HTML file.
+
+# Page example
+- Class: figure
+  Output: Check out this content!
+  Figure: page-ex.R
+  FigureType: new
+
+- Class: text
+  Output: That is it!
+
+
+

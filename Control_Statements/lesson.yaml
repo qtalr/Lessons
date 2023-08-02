@@ -7,3 +7,43 @@
   Version: 0.1.0
 
 # [ ] Create less based on the outline template
+
+
+- Class: text
+  Output: Welcome to Control Flow Statements in R! In this lesson, you will learn about the main control statement used in modern R programming, if/else statements.
+
+- Class: text
+  Output: In general, control statements are used to control the flow of execution of a program. They can alter the order in which statements are executed.
+
+- Class: text
+  Output: Think of control statements as forks in the road. There will be at least two paths that can be taken, and the path taken will depend on whether a condition is met or not.
+
+- Class: text
+  Output: 'An if/else statement consists of a condition that returns TRUE or FALSE, a block of code that is executed if the condition is TRUE, and a block of code that is executed if the condition is FALSE.\n \n  The syntax of an if/else statement is:
+
+- Class: text
+  Output: Let's look at an example. The following if/else statement checks if x is greater than 0. If it is, then the statement prints "x is positive". If it is not, then the statement prints "x is non-positive".
+
+- Class: cmd_question
+  Output: Write an if/else statement that prints "x is positive" if x is greater than 0 and "x is non-positive" otherwise. Let's assume x is 1 for this exercise.
+  CorrectAnswer: if (1 > 0) {print("x is positive")} else {print("x is non-positive")}
+  AnswerTests: omnitest(correctExpr='if (1 > 0) {print("x is positive")} else {print("x is non-positive")}')
+  Hint: Remember, the syntax of an if/else statement is if (condition) {code if TRUE} else {code if FALSE}.
+
+- Class: text
+  Output: Good job! The if/else statement is a basic control statement in R.
+
+- Class: text
+  Output: Next, let's learn about the for loop. A for loop is used to iterate over a sequence of values and perform some action for each value.
+
+- Class: cmd_question
+  Output: Write a for loop that prints the squares of the numbers from 1 to 5.
+  CorrectAnswer: for (i in 1:5) {print(i^2)}
+  AnswerTests: omnitest(correctExpr='for (i in 1:5) {print(i^2)}')
+  Hint: The syntax of a for loop is for (value in sequence) {code}.
+
+- Class: text
+  Output: Great! The for loop is a powerful tool for performing repetitive tasks.
+
+- Class: text
+  Output: That's the end of this lesson. Keep practicing and exploring the many control statements that R has to offer. Happy coding!

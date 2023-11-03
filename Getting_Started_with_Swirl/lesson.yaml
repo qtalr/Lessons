@@ -6,8 +6,6 @@
   Organization: Wake Forest University
   Version: 0.9.0.
 
-# [ ] Review and update lesson
-
 # Overview
 - Class: text
   Output: "Hello and welcome to your first lesson using Swirl. This lesson is a quick tutorial/ test to get you familiar with Swirl exercises."
@@ -20,7 +18,7 @@
   Output: "Or coding questions, like this one, in which you will be asked to complete a small fragment of code. So, for example, let's use R to do some quick addition. Type '1+1' and hit Enter at the prompt '>' below."
   CorrectAnswer: 1 + 1
   AnswerTests: omnitest(correctExpr='1 + 1')
-  Hint: Type 1 + 1 and press Enter. 
+  Hint: Type 1 + 1 and press Enter.
 
 - Class: text
   Output: "If you do it correctly, you will get a nice message. If not, then you will be provided a hint --this hint often includes what you need to type to get it right."

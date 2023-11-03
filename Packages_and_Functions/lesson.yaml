@@ -9,16 +9,16 @@
 # [ ] Create less based on the outline template
 
 # # Plot example
-# - Class: figure
-#   Output: Check out this figure!
-#   Figure: plot-ex.R
-#   FigureType: new
+- Class: figure
+  Output: Check out this figure!
+  Figure: plot-ex.R
+  FigureType: new
 
 # # Page example
-# - Class: figure
-#   Output: Check out this content!
-#   Figure: page-ex.R
-#   FigureType: new
+- Class: figure
+  Output: Check out this content!
+  Figure: page-ex.R
+  FigureType: new
 
 - Class: text
   Output: Welcome to Understanding Packages and Functions! In this lesson, you will learn about the role of packages and functions in R.
@@ -72,13 +72,13 @@
   Hint: Remember, to access the documentation of a function, you can use the ? operator followed by the function name.
 
 - Class: text
-  Output: The first line of the documentation provides a brief description of what the function does. 
+  Output: The first line of the documentation provides a brief description of what the function does.
 
 - Class: text
   Output: The `Usage` section shows how to use the function. It lists the arguments that the function expects.
 
 - Class: text
-  Output: The `Arguments` section provides a detailed explanation of what each argument does. 
+  Output: The `Arguments` section provides a detailed explanation of what each argument does.
 
 - Class: text
   Output: The `Value` section describes the output that the function returns.

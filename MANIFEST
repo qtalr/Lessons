@@ -1,6 +1,6 @@
-Intro_to_Swirl
-Variables_and_Vectors
+Getting_Started_with_Swirl
 Workspace
+Vectors
 Objects
 Packages_and_Functions
 Summarizing_Data
@@ -10,4 +10,6 @@ Control_Statements
 Custom_Functions
 Vectorization
 Pattern_Matching
-Reshaping_Datasets
+Manipulate_Datasets
+Reshape_Dataset_Columns
+Reshape_Dataset_Rows

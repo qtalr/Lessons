@@ -1,6 +1,47 @@
 # ======================================
 # Functions for developing swirl lessons
-# ====================================== 
+# ======================================
+
+
+# Description: Create a new swirl lesson --------------------------------------
+
+create_swirl_lesson <- function(lesson_name, course_name, open_lesson = FALSE) {
+  # Load required packages
+  if (!require(swirl)) {
+    install.packages("swirl")
+    library(swirl)
+  }
+
+  if (!require(swirlify)) {
+    install.packages("swirlify")
+    library(swirlify)
+  }
+
+  # Get the path to the current working directory
+  cwd <- getwd()
+
+  # Set the current working directory
+  setwd("../") # one level up from the current directory
+
+  # Create a new swirl lesson
+  swirlify::new_lesson(
+    lesson_name = lesson_name,
+    course_name = course_name,
+    open_lesson = open_lesson
+  )
+
+  # Set the current working directory back to the original directory
+  setwd(cwd)
+
+  # Verify that the lesson was created
+  swirlify::get_current_lesson()
+
+  # Add the lesson to the MANIFEST
+  swirlify::add_to_manifest()
+
+  message("Lesson created and added to MANIFEST.")
+}
+
 
 # Description: Easy-select lessons --------------------------------------------
 
@@ -30,9 +71,13 @@ edit_swirl_lesson <- function() {
 
   # Set the selected lesson as the working lesson
   swirlify::set_lesson(lesson_path, open_lesson = FALSE)
+
+  # Add the lesson to the MANIFEST
+  swirlify::add_to_manifest()
+
+  message("Lesson created, set, and added to MANIFEST.")
+
 }
-
-
 
 # Description: Scaffold display questions -------------------------------------
 
@@ -162,7 +207,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
   Figure: page-ex.R
   FigureType: new
 ", file = file.path(rel_dir, "lesson.yaml"), append = TRUE)
-  
+
   # Render the page-ex.Rmd file
   rmarkdown::render(
     file.path(rel_dir, "page-ex.Rmd"),

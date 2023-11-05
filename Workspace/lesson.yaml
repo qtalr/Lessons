@@ -4,6 +4,56 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
 # [ ] Create less based on the outline template
+
+
+- Class: text
+  Output: In this lesson, we will get familiar with our workspace in RStudio. We will learn about the four main panes and how we can use them to write, run, and save our code. We will also learn about RStudio Projects and how they can help us organize our work. With this in mind, let's get started!
+
+- Class: text
+  Output: RStudio is an IDE, or Integrated Development Environment. It is a software application that provides a graphical user interface (GUI) for writing and running code. But any code that is run is actually run by the R interpreter.
+
+- Class: text
+  Output: RStudio is just a helpful tool that makes it easier to write, run, and organize code and coding projects.
+
+- Class: text
+  Output: Let's look at the RStudio IDE when we first open it and explore the four main panes in a clockwise fashion, starting with the upper left pane.
+
+- Class: text
+  Output: The upper left pane is the **Source** pane. This is where we write our code with the intention to save that code into a file. A code file is called a script.
+
+- Class: text
+  Output: When we first open the source pane, we are presented with a blank script. We can write our code in this script and save it to our computer, create a new script, or open an existing script.
+
+- Class: text
+  Output: Different scripts will open in a new tab in the source pane. We can have multiple scripts open at the same time and jump between them by clicking on the tabs.
+
+- Class: text
+  Output: There's much more to know about the source pane, but we'll get to that later, for now, let's move on to the upper right pane.
+
+- Class: text
+  Output: The upper right pane is the **Environment** pane. This pane is one of two panes that are made up of a series of pane views. The environment pane by default includes - the environment, history, connections, and tutorials pane views.
+
+
+
+
+
+# Plot example
+- Class: figure
+  Output: Check out this figure!
+  Figure: plot-ex.R
+  FigureType: new
+
+# Page example
+- Class: figure
+  Output: Check out this content!
+  Figure: page-ex.R
+  FigureType: new
+
+- Class: text_question
+  Output: explain the question here
+  CorrectAnswer: answer
+  AnswerTests: omnitest(correctVal='answer')
+  Hint: answer

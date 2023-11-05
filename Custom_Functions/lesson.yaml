@@ -15,3 +15,16 @@
   CorrectAnswer: ls()
   AnswerTests: omnitest(correctExpr='ls()')
   Hint: Type `ls()` and hit ENTER.
+
+
+# Plot example
+- Class: figure
+  Output: Check out this figure!
+  Figure: plot-ex.R
+  FigureType: new
+
+# Page example
+- Class: figure
+  Output: Check out this content!
+  Figure: page-ex.R
+  FigureType: new

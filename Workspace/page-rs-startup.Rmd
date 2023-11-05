@@ -1,0 +1,7 @@
+---
+output: html_document
+---
+
+```{r echo=FALSE}
+knitr::include_graphics("images/workspace_rs_starup.png")
+```

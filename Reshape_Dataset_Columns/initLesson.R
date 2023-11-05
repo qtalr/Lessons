@@ -32,4 +32,3 @@
       utils::browseURL(temp)
     }
   }
-  

@@ -6,68 +6,70 @@
   Organization: Wake Forest University
   Version: 0.9.0
 
-- Class: text
-  Output: In this lesson, we will get familiar with our workspace in RStudio. We will learn about the four main panes and how we can use them to write, run, and save our code. Let's get started!
+# Overview ----------------------------------------------
 
 - Class: text
-  Output: Don't forget you can, temporarily, leave the lesson by typing play() and then return by typing nxt().
+  Output: "In this lesson, we will get familiar with our workspace in RStudio. We will learn about the four main panes and how we can use them to write, run, and save our code. Let's get started!"
+
+- Class: text
+  Output: "Don't forget you can, temporarily, leave the lesson by typing play() and then return by typing nxt()."
 
 # 1 RStudio IDE ------------------------------------------
 
 - Class: text
-  Output: It is very important to understand the relationship between R and RStudio, or any IDE for that matter. R is a programming language and when you install R on your machine you are installing the R intpreter. This is the software that actually understands the R language and can execute the code you write.
+  Output: "It is very important to understand the relationship between R and RStudio, or any IDE for that matter. R is a programming language and when you install R on your machine you are installing the R intpreter. This is the software that actually understands the R language and can execute the code you write."
 
 - Class: text
-  Output: RStudio is an IDE, or Integrated Development Environment. It is a software application that provides a graphical user interface (GUI) for writing and running code. But any code that is run is actually run by the R interpreter.
+  Output: "RStudio is an IDE, or Integrated Development Environment. It is a software application that provides a graphical user interface (GUI) for writing and running code. But any code that is run is actually run by the R interpreter."
 
 - Class: text
-  Output: RStudio is just a helpful tool that makes it easier to write, run, and organize code and coding projects.
+  Output: "RStudio is just a helpful tool that makes it easier to write, run, and organize code and coding projects."
 
 - Class: text_question
-  Output: T/F- All you need to run R code is to download RStudio.
+  Output: "T/F- All you need to run R code is to download RStudio."
   CorrectAnswer: "F"
   AnswerTests: omnitest(correctVal='F')
   Hint: You need to download R first. RStudio is just an IDE that makes it easier to write, run, and organize code and coding projects.
 
 - Class: text
-  Output: Let's look at the RStudio IDE when we first open it and explore the four main panes in a clockwise fashion, starting with the upper left pane.
+  Output: "Let's look at the RStudio IDE when we first open it and explore the four main panes in a clockwise fashion, starting with the upper left pane."
 
 # 2 Source pane ------------------------------------------
 
 - Class: text
-  Output: The four main panes in RStudio are the Source, Console, Environment, and Files panes. Let's briefy look at each of these panes and what they are used for.
+  Output: "The four main panes in RStudio are the Source, Console, Environment, and Files panes. Let's briefy look at each of these panes and what they are used for."
 
 - Class: figure
-  Output: The source pane is located in the top left corner of the RStudio IDE. This is where we write our code with the intention to save that code into a file. A file which contains code is called a script.
+  Output: "The source pane is located in the top left corner of the RStudio IDE. This is where we write our code with the intention to save that code into a file. A file which contains code is called a script."
   Figure: page-rs-source-pane.R
   FigureType: new
 
 - Class: figure
-  Output: If you are opening RStudio for the first time, the source pane will be empty. Meaning that we do not have a file open in the source pane.
+  Output: "If you are opening RStudio for the first time, the source pane will be empty. Meaning that we do not have a file open in the source pane."
   Figure: page-rs-startup.R
   FigureType: new
 
 - Class: text
-  Output: We can open a new file in the source pane a few different ways. One way is to use the RStudio menu bar. The other is to use the RStudio tool bar, which is a series of icons located just below the menu bar. And the third is to use keyboard shortcuts.
+  Output: "We can open a new file in the source pane a few different ways. One way is to use the RStudio menu bar. The other is to use the RStudio tool bar, which is a series of icons located just below the menu bar. And the third is to use keyboard shortcuts."
 
 - Class: text
-  Output: Using either the menu or tool bar, we use the mouse to navigate and select the operation we want to perform. To the right of each operation is the keyboard shortcut for that operation. For example, to open a new file in the source pane, we can use the keyboard shortcut Ctrl/Cmd + Shift + N.
+  Output: "Using either the menu or tool bar, we use the mouse to navigate and select the operation we want to perform. To the right of each operation is the keyboard shortcut for that operation. For example, to open a new file in the source pane, we can use the keyboard shortcut Ctrl/Cmd + Shift + N."
 
 - Class: figure
-  Output: Create an R script now by one of these three methods.
+  Output: "Create an R script now by one of these three methods."
   Figure: page-rs-create-file.R
   FigureType: new
 
 - Class: figure
-  Output: We can now clearly see that their are four panes in the RStudio IDE. The source pane is where we create, write, and save our code. 
+  Output: "We can now clearly see that their are four panes in the RStudio IDE. The source pane is where we create, write, and save our code."
   Figure: page-rs-4-panes.R
   FigureType: new
 
 - Class: text
-  Output: We are not limited to creating R scripts, but can also create Quarto documents, Shiny apps, and scripts for other languages like Python and SQL. In this course, we will focus on R scripts and Quarto documents.
+  Output: "We are not limited to creating R scripts, but can also create Quarto documents, Shiny apps, and scripts for other languages like Python and SQL. In this course, we will focus on R scripts and Quarto documents."
 
 - Class: text_question
-  Output: T/F- The source pane is for writing and saving R code only. It cannot be used to write code for other languages.
+  Output: "T/F- The source pane is for writing and saving R code only. It cannot be used to write code for other languages."
   CorrectAnswer: "F"
   AnswerTests: omnitest(correctVal='F')
   Hint: We are not limited to creating R scripts, but can also create Quarto documents, Shiny apps, and scripts for other languages like Python and SQL.
@@ -75,58 +77,58 @@
 # 3 Environment pane -------------------------------------
 
 - Class: figure
-  Output: The environment pane is located in the top right corner of the RStudio IDE. This is the first of two panes that include a series of tabs. The environment pane has four sub-panes-  Environment, History, Connections, and Tutorials.
+  Output: "The environment pane is located in the top right corner of the RStudio IDE. This is the first of two panes that include a series of tabs. The environment pane has four sub-panes-  Environment, History, Connections, and Tutorials."
   Figure: page-rs-environment-pane.R
   FigureType: new
 
 - Class: text
-  Output: The environment pane is where we can view all of the objects that we have created in our current R session. This includes variables, functions, datasets, etc. We can also view the values of these objects.
+  Output: "The environment pane is where we can view all of the objects that we have created in our current R session. This includes variables, functions, datasets, etc. We can also view the values of these objects."
 
 - Class: text
-  Output: As part of this lesson, I created four objects in the environment pane. `x_vec`, `y_vec`, and `z_df`. 
+  Output: "As part of this lesson, I created four objects in the environment pane. `x_vec`, `y_vec`, and `z_df`."
 
 - Class: text
-  Output: The History pane is where we can view all of the code that we have run in our current R session. There should be some code in the History pane if you have been following along with this lesson!
+  Output: "The History pane is where we can view all of the code that we have run in our current R session. There should be some code in the History pane if you have been following along with this lesson!"
 
 - Class: text
-  Output: The Connections pane is where we can view any connections that we have established to external data sources, such as databases. This is more advanced and we will not cover this in this lesson.
+  Output: "The Connections pane is where we can view any connections that we have established to external data sources, such as databases. This is more advanced and we will not cover this in this lesson."
 
 - Class: text
-  Output: The Tutorials pane is where we can view any tutorials that we have installed. Tutorials are a new feature in RStudio and are a great way to learn R and RStudio.
+  Output: "The Tutorials pane is where we can view any tutorials that we have installed. Tutorials are a new feature in RStudio and are a great way to learn R and RStudio."
 
 - Class: text_question
-  Output: T/F- The environment pane is where we can view all of the objects that we have created in our current R session.
+  Output: "T/F- The environment pane is where we can view all of the objects that we have created in our current R session."
   CorrectAnswer: "T"
   AnswerTests: omnitest(correctVal='T')
   Hint: The environment pane is where we can view all of the objects that we have created in our current R session.
 
 - Class: figure
-  Output: Moving on to the next major pane, we see the Files pane directly underneath the Environment pane. Like the Enivronment pane, the Files pane also has sub-panes- Files, Plots, Packages, Help, Viewer, and Presentations.
+  Output: "Moving on to the next major pane, we see the Files pane directly underneath the Environment pane. Like the Enivronment pane, the Files pane also has sub-panes- Files, Plots, Packages, Help, Viewer, and Presentations."
   Figure: page-rs-files-pane.R
   FigureType: new
 
 - Class: text
-  Output: The files pane looks and behaves much like a file explorer in Windows or Finder in Mac. We can use it to navigate our file system and open files. We can also create new files and folders.
+  Output: "The files pane looks and behaves much like a file explorer in Windows or Finder in Mac. We can use it to navigate our file system and open files. We can also create new files and folders."
 
 - Class: figure
-  Output: The plots pane is where we can view any plots that we have created in our current R session. When creating a plot in R, it will automatically appear in the plots pane and the pane will be activated.
+  Output: "The plots pane is where we can view any plots that we have created in our current R session. When creating a plot in R, it will automatically appear in the plots pane and the pane will be activated."
   Figure: plot-ex.R
   FigureType: new
 
 - Class: text
-  Output: The packages pane is where we can view all of the packages that we have installed on our machine. We can also install new packages or update existing packages.
+  Output: "The packages pane is where we can view all of the packages that we have installed on our machine. We can also install new packages or update existing packages."
 
 - Class: text
-  Output: The help pane is where we can view documentation for R, and any packages that we have installed. This pane will be activated when we use the `help()` function or the `?` operator.
+  Output: "The help pane is where we can view documentation for R, and any packages that we have installed. This pane will be activated when we use the `help()` function or the `?` operator."
 
 - Class: text
-  Output: The viewer pane is where we can preview any content we have generated by rendering Quarto documents or Shiny apps.
+  Output: "The viewer pane is where we can preview any content we have generated by rendering Quarto documents or Shiny apps."
 
 - Class: text
-  Output: The presentation pane is similar to the viewer pane, but is used to preview any content we have generated from Quarto documents that are intended to be presentations.
+  Output: "The presentation pane is similar to the viewer pane, but is used to preview any content we have generated from Quarto documents that are intended to be presentations."
 
 - Class: text_question
-  Output: T/F- The files pane is where we can view any plots that we have created in our current R session.
+  Output: "T/F- The files pane is where we can view any plots that we have created in our current R session."
   CorrectAnswer: "F"
   AnswerTests: omnitest(correctVal='F')
   Hint: The plots pane is where we can view any plots that we have created in our current R session.
@@ -134,30 +136,30 @@
 # 4 Console pane -----------------------------------------
 
 - Class: figure
-  Output: The console pane is located in the bottom left corner of the RStudio IDE. This is where we can run code and view the output of that code. We can also use the console pane to interact with R directly.
+  Output: "The console pane is located in the bottom left corner of the RStudio IDE. This is where we can run code and view the output of that code. We can also use the console pane to interact with R directly."
   Figure: page-rs-console-pane.R
   FigureType: new
 
 - Class: text
-  Output: At this moment, you are following this Swirl lesson in the console pane. 
+  Output: "At this moment, you are following this Swirl lesson in the console pane."
   
 - Class: text
-  Output: The console pane is comprised of three tabs- Console, Terminal, and Background Jobs. 
-  
-- Class: text
-  Output: The console is our direct line to the R interpreter. 
+  Output: "The console pane is comprised of three tabs- Console, Terminal, and Background Jobs."  
 
 - Class: text
-  Output: The terminal is a command line interface (CLI) that allows us to interact with our operating system. 
+  Output: "The console is our direct line to the R interpreter."
 
 - Class: text
-  Output: The background jobs tab is where we can view any background jobs that we have initiated. 
+  Output: "The terminal is a command line interface (CLI) that allows us to interact with our operating system."
 
 - Class: text
-  Output: Of the three tabs, we will almost exclusively use the console tab.
+  Output: "The background jobs tab is where we can view any background jobs that we have initiated."
+
+- Class: text
+  Output: "Of the three tabs, we will almost exclusively use the console tab."
 
 - Class: text_question
-  Output: T/F- The console pane is where we can run code and view the output of that code.
+  Output: "T/F- The console pane is where we can run code and view the output of that code."
   CorrectAnswer: "T"
   AnswerTests: omnitest(correctVal='T')
   Hint: The console pane is where we can run code and view the output of that code.
@@ -165,7 +167,7 @@
 # Summary -----------------------------------------------
 
 - Class: text
-  Output: In this lesson, we learned about the four main panes in the RStudio IDE. We learned that the source pane is where we write, run, and save our code. We learned that the environment pane is where we can view all of the objects that we have created in our current R session. We learned that the files pane is where we can navigate our file system and open files. And we learned that the console pane is where we can run code and view the output of that code.
+  Output: "In this lesson, we learned about the four main panes in the RStudio IDE. We learned that the source pane is where we write, run, and save our code. We learned that the environment pane is where we can view all of the objects that we have created in our current R session. We learned that the files pane is where we can navigate our file system and open files. And we learned that the console pane is where we can run code and view the output of that code."
 
 - Class: text
-  Output: There is much more to learn about the RStudio IDE, but this is a good start. In the next lesson, we will turn our attention to learning the fundaments of the R language.
+  Output: "There is much more to learn about the RStudio IDE, but this is a good start. In the next lesson, we will turn our attention to learning the fundaments of the R language."

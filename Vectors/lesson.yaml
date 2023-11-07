@@ -1,118 +1,149 @@
 - Class: meta
   Course: Lessons
-  Lesson: 1. Variables and Vectors
+  Lesson: Vectors
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
-# [ ] Review and update lesson
-
-# # Plot example
-# - Class: figure
-#   Output: Check out this figure!
-#   Figure: plot-ex.R
-#   FigureType: new
-
-# # Page example
-# - Class: figure
-#   Output: Check out this content!
-#   Figure: page-ex.R
-#   FigureType: new
-
-# Overview
-- Class: text
-  Output: "In this lesson, we will learn about variables and vectors. We will learn 
-    how to create variables, assign values to them, and how to create vectors. We 
-    will also learn how to subset vectors and how to use logical operators to subset 
-    vectors."
+# Overview ----------------------------------------------
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing play() 
-    and then return by typing nxt()."
+  Output: "In this lesson, we will learn about vectors. We will learn how to create vectors, discuss the types of vectors, and learn how to store them in variables."
 
-# R as calculator
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing play() and then return by typing nxt()."
+
+# Vectors ----------------------------------------------
+
+# Orient students to the concept of a vector
+# - A vector is a collection of values
+
+- Class: text
+  Output: A vector is simply a collection of values of the same type. For example, a vector can be a collection of numbers, a collection of characters, or a collection of logical values.
 
 - Class: cmd_question
-  Output: "In its simplest form, R can be used as an interactive calculator. Type
-    5 + 7 and press Enter."
-  CorrectAnswer: 5 + 7
-  AnswerTests: omnitest(correctExpr='5 + 7')
-  Hint: Type 5 + 7 and press Enter.
-
-- Class: text
-  Output: "R simply prints the result of 12 by default. However, R is a programming
-    language and often the reason we use a programming language as opposed to a calculator
-    is to automate some process or avoid unnecessary repetition."
-
-# Variables
-# - Assignment operator
-
-- Class: text
-  Output: "In this case, we may want to use our result from above in a second calculation.
-    Instead of retyping 5 + 7 every time we need it, we can just create a new variable
-    that stores the result."
-
-- Class: text
-  Output: "The way you assign a value to a variable in R is by using the assignment
-    operator, which is just a ''less than'' symbol followed by a ''minus'' sign. It
-    looks like this: <- ."
-
-- Class: text
-  Output: Think of the assignment operator as an arrow. You are assigning the value
-    on the right side of the arrow to the variable name on the left side of the arrow.
+  Output: Let's create a numeric vector. A numeric vector is a sequence of numbers. In R, we can create a numeric vector using the `c()` function. The `c()` function combines its arguments to form a vector. Let's create a numeric vector with the numbers 1 through 5 by inputing `c(1, 2, 3, 4, 5)` into the console.
+  CorrectAnswer: c(1, 2, 3, 4, 5)
+  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4, 5)')
+  Hint: Just type `c(1, 2, 3, 4, 5)`.
 
 - Class: cmd_question
-  Output: "To assign the result of 5 + 7 to a new variable called x, you type x <-
-    5 + 7. This can be read as 'x gets 5 plus 7'. Give it a try now."
-  CorrectAnswer: x <- 5 + 7
-  AnswerTests: any_of_exprs('x <- 5 + 7', 'x <- 7 + 5')
-  Hint: Type x <- 5 + 7. It's important to include a single space on each side of
-    the assignment operator, but do NOT put a space between the `<` and the `-` that
-    form the arrow.
+  Output: We can also create a character vector using the `c()` function. This time, however, the arguments will be quoted. Let's create a character vector with the letters "a" through "e" by inputing `c("a", "b", "c", "d", "e")` into the console.
+  CorrectAnswer: c("a", "b", "c", "d", "e")
+  AnswerTests: omnitest(correctExpr='c("a", "b", "c", "d", "e")')
+  Hint: Just type `c("a", "b", "c", "d", "e")`.
+
+- Class: cmd_question
+  Output: Note that numerals can be part of a character vector, but they are interpreted as characters not numbers. Let's create a character vector with the letters "a" through "e" and the number 1 by inputing `c("a", "b", "c", "d", "e", 1)` into the console. Note, you can use the up arrow key to recall the previous command!
+  CorrectAnswer: c("a", "b", "c", "d", "e", 1)
+  AnswerTests: omnitest(correctExpr='c("a", "b", "c", "d", "e", 1)')
+  Hint: Just type `c("a", "b", "c", "d", "e", 1)`.
 
 - Class: text
-  Output: You'll notice that R did not print the result of 12 this time. When you
-    use the assignment operator, R assumes that you don't want to see the result immediately,
-    but rather that you intend to use the result for something else later on.
+  Output: Looking at the output we can see that when we mix numerals with characters, the vector is returned as a character vector. Importantly, vectors can only be of one type. 
 
 - Class: cmd_question
-  Output: To view the contents of the variable x, just type x and press Enter. Try
-    it now.
-  CorrectAnswer: x
-  AnswerTests: omnitest(correctExpr='x')
-  Hint: Type x and press Enter. This will automatically print the value of x.
+  Output: Another primary vector type is a logical vector. Logical vectors contain logical values, which are either `TRUE` or `FALSE` (uppercase). Let's create a logical vector with the values `TRUE`, `FALSE`, `TRUE`, `FALSE`, `TRUE` by inputing `c(TRUE, FALSE, TRUE, FALSE, TRUE)` into the console.
+  CorrectAnswer: c(TRUE, FALSE, TRUE, FALSE, TRUE)
+  AnswerTests: omnitest(correctExpr='c(TRUE, FALSE, TRUE, FALSE, TRUE)')
+  Hint: Just type `c(TRUE, FALSE, TRUE, FALSE, TRUE)`.
 
-- Class: cmd_question
-  Output: Now, store the result of x - 3 in a new variable called y.
-  CorrectAnswer: y <- x - 3
-  AnswerTests: omnitest(correctExpr='y <- x - 3')
-  Hint: Type y <- x - 3 and press Enter. Whether you use x - 3 or x-3 is personal
-    preference, but it's good habit to include a space on either side of the assignment
-    operator.
-
-- Class: cmd_question
-  Output: What is the value of y? Type y to find out.
-  CorrectAnswer: 'y'
-  AnswerTests: omnitest(correctExpr='y')
-  Hint: Type y and press Enter.
-
-# End of lesson
 - Class: text
-  Output: "That does it for this lesson. You should now be able to create variables, 
-  assign values to them, and create vectors. You should also be able to subset vectors 
-  and use logical operators to subset vectors."
+  Output: Logical vectors are not enclosed by quotes because they are not characters. They are logical values.
+
+- Class: text
+  Output: Another property of vectors is that they can be of any length. Now, typing out a vector of length 100 would be tedious. So in practice vectors (and other data structures that we will see later) are read into R from external sources, such as a file. 
+
+- Class: cmd_question
+  Output: There are, however, functions that can be used to generate vectors of a specified type and length. One such function is the `seq()` function. The `seq()` function generates a sequence of numbers. It takes three arguments... `from`, `to`, and `by`. `from` is the starting number, `to` is the ending number, and `by` is the increment. Let's create a numeric vector with the numbers 1 through 99 by inputing `seq(1, 99, by = 1)` into the console.
+  CorrectAnswer: seq(1, 99, by = 1)
+  AnswerTests: omnitest(correctExpr='seq(1, 99, by = 1)')
+  Hint: Just type `seq(1, 99, by = 1)`.
+
+# - Vectors are the primary data structure in R
+# - All values in a vector must be of the same type
+# - Vectors can be of any length
+
+# Variables ----------------------------------------------
+
+# - Vectors can be stored in variables
+- Class: text
+  Output: Creating and printing vectors in the console is useful for learning, but in practice we will want to store vectors so we can use them in subsequent operations, such as calculations.
+
+# - Variables are assigned using the assignment operator
+- Class: text
+  Output: In R, we can store vectors, and other data structures, in variables. Variables are assigned using the assignment operator, which is the less than symbol followed by a dash `<-`. You can type these to characters manually, or use the keyboad shortcut in RStudio, which is `Alt + -`.
+
+- Class: cmd_question
+  Output: Let's create a numeric vector with the numbers 1 through 5 and assign it to a variable named `vec_1_num` by inputing `vec_1_num <- c(1, 2, 3, 4, 5)` into the console.
+  CorrectAnswer: vec_1_num <- c(1, 2, 3, 4, 5)
+  AnswerTests: omnitest(correctExpr='vec_1_num <- c(1, 2, 3, 4, 5)')
+  Hint: Just type `vec_1_num <- c(1, 2, 3, 4, 5)`.
+
+- Class: cmd_question
+  Output: This time the output of the `c()` function does not print to the console, rather it is stored in the variable `vec_1_num`. We can print the contents of `vec_1_num` to the console by typing `vec_1_num` into the console.
+  CorrectAnswer: vec_1_num
+  AnswerTests: omnitest(correctExpr='vec_1_num')
+  Hint: Just type `vec_1_num`.
+
+- Class: text
+  Output: You will also notice that once you have assigned a data structure to a variable, it will show up in the environment pane in RStudio. You can also see a preview of the contents of the variable.
 
 
+# - Variable names should be descriptive and meaningful. For example, `vec_1_num` is a good variable name because it describes the contents of the variable. A bad variable name is one that is not descriptive or meaningful. For example, `x` is a bad variable name because it does not describe the contents of the variable.
+- Class: text
+  Output: The naming of variables is more important that it might otherwise seem. When working in R, we will be creating numerous variables in the same session. As the number of variables increase, the difficulty in remembering what each variable contains also increases.
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: For your benefit, and for those running your code, it is recommendable to create variable names that are descriptive and meaningful yet short and concise as possible.
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: Take for example our variable `vec_1_num`. It is not the most meaningful variable name, as the vector it contains is for demonstration purposes, but it is more meaningful than `x`.
+
+# - Variable names have some restrictions: cannot start with a number, cannot contain spaces, cannot contain special characters (except for `_` and `.`), cannot be a reserved word (e.g., `if`, `else`, `for`, `while`, `function`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NaN`, `NA`, `NA_integer_`, `NA_real_`, `NA_complex_`, `NA_character_`)
+- Class: text
+  Output: Variable names have some restrictions in R that we need to be mindful of. They cannot start with a number, cannot contain spaces, cannot contain special characters (except for `_` and `.`), and cannot be a reserved word (e.g., `if`, `else`, `for`, `while`, `function`, `TRUE`, `FALSE`, `NULL`, etc.
+
+# - Vectors stored in variables can be used in calculations
+
+- Class: cmd_question
+  Output: Now back to thinking about vectors and how can use them in operations. Take for example a simple calculation, say `1 + 1`. Enter this in the console and press enter.
+  CorrectAnswer: 1 + 1
+  AnswerTests: omnitest(correctExpr='1 + 1')
+  Hint: Just type `1 + 1`.
+
+- Class: text
+  Output: This trivial addition calculation serves to underscore the importance of vectors in R. The output is `2` but before the value, we see that `[1]` is printed. This is because the output is a vector of length 1. And in fact, the calculation `1 + 1` is really `c(1) + c(1)`.
+
+- Class: cmd_question
+  Output: Let's push this notion a little further. Let's now perform the following calculation `c(1, 2, 3, 4, 5) + 2`. Enter this in the console and press enter.
+  CorrectAnswer: c(1, 2, 3, 4, 5) + 2
+  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4, 5) + 2')
+  Hint: Just type `c(1, 2, 3, 4, 5) + 2`.
+
+- Class: text
+  Output: The result shows that what has happend is that 2 was added to each element of the vector. This is because R is vectorized. This means that R will perform the operation on each element of the vector. This is a very powerful feature of R.
+
+- Class: cmd_question
+  Output: Now let's create another numeric vector of length 5 with the numbers 1 through 5 and assign it to a variable named `vec_2_num` by inputing `vec_2_num <- 1:5` (yet another way to create a numeric vector) into the console.
+  CorrectAnswer: vec_2_num <- 1:5
+  AnswerTests: omnitest(correctExpr='vec_2_num <- 1:5')
+  Hint: Just type `vec_2_num <- 1:5`.
+
+- Class: cmd_question
+  Output: Now let's perform the following calculation `vec_1_num + vec_2_num`. Enter this in the console and press enter.
+  CorrectAnswer: vec_1_num + vec_2_num
+  AnswerTests: omnitest(correctExpr='vec_1_num + vec_2_num')
+  Hint: Just type `vec_1_num + vec_2_num`.
+
+- Class: text
+  Output: The result shows that what has happend is that the elements of `vec_1_num` were added to the corresponding elements of `vec_2_num`. Again this is because R is vectorized. Note, if the vectors are not the same length, R will recycle the shorter vector until it is the same length as the longer vector.
+
+# Summary ----------------------------------------------
+
+- Class: text
+  Output: In this lesson, we learned about vectors. We learned how to create vectors, discuss the types of vectors, and learn how to store them in variables. As a primary data structure in R, vectors are a very important concept to understand and they will be used throughout the rest of the course.
+
+- Class: text
+  Output: This concludes this introduction to vectors. In our next lesson, we will add to our knowledge of vectors and introduce other data structures in R.

@@ -12,7 +12,7 @@
   Output: "In this lesson, we will learn about vectors. We will learn how to create vectors, discuss the types of vectors, and learn how to store them in variables."
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing play() and then return by typing nxt()."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`."
 
 # Vectors ----------------------------------------------
 
@@ -101,7 +101,7 @@
 - Class: text
   Output: Take for example our variable `vec_1_num`. It is not the most meaningful variable name, as the vector it contains is for demonstration purposes, but it is more meaningful than `x`.
 
-# - Variable names have some restrictions: cannot start with a number, cannot contain spaces, cannot contain special characters (except for `_` and `.`), cannot be a reserved word (e.g., `if`, `else`, `for`, `while`, `function`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NaN`, `NA`, `NA_integer_`, `NA_real_`, `NA_complex_`, `NA_character_`)
+# - Variable names have some restrictions: 
 - Class: text
   Output: Variable names have some restrictions in R that we need to be mindful of. They cannot start with a number, cannot contain spaces, cannot contain special characters (except for `_` and `.`), and cannot be a reserved word (e.g., `if`, `else`, `for`, `while`, `function`, `TRUE`, `FALSE`, `NULL`, etc.
 

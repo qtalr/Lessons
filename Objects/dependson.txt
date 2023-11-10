@@ -1,1 +1,4 @@
 base64enc
+tibble
+dplyr
+stringr

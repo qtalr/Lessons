@@ -4,149 +4,174 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
 # [ ] Create less based on the outline template
 
-- Class: text
-  Output: Welcome to this lesson on R objects! We will start with vectors, one of the primary data structures in R. Vectors are used to store 1-dimensional data, like a column of a data frame. There are different types of vectors, such as numeric/integer and character vectors. Let's dive in!
-
-- Class: mult_question
-  Output: Which of the following statements are true?
-  CorrectAnswer: Vectors are used to store 1-dimensional data; Data frames are used to store 2-dimensional data
-  AnswerChoices: Vectors are used to store 1-dimensional data; Data frames are used to store 2-dimensional data; Vectors can only contain numbers; Data frames can only contain numbers
-  AnswerTests: omnitest(correctVal=c('Vectors are used to store 1-dimensional data', 'Data frames are used to store 2-dimensional data'))
-  Hint: Vectors are used to store 1-dimensional data and data frames are used to store 2-dimensional data.
-
-- Class: cmd_question
-  Output: Let's start by creating a numeric vector. A numeric vector is a sequence of numbers. In R, we can create a numeric vector using the `c()` function. The `c()` function combines its arguments to form a vector. Let's create a numeric vector with the numbers 1 through 5. Please assign this vector to a variable named `vec_1_num`.
-  CorrectAnswer: vec_1_num <- c(1, 2, 3, 4, 5)
-  AnswerTests: omnitest(correctExpr='vec_1_num <- c(1, 2, 3, 4, 5)')
-  Hint: Just type `vec_1_num <- c(1, 2, 3, 4, 5)`.
-
-- Class: cmd_question
-  Output: Great! Now, let's create another numeric vector, but this time using the `seq()` function. The `seq()` function generates a sequence of numbers. It takes three arguments... `from`, `to`, and `by`. `from` is the starting number, `to` is the ending number, and `by` is the increment. Let's create a vector that also contains the numbers 1 through 5, but this time using `seq()`. Assign it to a variable named `vec_2_num`.
-  CorrectAnswer: vec_2_num <- seq(1, 5, by = 1)
-  AnswerTests: omnitest(correctExpr='vec_2_num <- seq(1, 5, by = 1)')
-  Hint: Just type `vec_2_num <- seq(1, 5, by = 1)`.
-
-- Class: cmd_question
-  Output: Now, you might be wondering if the vectors `vec_1_num` and `vec_2_num` we created are the same, even though we used different functions to create them. In R, we can check if two objects are exactly the same using the `identical()` function. Use this function to check if `vec_1_num` and `vec_2_num` are identical.
-  CorrectAnswer: identical(vec_1_num, vec_2_num)
-  AnswerTests: omnitest(correctExpr='identical(vec_1_num, vec_2_num)')
-  Hint: Just type `identical(vec_1_num, vec_2_num)`.
-
-- Class: cmd_question
-  Output: Now, let's create a character vector. A character vector is a sequence of characters or strings. In R, we can create a character vector using the `c()` function, just like we did with the numeric vector. Except this time we need to quote each letter. Let's create a character vector with the letters "a" through "e". Please assign this vector to a variable named `vec_4_char`.
-  CorrectAnswer: vec_4_char <- c("a", "b", "c", "d", "e")
-  AnswerTests: omnitest(correctExpr='vec_4_char <- c("a", "b", "c", "d", "e")')
-  Hint: Just type `vec_4_char <- c("a", "b", "c", "d", "e")`.
-
-- Class: cmd_question
-  Output: Great! Now, let's create another character vector, but this time using the `letters` object in R. The `letters` object is a built-in character vector that contains the 26 lowercase letters of the alphabet. Let's create a character vector that also contains the letters "a" through "e", but this time using `letters`. Assign it to a variable named `vec_5_char`.
-  CorrectAnswer: vec_5_char <- letters[1:5]
-  AnswerTests: omnitest(correctExpr='vec_5_char <- letters[1:5]')
-  Hint: Just type `vec_5_char <- letters[1:5]`.
-
-- Class: cmd_question
-  Output: Now, let's check if the character vectors `vec_4_char` and `vec_5_char` we created are the same. Use the `identical()` function to do this.
-  CorrectAnswer: identical(vec_4_char, vec_5_char)
-  AnswerTests: omnitest(correctExpr='identical(vec_4_char, vec_5_char)')
-  Hint: Just type `identical(vec_4_char, vec_5_char)`.
-
-- Class: cmd_question
-  Output: In R, we can check the type of an object using the `class()` function. The `class()` function returns the class of the object, which tells us what type of object it is. Let's check the class of `vec_1_num`. 
-  CorrectAnswer: class(vec_1_num)
-  AnswerTests: omnitest(correctExpr='class(vec_1_num)')
-  Hint: Just type `class(vec_1_num)`.
-
-- Class: cmd_question
-  Output: Now, let's check the class of `vec_5_char`.
-  CorrectAnswer: class(vec_5_char)
-  AnswerTests: omnitest(correctExpr='class(vec_5_char)')
-  Hint: Just type `class(vec_5_char)`.
-
-- Class: cmd_question
-  Output: In R, we can change the type of an object using coercion functions. For example, we can change a numeric vector to a character vector using the `as.character()` function. Let's change `vec_1_num` to a character vector. Assign the result to a variable named `vec_1_char`.
-  CorrectAnswer: vec_1_char <- as.character(vec_1_num)
-  AnswerTests: omnitest(correctExpr='vec_1_char <- as.character(vec_1_num)')
-  Hint: Just type `vec_1_char <- as.character(vec_1_num)`.
-
-- Class: cmd_question
-  Output: Now, let's try to change `vec_4_char` to a numeric vector using the `as.numeric()` function. Assign the result to a variable named `vec_4_num`.
-  CorrectAnswer: vec_4_num <- as.numeric(vec_4_char)
-  AnswerTests: omnitest(correctExpr='vec_4_num <- as.numeric(vec_4_char)')
-  Hint: Just type `vec_4_num <- as.numeric(vec_4_char)`.
-
-- Class: cmd_question
-  Output: In R, we can subset a vector using the `[ ]` operator. The `[ ]` operator selects elements from a vector. Let's subset `vec_1_num` to get the 2nd element.
-  CorrectAnswer: vec_1_num[2]
-  AnswerTests: omnitest(correctExpr='vec_1_num[2]')
-  Hint: Just type `vec_1_num[2]`.
-
-- Class: cmd_question
-  Output: Now, let's subset `vec_1_num` to get the elements that are greater than 3.
-  CorrectAnswer: vec_1_num[vec_1_num > 3]
-  AnswerTests: omnitest(correctExpr='vec_1_num[vec_1_num > 3]')
-  Hint: Just type `vec_1_num[vec_1_num > 3]`.
-
-- Class: cmd_question
-  Output: Now, let's subset `vec_4_char` to get the elements that are in "b" and "d".
-  CorrectAnswer: vec_4_char[vec_4_char %in% c("b", "d")]
-  AnswerTests: omnitest(correctExpr='vec_4_char[vec_4_char %in% c("b", "d")]')
-  Hint: Just type `vec_4_char[vec_4_char %in% c("b", "d")]`.
+# Overview --------------------------------------------------------
 
 - Class: text
-  Output: Now that we've covered vectors, let's move on to data frames. A data frame is a data structure in R that is used to store 2-dimensional data. All columns in a data frame must be the same length, but they can be different types.
-
-- Class: cmd_question
-  Output: Let's create a data frame using the `data.frame()` function. The `data.frame()` function combines its arguments to form a data frame. Let's create a data frame with `vec_1_num` and `vec_4_char`. Assign it to a variable named `df_1`.
-  CorrectAnswer: df_1 <- data.frame(vec_1_num, vec_4_char)
-  AnswerTests: omnitest(correctExpr='df_1 <- data.frame(vec_1_num, vec_4_char)')
-  Hint: Just type `df_1 <- data.frame(vec_1_num, vec_4_char)`.
-
-- Class: cmd_question
-  Output: In R, we can subset a data frame using the `[ ]` operator. The `[ ]` operator selects rows and columns from a data frame. Let's subset `df_1` to get the 1st row.
-  CorrectAnswer: df_1[1, ]
-  AnswerTests: omnitest(correctExpr='df_1[1, ]')
-  Hint: Just type `df_1[1, ]`.
-
-- Class: cmd_question
-  Output: Now, let's subset `df_1` to get the 1st and 3rd rows.
-  CorrectAnswer: df_1[c(1, 3), ]
-  AnswerTests: omnitest(correctExpr='df_1[c(1, 3), ]')
-  Hint: Just type `df_1[c(1, 3), ]`.
-
-- Class: cmd_question
-  Output: Now, let's subset `df_1` to get the 1st column. We can do this using the `$` operator. The `$` operator selects a column from a data frame by its name.
-  CorrectAnswer: df_1$vec_1_num
-  AnswerTests: omnitest(correctExpr='df_1$vec_1_num')
-  Hint: Just type `df_1$vec_1_num`.
-
-- Class: cmd_question
-  Output: Now, let's subset `df_1` to get the 1st column, but this time using the `[ ]` operator.
-  CorrectAnswer: df_1[, 1]
-  AnswerTests: omnitest(correctExpr='df_1[, 1]')
-  Hint: Just type `df_1[, 1]`.
-
-- Class: cmd_question
-  Output: Finally, let's subset `df_1` to get the 1st through 3rd rows and the 2nd column.
-  CorrectAnswer: df_1[1:3, 2]
-  AnswerTests: omnitest(correctExpr='df_1[1:3, 2]')
-  Hint: Just type `df_1[1:3, 2]`.
+  Output: In this lesson, we will learn about R objects. We have already introduced one R object, the vector. We will learn about another R object in this lesson- data frames. We will also learn how to inspect objects, how to change the type of an object, and how to subset an object. 
 
 - Class: text
-  Output: Congratulations! You've completed this lesson on R objects. You've learned about vectors and data frames, how to create them, how to check their type, how to change their type, and how to subset them. Great job!
+  Output: Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`.
 
+# Inspecting objects -----------------------------------------------
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: The vector is a one-dimensional object. As you remember, there are three primary types of vectors- numeric, character, and logical. 
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: cmd_question
+  Output: As part of this lesson, I've include a number of vectors of different types. You should be able to view them in the environment pane in RStudio, or you can use the `ls()` function to list the objects in your environment. Type `ls()` in the console to see these objects.
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Just type `ls()`.
+
+- Class: text
+  Output: Now, we see that we have seven vector objects. We can also see in the environment pane, the vector types. `logi` is a logical vector, `num` is a numeric vector, and `chr` is a character vector. The `int` vector is a numeric vector, as well, but R lets us know that these numeric values are integers (whole numbers).
+
+- Class: cmd_question
+  Output: We can also use the `class()` function to check the type of an object. Let's check the type of the `token` object. Type `class(token)` in the console.
+  CorrectAnswer: class(token)
+  AnswerTests: omnitest(correctExpr='class(token)')
+  Hint: Just type `class(token)`.
+
+- Class: cmd_question
+  Output: Since the seven objects are all vectors, they also have the attribute `length`. We can use the `length()` function to check the length of a vector object. Let's check the length of the `token` object. Type `length(token)` in the console.
+  CorrectAnswer: length(token)
+  AnswerTests: omnitest(correctExpr='length(token)')
+  Hint: Just type `length(token)`.
+
+- Class: text
+  Output: Looking at the environment pane, we can see that in fact all the vectors are of length 100 [1\:100]. RStudio provides us a lot of information, but it is good to know how to do this programmatically.
+
+# Introduction to two-dimensional objects --------------------------
+
+- Class: text
+  Output: OK, let's turn our attention to two-dimensional objects. The first two-dimensional object we will learn about is the data frame. Outside vectors, data frames are one of the most common objects in R.
+
+- Class: text
+  Output: In fact, a data frame is simply a collection of vectors! Each vector is a column and each element in the vector is a row. All columns in a data frame must be the same length. This means that data frames are rectangular in shape. Notably, data frames can contain vectors of different types.
+
+- Class: cmd_question
+  Output: Since the seven objects are all vectors and they are all of the same length we can combine them into a single data frame. Let's start by simply creating a data frame with the vectors `speaker_id` and `speaker_age`. We can use the `data.frame()` function to create a data frame. Type `data.frame(speaker_id, speaker_age)` in the console.
+  CorrectAnswer: data.frame(speaker_id, speaker_age)
+  AnswerTests: omnitest(correctExpr='data.frame(speaker_id, speaker_age)')
+  Hint: Just type `data.frame(speaker_id, speaker_age)`.
+
+- Class: text
+  Output: Whoa! That's a lot of information. You may need to scroll up to see the columns of this data frame as all 100 rows are displayed. We can see that the first column is the `speaker_id` vector and the second column is the `speaker_age` vector. 
+
+- Class: text
+  Output: In the Tidyverse, it is common to use the `tibble()` function to create data frames, which is part of the `tibble` package. Tibbles are a modern reimagining of the data frame which add a number of useful features. 
+
+- Class: cmd_question
+  Output: Let's create a tibble with the vectors `speaker_id`,  `speaker_age`, and `english_native` and assign it to a variable named `speaker_info`. Type `speaker_info <- tibble(speaker_id, speaker_age, english_native)` in the console.
+  CorrectAnswer: speaker_info <- tibble(speaker_id, speaker_age, english_native)
+  AnswerTests: omnitest(correctExpr='speaker_info <- tibble(speaker_id, speaker_age, english_native)')
+  Hint: Just type `speaker_info <- tibble(speaker_id, speaker_age, english_native)`.
+
+- Class: cmd_question
+  Output: Now type the object name `speaker_info` in the console to see the tibble.
+  CorrectAnswer: speaker_info
+  AnswerTests: omnitest(correctExpr='speaker_info')
+  Hint: Just type `speaker_info`.
+
+- Class: text
+  Output: You can already appreciate some of the tibble enhancements. The tibble prints only the first 10 rows, the columns are aligned, the column names are displayed, and the type of each column is displayed. The tibble also displays the number of rows and columns in the tibble. This makes previewing data much easier and more informative.
+
+# Coercing objects -------------------------------------------------
+
+- Class: text
+  Output: Now that we have some understanding of vectors and data frames, let's introduce a concept which may not seem intuitive at first, but turns out to be a very practical skill for working with data in R- coercing objects.
+
+- Class: cmd_question
+  Output: We can coerce objects from one type to another. For example, we can coerce a numeric vector to a character vector. Let's coerce the `speaker_age` vector, which is numeric, to a character vector. Type `as.character(speaker_age)` in the console.
+  CorrectAnswer: as.character(speaker_age)
+  AnswerTests: omnitest(correctExpr='as.character(speaker_age)')
+  Hint: Just type `as.character(speaker_age)`.
+
+- Class: text
+  Output: The output is a character vector. The numeric values have been converted to character values, which is indicated by the quotes around the values.
+
+- Class: text
+  Output: We can also coerce vectors to numeric vectors, logical vectors, and other types (as we will see later in the course). It is important to recognize, however, that not all vectors can be coerced to all types. For example, we cannot coerce a character vector to a numeric vector, unless the character vector contains values that are numerals.
+
+- Class: cmd_question
+  Output: Two-dimensional objects can also be coerced, with some limitations. Let's coerce the `speaker_info` tibble to a data frame. Type `as.data.frame(speaker_info)` in the console.
+  CorrectAnswer: as.data.frame(speaker_info)
+  AnswerTests: omnitest(correctExpr='as.data.frame(speaker_info)')
+  Hint: Just type `as.data.frame(speaker_info)`.
+
+- Class: text
+  Output: The output is a data frame. The tibble has been converted to a data frame. Data frames can also be coerced to tibbles. Data frames can also be coerced to other two-dimensional objects, such as matrices or lists, but we will not cover those in this lesson.
+
+# Subsetting objects -----------------------------------------------
+
+- Class: text
+  Output: Creating or reading objects into R and being able to inspect them is important, but many times we will want to extract a subset of an object. This is known as subsetting. We can subset vectors and two-dimensional objects, as we will now see.
+
+- Class: cmd_question
+  Output: Let's start by subsetting the `modality` vector. We can subset a vector by using square brackets and specifying the index of the elements we want to extract. Let's extract the first element of the `modality` vector. Type `modality[1]` in the console.
+  CorrectAnswer: modality[1]
+  AnswerTests: omnitest(correctExpr='modality[1]')
+  Hint: Just type `modality[1]`.
+
+- Class: cmd_question
+  Output: Now let's extract the first three elements of the `modality` vector. Type `modality[1:3]` in the console.
+  CorrectAnswer: modality[1:3]
+  AnswerTests: omnitest(correctExpr='modality[1:3]')
+  Hint: Just type `modality[1:3]`.
+
+- Class: cmd_question
+  Output: Now let's extract the first, third, and fifth elements of the `modality` vector. Type `modality[c(1, 3, 5)]` in the console.
+  CorrectAnswer: modality[c(1, 3, 5)]
+  AnswerTests: omnitest(correctExpr='modality[c(1, 3, 5)]')
+  Hint: Just type `modality[c(1, 3, 5)]`.
+
+- Class: text
+  Output: This type of subsetting is called bracket subsetting. And in addition to passing a indices, we can also pass a logical vector. Let's extract elements that return `TRUE`. 
+
+- Class: text
+  Output: R has a number of operators that return logical values. For equality, we can use the double equals operator `==`. For inequality, we can use the not equals operator `!=`. This works for both numeric (`1`) and character (`"1"`) values. 
+
+- Class: text
+  Output: For other numeric comparisons, we can use the greater than operator `>`, the less than operator `<`, the greater than or equal to operator `>=`, and the less than or equal to operator `<=`.
+
+- Class: cmd_question
+  Output: Let's work with the `token_length` vector. Let's extract the elements that are greater than 4. Type `token_length[token_length > 4]` in the console.
+  CorrectAnswer: token_length[token_length > 4]
+  AnswerTests: omnitest(correctExpr='token_length[token_length > 4]')
+  Hint: Just type `token_length[token_length > 4]`.
+
+- Class: text
+  Output: Now, data frames can also be subsetted. But since a data frame has two dimensions, we need to specify the rows and columns we want to extract. The order is fixed, rows first and then columns.
+
+- Class: cmd_question
+  Output: Let's extract the first row of the `speaker_info` tibble. Type `speaker_info[1, ]` in the console.
+  CorrectAnswer: speaker_info[1, ]
+  AnswerTests: omnitest(correctExpr='speaker_info[1, ]')
+  Hint: Just type `speaker_info[1, ]`.
+
+- Class: cmd_question
+  Output: As you can see, we do not have to specify the row or the columns, but we do need to include the comma if we are subsetting either the rows or columns. To extract the first column of the `speaker_info` tibble, type `speaker_info[, 1]` in the console.
+  CorrectAnswer: speaker_info[, 1]
+  AnswerTests: omnitest(correctExpr='speaker_info[, 1]')
+  Hint: Just type `speaker_info[, 1]`.
+
+- Class: cmd_question
+  Output: We can also use logical expressions to subset data frames. Let's extract the rows where the `english_native` column is `TRUE`. Type `speaker_info[speaker_info$english_native == TRUE, ]` in the console.
+  CorrectAnswer: speaker_info[speaker_info$english_native == TRUE, ]
+  AnswerTests: omnitest(correctExpr='speaker_info[speaker_info$english_native == TRUE, ]')
+  Hint: Just type `speaker_info[speaker_info$english_native == TRUE, ]`.
+
+- Class: text
+  Output: These expressions can get quite complex and unweildy to type and read. So in practice, we will tend to use a number of functions to subset data frames either by rows or columns. We will learn about these functions later in the course. 
+
+# Summary ----------------------------------------------------------
+
+- Class: text
+  Output: This concludes this lesson. We learned about vector and data frame objects. We learned how to inspect objects, how to change the type of an object, and how to subset an object.
+
+- Class: text
+  Output: There is much more to learn about vectors and data frames, but this is a good start. In the next lesson, we will learn about R packages and functions which will allow us to do more with R!

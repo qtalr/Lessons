@@ -4,19 +4,160 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
-# [ ] Create less based on the outline template
+# Overview ----------------------------------------------
 
+- Class: text
+  Output: Welcome to the Summarizing Data in R lesson! In this lesson, you'll learn how to summarize vectors and data frames with statistics and tables for better understanding and interpretation.
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`."
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+# Summarizing Data ----------------------------------------------
+
+- Class: text
+  Output: Let's start with an overview of why data summarization is crucial in data analysis.
+
+- Class: text
+  Output: Data summarization is the process of presenting a large amount of data in a concise and understandable format. It helps in understanding and interpreting data more easily.
+
+- Class: text
+  Output: The format may be a table, a plot, or a statistical summary such as mean, median, mode, standard deviation, etc. Here, we will focus on statistical and tabular summaries, leaving plots for the next lesson.
+
+- Class: text
+  Output: Summarization is an essential step in data analysis. It helps in identifying patterns and trends in the data. It also can help in identifying outliers and missing values.
+
+- Class: text
+  Output: In short, summarization allows us to understand the data better and make informed decisions.
+
+- Class: mult_question
+  Output: T/F- The mean is a type of data summarization called a statistical summary.
+  AnswerChoices: True; False
+  CorrectAnswer: True
+  AnswerTests: omnitest(correctVal='True')
+  Hint: The mean is a statistical summary.
+
+- Class: mult_question
+  Output: Why is data summarization important?
+  AnswerChoices: It helps in understanding and interpreting data more easily.; It helps in identifying patterns and trends in the data.; It helps in identifying outliers and missing values.; All of the above.
+  CorrectAnswer: All of the above.
+  AnswerTests: omnitest(correctVal='All of the above.')
+  Hint: All of the above are reasons why data summarization is important!
+
+# Summarizing vectors ----------------------------------------------
+
+- Class: text
+  Output: Now, let's practice summarizing vectors, both numeric and character. You will find that there are two vectors in your R workspace- `word_count` and `text_genre`.
+
+# Numeric vectors
+
+- Class: text
+  Output: For numeric vectors, statistical summaries are useful. In R, there are functions that can be used to calculate the mean, median, standard deviation, etc.
+
+- Class: cmd_question
+  Output: Let's calculate the mean of the `word_count` vector. The function is simply `mean()` and it takes one argument, the vector. So, to calculate the mean of the `word_count` vector, we would input `mean(word_count)` into the console.
+  CorrectAnswer: mean(word_count)
+  AnswerTests: omnitest(correctExpr='mean(word_count)')
+  Hint: Just type `mean(word_count)`.
+
+- Class: cmd_question
+  Output: There are even functions that provide multiple statistical summaries at once. One such function is `summary()`. The `summary()` function provides the minimum, 1st quartile, median, mean, 3rd quartile, and maximum. Try to calculate the summary of the `word_count` vector.
+  CorrectAnswer: summary(word_count)
+  AnswerTests: omnitest(correctExpr='summary(word_count)')
+  Hint: Just type `summary(word_count)`.
+
+# Character vectors
+
+- Class: text
+  Output: For character vectors, tabular summaries are useful. In R, there are functions that can be used to calculate the frequency of each value in a vector.
+
+- Class: cmd_question
+  Output: Let's calculate the frequency of each value in the `text_genre` vector. The first function we will use is `table()`. Type `table(text_genre)` into the console.
+  CorrectAnswer: table(text_genre)
+  AnswerTests: omnitest(correctExpr='table(text_genre)')
+  Hint: Just type `table(text_genre)`.
+
+- Class: mult_question
+  Output: From the table, which `text_genre` has the highest frequency?
+  AnswerChoices: Fiction; Non-fiction; Academic
+  CorrectAnswer: Academic
+  AnswerTests: omnitest(correctVal='Academic')
+  Hint: The Academic `text_genre` has the highest frequency at 32.
+
+- Class: cmd_question
+  Output: Another function that can be used to calculate the frequency of each value in a vector is `tabyl()` from the `janitor` package. I've loaded the `janitor` package for you. Try to calculate the frequency of each value in the `text_genre` vector using `tabyl()`.
+  CorrectAnswer: tabyl(text_genre)
+  AnswerTests: omnitest(correctExpr='tabyl(text_genre)')
+  Hint: Just type `tabyl(text_genre)`.
+
+- Class: text
+  Output: You can see that the `tabyl()` function provides a more readable and more informative table than the `table()` function. This is because the `tabyl()` function provides the frequency and proportion of each value in the vector. We will see that the `janitor` package has many useful functions adding to the `tabyl()` function later in the course.
+
+# Summarizing data frames ----------------------------------------------
+
+- Class: cmd_question
+  Output: But now, let's turn to summarizing data frames. You will find that there is a data frame in your R workspace- `books_df`. Let's take a look at the data frame. Type `books_df` into the console.
+  CorrectAnswer: books_df
+  AnswerTests: omnitest(correctExpr='books_df')
+  Hint: Just type `books_df`.
+
+- Class: exact_question
+  Output: How many variables are in the `books_df` data frame?
+  CorrectAnswer: 7
+  AnswerTests: omnitest(correctVal='7')
+  Hint: There are 7 variables in the `books_df` data frame.
+
+- Class: mult_question
+  Output: What is the most common vector type in the `books_df` data frame?
+  AnswerChoices: numeric; character; logical
+  CorrectAnswer: numeric
+  AnswerTests: omnitest(correctVal='numeric')
+  Hint: Remember both `int` and `dbl` are numeric vectors.
+
+# Numeric 
+
+# [ ] ... 
+
+# Using janitor and tabyl()
+- Class: text
+  Output: The janitor package's tabyl() function is great for tabular summaries. Let's try it out with our corpus linguistics dataset.
+
+- Class: cmd_question
+  Output: Use tabyl() to find the frequency of each TextGenre in the dataset.
+  CorrectAnswer: tabyl(corpus_df, TextGenre)
+  AnswerTests: omnitest(correctExpr='tabyl(corpus_df, TextGenre)')
+  Hint: Use the tabyl() function with the corpus_df dataframe and TextGenre column.
+
+# Exploring skimr and skim()
+- Class: text
+  Output: The skimr package provides an easy way to get comprehensive summaries of data frames.
+
+- Class: cmd_question
+  Output: Use skim() to summarize the corpus_df dataframe.
+  CorrectAnswer: skim(corpus_df)
+  AnswerTests: omnitest(correctExpr='skim(corpus_df)')
+  Hint: Just type skim(corpus_df).
+
+# Summarization with dplyr
+- Class: text
+  Output: Now, we'll delve into dplyr for more advanced data summarization.
+
+- Class: cmd_question
+  Output: Calculate the average WordCount for each TextGenre using dplyr's group_by() and summarize() functions.
+  CorrectAnswer: corpus_df |> group_by(TextGenre) |> summarize(AvgWordCount = mean(WordCount))
+  AnswerTests: omnitest(correctExpr='corpus_df |> group_by(TextGenre) |> summarize(AvgWordCount = mean(WordCount))')
+  Hint: Chain the group_by() and summarize() functions using the pipe operator.
+
+# Grouping Data and Summary Statistics
+- Class: text
+  Output: Finally, let's learn how to group data and calculate summary statistics for each group.
+
+- Class: cmd_question
+  Output: Find out how many texts in the dataset are translations for each AuthorNationality.
+  CorrectAnswer: corpus_df |> group_by(AuthorNationality) |> summarize(TranslationCount = sum(as.numeric(IsTranslated)))
+  AnswerTests: omnitest(correctExpr='corpus_df |> group_by(AuthorNationality) |> summarize(TranslationCount = sum(as.numeric(IsTranslated)))')
+  Hint: Use group_by(), summarize(), and sum() functions in combination.
+
+- Class: text
+  Output: Great job! You've completed the tutorial on summarizing data in R using tidyverse packages. Up next, you'll learn about visual summaries with ggplot2.

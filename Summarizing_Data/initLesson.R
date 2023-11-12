@@ -33,3 +33,15 @@
     }
   }
   
+# Variables
+
+# Data frame
+path_to_data_file <- 
+  file.path(.get_course_path(), "lessons", "Summarizing_Data", "books.csv")
+books_df <- read_csv(path_to_data_file) |> suppressMessages()
+
+# Numeric vector
+word_count <- books_df$word_count
+
+# Character vector
+text_genre <- books_df$text_genre

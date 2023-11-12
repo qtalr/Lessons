@@ -47,7 +47,7 @@
   AnswerTests: omnitest(correctExpr='library(readr)')
   Hint: Remember, the syntax is library(package_name).
 
-- Class: text 
+- Class: text
   Output: Now we have the `readr` package loaded into our R session. We can now use the functions from the `readr` package in our R session.
 
 - Class: text
@@ -57,7 +57,7 @@
 
 - Class: text
   Output: Let's now turn our attention to functions. Functions are the fundamental units of reproducible code in R. Any given function is a set of statements organized together to perform a specific task. There are base R functions and contributed package functions. You can also create your own functions, as we will see in a later lesson.
-  
+
 - Class: text
   Output: Functions take inputs, do something with them, and often return a result. Functions are a lot like verbs in a language. They perform an action such as 'read', 'select', 'filter', etc. Some inputs are required, while others are optional. Some functions return a value, while others do not.
 
@@ -90,7 +90,7 @@
 # Argument names and position
 
 - Class: text
-  Output: Let's use the `read_csv()` function to read in a CSV file. Before we do, however, let me say something about named and unnamed arguments. When using a function, you can specify the arguments by name or by position. When specifying arguments by name, the order of the arguments does not matter. When specifying arguments by position, the order of the arguments does matter. 
+  Output: Let's use the `read_csv()` function to read in a CSV file. Before we do, however, let me say something about named and unnamed arguments. When using a function, you can specify the arguments by name or by position. When specifying arguments by name, the order of the arguments does not matter. When specifying arguments by position, the order of the arguments does matter.
 
 - Class: text
   Output: It is a good habit to specify arguments by name while you are learning R and in your own code. This makes your code easier to read and understand. However, when you are working interactively, it is often easier to specify arguments by position.
@@ -102,11 +102,11 @@
   Hint: Remember, the syntax is function_name(argument).
 
 - Class: text
-  Ouput: So you see that the function reads the data from a CSV file into R, and without assigning it to a variable, it prints the data to the console. 
+  Ouput: So you see that the function reads the data from a CSV file into R, and without assigning it to a variable, it prints the data to the console.
 
 - Class: text
-  Output: We can see that the `read_csv()` function read our data file and returned a tibble which has 100 observations and 7 variables. Three of the variables are character vectors, three are numeric, of type double, and one is a logical vector. 
-  
+  Output: We can see that the `read_csv()` function read our data file and returned a tibble which has 100 observations and 7 variables. Three of the variables are character vectors, three are numeric, of type double, and one is a logical vector.
+
 - Class: cmd_question
   Output: Since we did not assign the data to a variable, the data is not stored in our R session. Let's run this command again, now assigning to a variable. Type `words_df <- read_csv(path_to_csv_file)` into the console now.
   CorrectAnswer: words_df <- read_csv(path_to_csv_file)
@@ -123,13 +123,13 @@
   Hint: Remember, the syntax is function_name(object, argument).
 
 - Class: text
-  Ouput: Now we can see that the data is sorted by the `speaker_age` variable. 
+  Ouput: Now we can see that the data is sorted by the `speaker_age` variable.
 
 # Piping ----------------------------------------------
 
 - Class: text
-  Output: Before we put some of these other inspection functions to use, I want to introduce a strategy for used extensively in the Tidyverse approach to R programming which is known as 'piping'. 
-  
+  Output: Before we put some of these other inspection functions to use, I want to introduce a strategy for used extensively in the Tidyverse approach to R programming which is known as 'piping'.
+
 - Class: text
   Output: Piping is a way to chain together functions in a way that is easy to read and understand. The basic logic is that the output of one function is used as the input to the first argument of the next function. The operator which is used to pipe functions together is the `|>` operator. The keyboard shortcut in RStudio is Ctrl/CMD + Shift + M.
 
@@ -149,13 +149,13 @@
   Hint: Remember, the syntax is object |> function(argument) |> function(argument).
 
 - Class: text
-  Output: You can read the pipe operator as 'then'. So, we are saying 'take the `words_df` object, then filter it, then sort it'. 
+  Output: You can read the pipe operator as 'then'. So, we are saying 'take the `words_df` object, then filter it, then sort it'.
 
 - Class: text
   Output: We can join together as many functions as we want using the pipe operator as long as the output of one function is the input to the first argument of the next function. But chains typically do not extend beyond 5 to 10 functions in practice and tend to be grouped together do complete a specific task.
 
 - Class: text
-  Output: I like to think of these groupings of chains as paragraphs in a larger composition. After the chain is complete, the output is assigned to a variable. This variable is then used for subsequent chains. Much as the ideas generated from a paragraph integrate into the larger composition.  
+  Output: I like to think of these groupings of chains as paragraphs in a larger composition. After the chain is complete, the output is assigned to a variable. This variable is then used for subsequent chains. Much as the ideas generated from a paragraph integrate into the larger composition.
 
 - Class: cmd_question
   Output: One somewhat counterintuitive aspect of pipe chains is that the result is assigned to a variable at the beginning of the chain, not the end. Let's assign the result of our chain to the variable `spoken_words_df`. Type `spoken_words_df <- words_df |> filter(modality == "spoken") |> arrange(speaker_age)` into the console now.

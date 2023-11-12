@@ -66,16 +66,16 @@
   Output: In the Tidyverse, it is common to use the `tibble()` function to create data frames, which is part of the `tibble` package. Tibbles are a modern reimagining of the data frame which add a number of useful features. 
 
 - Class: cmd_question
-  Output: Let's create a tibble with the vectors `speaker_id`,  `speaker_age`, and `english_native` and assign it to a variable named `speaker_info`. Type `speaker_info <- tibble(speaker_id, speaker_age, english_native)` in the console.
-  CorrectAnswer: speaker_info <- tibble(speaker_id, speaker_age, english_native)
-  AnswerTests: omnitest(correctExpr='speaker_info <- tibble(speaker_id, speaker_age, english_native)')
-  Hint: Just type `speaker_info <- tibble(speaker_id, speaker_age, english_native)`.
+  Output: Let's create a tibble with the vectors `speaker_id`,  `speaker_age`, and `english_native` and assign it to a variable named `speaker_info_df`. Type `speaker_info_df <- tibble(speaker_id, speaker_age, english_native)` in the console.
+  CorrectAnswer: speaker_info_df <- tibble(speaker_id, speaker_age, english_native)
+  AnswerTests: omnitest(correctExpr='speaker_info_df <- tibble(speaker_id, speaker_age, english_native)')
+  Hint: Just type `speaker_info_df <- tibble(speaker_id, speaker_age, english_native)`.
 
 - Class: cmd_question
-  Output: Now type the object name `speaker_info` in the console to see the tibble.
-  CorrectAnswer: speaker_info
-  AnswerTests: omnitest(correctExpr='speaker_info')
-  Hint: Just type `speaker_info`.
+  Output: Now type the object name `speaker_info_df` in the console to see the tibble.
+  CorrectAnswer: speaker_info_df
+  AnswerTests: omnitest(correctExpr='speaker_info_df')
+  Hint: Just type `speaker_info_df`.
 
 - Class: text
   Output: You can already appreciate some of the tibble enhancements. The tibble prints only the first 10 rows, the columns are aligned, the column names are displayed, and the type of each column is displayed. The tibble also displays the number of rows and columns in the tibble. This makes previewing data much easier and more informative.
@@ -98,10 +98,10 @@
   Output: We can also coerce vectors to numeric vectors, logical vectors, and other types (as we will see later in the course). It is important to recognize, however, that not all vectors can be coerced to all types. For example, we cannot coerce a character vector to a numeric vector, unless the character vector contains values that are numerals.
 
 - Class: cmd_question
-  Output: Two-dimensional objects can also be coerced, with some limitations. Let's coerce the `speaker_info` tibble to a data frame. Type `as.data.frame(speaker_info)` in the console.
-  CorrectAnswer: as.data.frame(speaker_info)
-  AnswerTests: omnitest(correctExpr='as.data.frame(speaker_info)')
-  Hint: Just type `as.data.frame(speaker_info)`.
+  Output: Two-dimensional objects can also be coerced, with some limitations. Let's coerce the `speaker_info_df` tibble to a data frame. Type `as.data.frame(speaker_info_df)` in the console.
+  CorrectAnswer: as.data.frame(speaker_info_df)
+  AnswerTests: omnitest(correctExpr='as.data.frame(speaker_info_df)')
+  Hint: Just type `as.data.frame(speaker_info_df)`.
 
 - Class: text
   Output: The output is a data frame. The tibble has been converted to a data frame. Data frames can also be coerced to tibbles. Data frames can also be coerced to other two-dimensional objects, such as matrices or lists, but we will not cover those in this lesson.
@@ -148,22 +148,22 @@
   Output: Now, data frames can also be subsetted. But since a data frame has two dimensions, we need to specify the rows and columns we want to extract. The order is fixed, rows first and then columns.
 
 - Class: cmd_question
-  Output: Let's extract the first row of the `speaker_info` tibble. Type `speaker_info[1, ]` in the console.
-  CorrectAnswer: speaker_info[1, ]
-  AnswerTests: omnitest(correctExpr='speaker_info[1, ]')
-  Hint: Just type `speaker_info[1, ]`.
+  Output: Let's extract the first row of the `speaker_info_df` tibble. Type `speaker_info_df[1, ]` in the console.
+  CorrectAnswer: speaker_info_df[1, ]
+  AnswerTests: omnitest(correctExpr='speaker_info_df[1, ]')
+  Hint: Just type `speaker_info_df[1, ]`.
 
 - Class: cmd_question
-  Output: As you can see, we do not have to specify the row or the columns, but we do need to include the comma if we are subsetting either the rows or columns. To extract the first column of the `speaker_info` tibble, type `speaker_info[, 1]` in the console.
-  CorrectAnswer: speaker_info[, 1]
-  AnswerTests: omnitest(correctExpr='speaker_info[, 1]')
-  Hint: Just type `speaker_info[, 1]`.
+  Output: As you can see, we do not have to specify the row or the columns, but we do need to include the comma if we are subsetting either the rows or columns. To extract the first column of the `speaker_info_df` tibble, type `speaker_info_df[, 1]` in the console.
+  CorrectAnswer: speaker_info_df[, 1]
+  AnswerTests: omnitest(correctExpr='speaker_info_df[, 1]')
+  Hint: Just type `speaker_info_df[, 1]`.
 
 - Class: cmd_question
-  Output: We can also use logical expressions to subset data frames. Let's extract the rows where the `english_native` column is `TRUE`. Type `speaker_info[speaker_info$english_native == TRUE, ]` in the console.
-  CorrectAnswer: speaker_info[speaker_info$english_native == TRUE, ]
-  AnswerTests: omnitest(correctExpr='speaker_info[speaker_info$english_native == TRUE, ]')
-  Hint: Just type `speaker_info[speaker_info$english_native == TRUE, ]`.
+  Output: We can also use logical expressions to subset data frames. Let's extract the rows where the `english_native` column is `TRUE`. Type `speaker_info_df[speaker_info_df$english_native == TRUE, ]` in the console.
+  CorrectAnswer: speaker_info_df[speaker_info_df$english_native == TRUE, ]
+  AnswerTests: omnitest(correctExpr='speaker_info_df[speaker_info_df$english_native == TRUE, ]')
+  Hint: Just type `speaker_info_df[speaker_info_df$english_native == TRUE, ]`.
 
 - Class: text
   Output: These expressions can get quite complex and unweildy to type and read. So in practice, we will tend to use a number of functions to subset data frames either by rows or columns. We will learn about these functions later in the course. 

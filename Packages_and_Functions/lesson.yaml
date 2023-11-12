@@ -102,7 +102,7 @@
   Hint: Remember, the syntax is function_name(argument).
 
 - Class: text
-  Ouput: So you see that the function reads the data from a CSV file into R, and without assigning it to a variable, it prints the data to the console.
+  Output: So you see that the function reads the data from a CSV file into R, and without assigning it to a variable, it prints the data to the console.
 
 - Class: text
   Output: We can see that the `read_csv()` function read our data file and returned a tibble which has 100 observations and 7 variables. Three of the variables are character vectors, three are numeric, of type double, and one is a logical vector.
@@ -116,14 +116,14 @@
 - Class: text
   Output: After reading data, it's good practice to inspect it. Just printing the `words_df` object to the console already contains quite a bit of information since the data is stored in a tibble. But we can also use other functions to such as `slice_head()` to inspect the first few rows of the data, `glimpse()` to get a quick overview of the data, and `arrange()` to sort the data.
 
-- Class: text
+- Class: cmd_question
   Output: Let's sort the `words_df` object by the `speaker_age` variable. Type `arrange(words_df, speaker_age)` into the console now.
   CorrectAnswer: arrange(words_df, speaker_age)
   AnswerTests: omnitest(correctExpr='arrange(words_df, speaker_age)')
   Hint: Remember, the syntax is function_name(object, argument).
 
 - Class: text
-  Ouput: Now we can see that the data is sorted by the `speaker_age` variable.
+  Output: Now we can see that the data is sorted by the `speaker_age` variable.
 
 # Piping ----------------------------------------------
 
@@ -131,7 +131,7 @@
   Output: Before we put some of these other inspection functions to use, I want to introduce a strategy for used extensively in the Tidyverse approach to R programming which is known as 'piping'.
 
 - Class: text
-  Output: Piping is a way to chain together functions in a way that is easy to read and understand. The basic logic is that the output of one function is used as the input to the first argument of the next function. The operator which is used to pipe functions together is the `|>` operator. The keyboard shortcut in RStudio is Ctrl/CMD + Shift + M.
+  Output: Piping is a way to chain together functions in a way that is easy to read and understand. The basic logic is that the output of one function is used as the input to the first argument of the next function. The operator which is used to pipe functions together is the `|>` operator. The keyboard shortcut in RStudio is Ctrl/Cmd + Shift + M.
 
 - Class: cmd_question
   Output: Let's try a piping approach to the sorting operation we just did. In this case, we will extract the `data` argument `words_df` and pipe it to the `arrange()` function. Type `words_df |> arrange(speaker_age)` into the console now.
@@ -152,7 +152,7 @@
   Output: You can read the pipe operator as 'then'. So, we are saying 'take the `words_df` object, then filter it, then sort it'.
 
 - Class: text
-  Output: We can join together as many functions as we want using the pipe operator as long as the output of one function is the input to the first argument of the next function. But chains typically do not extend beyond 5 to 10 functions in practice and tend to be grouped together do complete a specific task.
+  Output: We can join together as many functions as we want using the pipe operator as long as the output of one function is the input to the first argument of the next function. But chains typically do not extend beyond 5 to 10 functions in practice and tend to be grouped together to complete a specific task.
 
 - Class: text
   Output: I like to think of these groupings of chains as paragraphs in a larger composition. After the chain is complete, the output is assigned to a variable. This variable is then used for subsequent chains. Much as the ideas generated from a paragraph integrate into the larger composition.

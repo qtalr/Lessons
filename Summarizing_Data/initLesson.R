@@ -2,6 +2,7 @@
 # lesson is started. Any variables created here will show up in
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
+
 .get_course_path <<- function() {
   tryCatch(
     swirl:::swirl_courses_dir(),
@@ -36,7 +37,7 @@
 # Variables
 
 # Data frame
-path_to_data_file <-
+path_to_csv_file <-
   file.path(
     .get_course_path(),
     "lessons",
@@ -45,7 +46,7 @@ path_to_data_file <-
   )
 
 books_df <-
-  read_csv(path_to_data_file) |>
+  read_csv(path_to_csv_file) |>
   suppressMessages()
 
 # Numeric vector

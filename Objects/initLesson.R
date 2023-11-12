@@ -12,11 +12,11 @@
   )
 }
 
-.pathtofile <<- function(fileName) {
-  mypath <- file.path(
+.pathtofile <<- function(file_name) {
+  mypath <- file.path( # nolint
     .get_course_path(),
     "lessons", "Objects",
-    fileName
+    file_name
   )
 }
 
@@ -45,9 +45,9 @@ df <- tibble(
   speaker_age = sample(18:65, 100, replace = TRUE),
   english_native = sample(c(TRUE, FALSE), 100, replace = TRUE),
   modality = sample(c("spoken", "written"), 100, replace = TRUE),
-  token = replicate(100, paste(sample(c("love", "book", "justice", "phone", "success", "coffee"), 1, replace = TRUE))), #nolint
+  token = replicate(100, paste(sample(c("love", "book", "justice", "phone", "success", "coffee"), 1, replace = TRUE))), # nolint
   token_length = str_count(token),
-  token_freq_pmw = (token_length * sample(1:10, 100, replace = TRUE)/ 1345119) * 1000000 #nolint
+  token_freq_pmw = (token_length * sample(1:10, 100, replace = TRUE) / 1345119) * 1000000 # nolint
 )
 
 # Create vectors from each column

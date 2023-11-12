@@ -33,3 +33,8 @@
     utils::browseURL(temp)
   }
 }
+
+# Variables
+
+path_to_csv_file <- 
+  file.path(.get_course_path(), "lessons", "Packages_and_Functions", "words.csv")

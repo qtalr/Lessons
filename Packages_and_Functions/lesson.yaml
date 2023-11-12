@@ -4,81 +4,79 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
-# [ ] Create less based on the outline template
+# On installing the lesson ------------------------------
+# [ ] verify that the lesson.yaml file is valid YAML
+# [ ] verify that the `path_to_csv_file` variable loads correctly
 
-# # Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
-
-# # Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+# Overview ----------------------------------------------
 
 - Class: text
-  Output: Welcome to Understanding Packages and Functions! In this lesson, you will learn about the role of packages and functions in R.
+  Output: Welcome to the lesson on packages and functions! In this lesson, you will learn about the role of packages in R programming and how to use functions.
 
 - Class: text
-  Output: Let's start with packages. A package in R is a collection of functions, sample data, and compiled code in a well-defined format.
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`."
+
+# Packages ----------------------------------------------
 
 - Class: text
-  Output: The tidyverse is a collection of R packages that share common philosophies and are designed to work together. It is particularly useful for data science and text analysis.
+  Output: Let's start with packages. Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and often sample data.
+
+- Class: text
+  Output: By default, there are a few packages that are automatically installed included when you install R. These packages are called the base packages. The base packages provide the core functionality of R.
+
+- Class: text
+  Output: There are also many packages that are not included with the base packages. These packages are called contributed packages. Contributed packages are developed by the R community and are available for download from the Comprehensive R Archive Network (CRAN) or on code repositories like GitHub.
+
+- Class: text
+  Output: To use a contributed package, you must first install it on your computing environment. Then, you must load the package into your R session.
 
 - Class: cmd_question
-  Output: Install the tidyverse package using the install.packages() function.
-  CorrectAnswer: install.packages("tidyverse")
-  AnswerTests: omnitest(correctExpr='install.packages("tidyverse")')
-  Hint: The syntax is install.packages("package_name").
+  Output: Let's install a contributed package from CRAN. The base R function `install.packages()` can be used to install contributed packages. The `install.packages()` function takes a character vector of package names as its argument. Let's install the `readr` package by inputing `install.packages("readr")` into the console. If you are asked to select a CRAN mirror, select "1".
+  CorrectAnswer: install.packages("readr")
+  AnswerTests: omnitest(correctExpr='install.packages("readr")')
+  Hint: Remember, the syntax is install.packages("package_name").
 
 - Class: text
-  Output: Great! Now, let's learn about functions. Functions are the fundamental building blocks of R code.
-
-- Class: text
-  Output: A function is a set of statements organized together to perform a specific task. In R, you can create your own functions, or you can use functions that are provided by packages.
-
-- Class: text
-  Output: You can access a function from a package using the library() function or the `::` operator.
+  Output: Whoa! That was a lot of output. That will happen with some packages. The output shows the progress of the installation. For some packages, the package you are installing also requires other packages. These packages are called dependencies. Dependencies are automatically installed when you install a package.
 
 - Class: cmd_question
-  Output: Load the tidyverse package using the library() function.
-  CorrectAnswer: library(tidyverse)
-  AnswerTests: omnitest(correctExpr='library(tidyverse)')
-  Hint: The syntax is library(package_name).
+  Output: Now, let's load the `readr` package into our R session. The base R function `library()` can be used to load contributed packages. The `library()`. Let's load the `readr` package by inputing `library(readr)` into the console.
+  CorrectAnswer: library(readr)
+  AnswerTests: omnitest(correctExpr='library(readr)')
+  Hint: Remember, the syntax is library(package_name).
+
+- Class: text 
+  Output: Now we have the `readr` package loaded into our R session. We can now use the functions from the `readr` package in our R session.
 
 - Class: text
-  Output: Great! Now you can use the functions provided by the tidyverse package.
+  Output: For this R lesson, I've pre-loaded a set of packages for you. These packages are the `tidyverse` packages. The `tidyverse` packages are a collection of packages that are commonly used together. This includes the `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`, `stringr`, `forcats`, and `haven` packages. They can be installed and loaded together by installing and loading the `tidyverse` package.
+
+# Functions ----------------------------------------------
 
 - Class: text
-  Output: Functions return values. This is the result of the function. Some functions also take arguments, which are the inputs to the function.
-
+  Output: Let's now turn our attention to functions. Functions are the fundamental units of reproducible code in R. Any given function is a set of statements organized together to perform a specific task. There are base R functions and contributed package functions. You can also create your own functions, as we will see in a later lesson.
+  
 - Class: text
-  Output: Some functions have optional arguments. These are arguments that you can provide, but if you don't, the function will use a default value.
+  Output: Functions take inputs, do something with them, and often return a result. Functions are a lot like verbs in a language. They perform an action such as 'read', 'select', 'filter', etc. Some inputs are required, while others are optional. Some functions return a value, while others do not.
 
-- Class: text
-  Output: Finally, remember that you can always get help on a function using the ? operator.
-
-- Class: text
-  Output: Let's use the `select()` function from the `dplyr` package as an example.
+# Documentation
 
 - Class: cmd_question
-  Output: Display the documentation of the `select()` function.
-  CorrectAnswer: ?dplyr::select
-  AnswerTests: omnitest(correctExpr='?dplyr::select')
-  Hint: Remember, to access the documentation of a function, you can use the ? operator followed by the function name.
+  Output: Let's look at the documentation for the `read_csv()` function from the `readr` package using the `?` operator. Type `?read_csv` into the console.
+  CorrectAnswer: ?read_csv
+  AnswerTests: omnitest(correctExpr='?read_csv')
+  Hint: Remember, the syntax is ?function_name.
 
 - Class: text
-  Output: The first line of the documentation provides a brief description of what the function does.
+  Output: The help pane will display the documentation of the package. The first line of the documentation provides a brief description of what the function does. In this case, the `read_csv()` function reads a comma delimited file, a CSV file, into R.
 
 - Class: text
-  Output: The `Usage` section shows how to use the function. It lists the arguments that the function expects.
+  Output: The `Usage` section shows how to use the function. It lists the arguments that the function expects. Arguments that are required are listed first and do not have a default value. Arguments that are optional are listed after the required arguments and have a default value, such as `col_names = TRUE`.
 
 - Class: text
-  Output: The `Arguments` section provides a detailed explanation of what each argument does.
+  Output: The `Arguments` section provides a detailed explanation of what the imput for each argument are and how they are used.
 
 - Class: text
   Output: The `Value` section describes the output that the function returns.
@@ -86,15 +84,86 @@
 - Class: text
   Output: The `Examples` section at the bottom of the help file provides some examples of how to use the function.
 
+- Class: text
+  Output: There is much more to learn about functions but for now, let's practice using a function.
+
+# Argument names and position
+
+- Class: text
+  Output: Let's use the `read_csv()` function to read in a CSV file. Before we do, however, let me say something about named and unnamed arguments. When using a function, you can specify the arguments by name or by position. When specifying arguments by name, the order of the arguments does not matter. When specifying arguments by position, the order of the arguments does matter. 
+
+- Class: text
+  Output: It is a good habit to specify arguments by name while you are learning R and in your own code. This makes your code easier to read and understand. However, when you are working interactively, it is often easier to specify arguments by position.
+
 - Class: cmd_question
-  Output: Now, let's practice using a function. Use the `select()` function from the `dplyr` package to select the `mpg` column from the `mtcars` dataset.
-  CorrectAnswer: dplyr::select(mtcars, mpg)
-  AnswerTests: omnitest(correctExpr='dplyr::select(mtcars, mpg)')
-  Hint: Remember, you can use the `::` operator to access functions from a package. The syntax of the `select()` function is `select(data, column)`.
+  Output: Now, let's use the `read_csv()` function. The first argument is the `file` argument which takes a character vector with the path to the file we want to read. The path to the file is stored as a character vector in the variable `path_to_csv_file`. Type `read_csv(path_to_csv_file)` into the console now.
+  CorrectAnswer: read_csv(path_to_csv_file)
+  AnswerTests: omnitest(correctExpr='read_csv(path_to_csv_file)')
+  Hint: Remember, the syntax is function_name(argument).
 
 - Class: text
-  Output: Great job! Now, you have a basic understanding of how to use functions in R. Remember, practice is key when learning a new programming language.
+  Ouput: So you see that the function reads the data from a CSV file into R, and without assigning it to a variable, it prints the data to the console. 
 
 - Class: text
-  Output: That's the end of this lesson. Keep practicing and exploring the many packages and functions that R has to offer. Happy coding!
+  Output: We can see that the `read_csv()` function read our data file and returned a tibble which has 100 observations and 7 variables. Three of the variables are character vectors, three are numeric, of type double, and one is a logical vector. 
+  
+- Class: cmd_question
+  Output: Since we did not assign the data to a variable, the data is not stored in our R session. Let's run this command again, now assigning to a variable. Type `words_df <- read_csv(path_to_csv_file)` into the console now.
+  CorrectAnswer: words_df <- read_csv(path_to_csv_file)
+  AnswerTests: omnitest(correctExpr='words_df <- read_csv(path_to_csv_file)')
+  Hint: Remember, the syntax is variable_name <- function_name(argument).
 
+- Class: text
+  Output: After reading data, it's good practice to inspect it. Just printing the `words_df` object to the console already contains quite a bit of information since the data is stored in a tibble. But we can also use other functions to such as `slice_head()` to inspect the first few rows of the data, `glimpse()` to get a quick overview of the data, and `arrange()` to sort the data.
+
+- Class: text
+  Output: Let's sort the `words_df` object by the `speaker_age` variable. Type `arrange(words_df, speaker_age)` into the console now.
+  CorrectAnswer: arrange(words_df, speaker_age)
+  AnswerTests: omnitest(correctExpr='arrange(words_df, speaker_age)')
+  Hint: Remember, the syntax is function_name(object, argument).
+
+- Class: text
+  Ouput: Now we can see that the data is sorted by the `speaker_age` variable. 
+
+# Piping ----------------------------------------------
+
+- Class: text
+  Output: Before we put some of these other inspection functions to use, I want to introduce a strategy for used extensively in the Tidyverse approach to R programming which is known as 'piping'. 
+  
+- Class: text
+  Output: Piping is a way to chain together functions in a way that is easy to read and understand. The basic logic is that the output of one function is used as the input to the first argument of the next function. The operator which is used to pipe functions together is the `|>` operator. The keyboard shortcut in RStudio is Ctrl/CMD + Shift + M.
+
+- Class: cmd_question
+  Output: Let's try a piping approach to the sorting operation we just did. In this case, we will extract the `data` argument `words_df` and pipe it to the `arrange()` function. Type `words_df |> arrange(speaker_age)` into the console now.
+  CorrectAnswer: words_df |> arrange(speaker_age)
+  AnswerTests: omnitest(correctExpr='words_df |> arrange(speaker_age)')
+  Hint: Remember, the syntax is object |> function(argument).
+
+- Class: text
+  Output: You can see that the output is the same as before. In this short example, the piping approach does not seem to be any easier to read or understand. However, when you start chaining together multiple functions, the piping approach is much easier to read and understand.
+
+- Class: cmd_question
+  Output: Let's build on our example. Now, let's say we want to filter the `words_df` object to only include rows where the `modality` is 'spoken' and then sort the data by the `speaker_age` variable. Type `words_df |> filter(modality == "spoken") |> arrange(speaker_age)` into the console now.
+  CorrectAnswer: words_df |> filter(modality == "spoken") |> arrange(speaker_age)
+  AnswerTests: omnitest(correctExpr='words_df |> filter(modality == "spoken") |> arrange(speaker_age)')
+  Hint: Remember, the syntax is object |> function(argument) |> function(argument).
+
+- Class: text
+  Output: You can read the pipe operator as 'then'. So, we are saying 'take the `words_df` object, then filter it, then sort it'. 
+
+- Class: text
+  Output: We can join together as many functions as we want using the pipe operator as long as the output of one function is the input to the first argument of the next function. But chains typically do not extend beyond 5 to 10 functions in practice and tend to be grouped together do complete a specific task.
+
+- Class: text
+  Output: I like to think of these groupings of chains as paragraphs in a larger composition. After the chain is complete, the output is assigned to a variable. This variable is then used for subsequent chains. Much as the ideas generated from a paragraph integrate into the larger composition.  
+
+- Class: cmd_question
+  Output: One somewhat counterintuitive aspect of pipe chains is that the result is assigned to a variable at the beginning of the chain, not the end. Let's assign the result of our chain to the variable `spoken_words_df`. Type `spoken_words_df <- words_df |> filter(modality == "spoken") |> arrange(speaker_age)` into the console now.
+  CorrectAnswer: spoken_words_df <- words_df |> filter(modality == "spoken") |> arrange(speaker_age)
+  AnswerTests: omnitest(correctExpr='spoken_words_df <- words_df |> filter(modality == "spoken") |> arrange(speaker_age)')
+  Hint: Remember, the syntax is variable_name <- object |> function(argument) |> function(argument).
+
+# Summary ----------------------------------------------
+
+- Class: text
+  Output: Congratulations! You've just learned how to enhance your R programming skills with packages and functions, and how to streamline your workflow with the pipe operator '|>'. You're now ready to take on more complex tasks, as we dive deeper in to data analysis with R.

@@ -1,5 +1,4 @@
 base64enc
 readr
-janitor
-skimr
 dplyr
+skimr

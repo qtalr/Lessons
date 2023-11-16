@@ -23,7 +23,7 @@
   Output: Data summarization is the process of presenting a large amount of data in a concise and understandable format. It helps in understanding and interpreting data more easily.
 
 - Class: text
-  Output: The format may be a table, a plot, or a statistical summary such as mean, median, mode, standard deviation, etc. Here, we will focus on statistical and tabular summaries, leaving plots for the next lesson.
+  Output: The format may be a statistical summary such as mean, median, mode, standard deviation, etc. or a table or plot. Here, we will focus on statistical and tabular summaries, leaving plots for the next lesson.
 
 - Class: text
   Output: Summarization is an essential step in data analysis. It helps in identifying patterns and trends in the data. It also can help in identifying outliers and missing values.
@@ -70,7 +70,7 @@
 # Character vectors
 
 - Class: text
-  Output: For character vectors, tabular summaries are useful. In R, there are functions that can be used to calculate the frequency of each value in a vector.
+  Output: For character vectors, tabulating the frequencies of the values is a useful summary. In R, there are functions that can be used to calculate the frequency of each value in a vector.
 
 - Class: cmd_question
   Output: Let's calculate the frequency of each value in the `text_genre` vector. The first function we will use is `table()`. Type `table(text_genre)` into the console.
@@ -81,23 +81,14 @@
 - Class: mult_question
   Output: From the table, which `text_genre` has the highest frequency?
   AnswerChoices: Fiction; Non-fiction; Academic
-  CorrectAnswer: Academic
-  AnswerTests: omnitest(correctVal='Academic')
-  Hint: The Academic `text_genre` has the highest frequency at 32.
-
-- Class: cmd_question
-  Output: Another function that can be used to calculate the frequency of each value in a vector is `tabyl()` from the `janitor` package. I've loaded the `janitor` package for you. Try to calculate the frequency of each value in the `text_genre` vector using `tabyl()`.
-  CorrectAnswer: tabyl(text_genre)
-  AnswerTests: omnitest(correctExpr='tabyl(text_genre)')
-  Hint: Just type `tabyl(text_genre)`.
-
-- Class: text
-  Output: You can see that the `tabyl()` function provides a more readable and more informative table than the `table()` function. This is because the `tabyl()` function provides the frequency and proportion of each value in the vector. We will see that the `janitor` package has many useful functions adding to the `tabyl()` function later in the course.
+  CorrectAnswer: Fiction
+  AnswerTests: omnitest(correctVal='Fiction')
+  Hint: The Fiction `text_genre` has the highest frequency at 32.
 
 # Summarizing data frames ----------------------------------------------
 
 - Class: cmd_question
-  Output: But now, let's turn to summarizing data frames. You will find that there is a data frame in your R workspace- `books_df`. Let's take a look at the data frame. Type `books_df` into the console.
+  Output: Let's now turn to summarizing data frames. You will find that there is a data frame in your R workspace- `books_df`. Let's take a look at the data frame. Type `books_df` into the console.
   CorrectAnswer: books_df
   AnswerTests: omnitest(correctExpr='books_df')
   Hint: Just type `books_df`.
@@ -115,49 +106,74 @@
   AnswerTests: omnitest(correctVal='numeric')
   Hint: Remember both `int` and `dbl` are numeric vectors.
 
-# Numeric 
+# skimr::skim()
 
-# [ ] ... 
-
-# Using janitor and tabyl()
 - Class: text
-  Output: The janitor package's tabyl() function is great for tabular summaries. Let's try it out with our corpus linguistics dataset.
+  Output: As we know, a data frame is simply a collection of vectors of the same length. So to get a summary of each vector in the data frame, it would be nice to be able to run a single function and return summaries of each vector. Luckily, there is a function that does just that- `skim()` from the `skimr` package. 
 
 - Class: cmd_question
-  Output: Use tabyl() to find the frequency of each TextGenre in the dataset.
-  CorrectAnswer: tabyl(corpus_df, TextGenre)
-  AnswerTests: omnitest(correctExpr='tabyl(corpus_df, TextGenre)')
-  Hint: Use the tabyl() function with the corpus_df dataframe and TextGenre column.
+  Output: Let's try it out. Type `skim(books_df)` into the console.
+  CorrectAnswer: skim(books_df)
+  AnswerTests: omnitest(correctExpr='skim(books_df)')
+  Hint: Just type `skim(books_df)`.
 
-# Exploring skimr and skim()
 - Class: text
-  Output: The skimr package provides an easy way to get comprehensive summaries of data frames.
+  Output: You can see that the `skim()` function returns quite a bit of information. In addition to information about the data frame, it groups the vectors by vector type and returns relevant for each given vector type. 
+
+# dplyr::summarize()
+
+- Class: text
+  Output: The `skim()` function is a great way to get a vector by vector summary of a data frame. However, many times we want to get a particular summary of a variable grouped by another variable. For example, we may want to get the mean of a numeric variable grouped by a categorical variable.
+
+- Class: text
+  Output: To do this, we will use the `dplyr` package. We've already seen the `dplyr` package in the previous lesson for subsetting data frames. Now, we will use the `dplyr` package for summarizing data frames!
+
+- Class: text
+  Output: Before we get to getting summaries of variables grouped by another variable, let's get familiar with the `summarize()` function from the `dplyr` package for summarizing single variables in a data frame.
 
 - Class: cmd_question
-  Output: Use skim() to summarize the corpus_df dataframe.
-  CorrectAnswer: skim(corpus_df)
-  AnswerTests: omnitest(correctExpr='skim(corpus_df)')
-  Hint: Just type skim(corpus_df).
+  Output: Let's calculate the mean of the `word_count` variable in the `books_df` data frame. The `summarize()` function takes two arguments- the data frame and the summary function. So, to calculate the mean of the `word_count` variable in the `books_df` data frame, we would input `summarize(books_df, mean(word_count))` into the console.
+  CorrectAnswer: summarize(books_df, mean(word_count))
+  AnswerTests: omnitest(correctExpr='summarize(books_df, mean(word_count))')
+  Hint: Just type `summarize(books_df, mean(word_count))`.
 
-# Summarization with dplyr
 - Class: text
-  Output: Now, we'll delve into dplyr for more advanced data summarization.
+  Output: The output of the `summarize()` function is a data frame. In this case, we have a data frame with one row and one column. The column name is the name of the summary function used. The column name is `mean(word_count)`. This is not a very good column name, so in practice, we will assign the result of the `mean()` function to a variable and that variable name will be returned as the column name.
 
 - Class: cmd_question
-  Output: Calculate the average WordCount for each TextGenre using dplyr's group_by() and summarize() functions.
-  CorrectAnswer: corpus_df |> group_by(TextGenre) |> summarize(AvgWordCount = mean(WordCount))
-  AnswerTests: omnitest(correctExpr='corpus_df |> group_by(TextGenre) |> summarize(AvgWordCount = mean(WordCount))')
-  Hint: Chain the group_by() and summarize() functions using the pipe operator.
-
-# Grouping Data and Summary Statistics
-- Class: text
-  Output: Finally, let's learn how to group data and calculate summary statistics for each group.
+  Output: Let's try it out. Assign the result of the `mean()` function to a variable called `avg_word_count` inside the `summarize()` function. Type `summarize(books_df, avg_word_count = mean(word_count))` into the console.
+  CorrectAnswer: summarize(books_df, avg_word_count = mean(word_count))
+  AnswerTests: omnitest(correctExpr='summarize(books_df, avg_word_count = mean(word_count))')
+  Hint: Just type `summarize(books_df, avg_word_count = mean(word_count))`.
 
 - Class: cmd_question
-  Output: Find out how many texts in the dataset are translations for each AuthorNationality.
-  CorrectAnswer: corpus_df |> group_by(AuthorNationality) |> summarize(TranslationCount = sum(as.numeric(IsTranslated)))
-  AnswerTests: omnitest(correctExpr='corpus_df |> group_by(AuthorNationality) |> summarize(TranslationCount = sum(as.numeric(IsTranslated)))')
-  Hint: Use group_by(), summarize(), and sum() functions in combination.
+  Output: Great! Now, we can add as many summary functions as we want to the `summarize()` function, each with a different variable name, inside the `summarize()` function with a comma separating each summary function. Let's add the `median()` function to the `summarize()` function. Type `summarize(books_df, avg_word_count = mean(word_count), med_word_count = median(word_count))` into the console.
+  CorrectAnswer: summarize(books_df, avg_word_count = mean(word_count), med_word_count = median(word_count))
+  AnswerTests: omnitest(correctExpr='summarize(books_df, avg_word_count = mean(word_count), med_word_count = median(word_count))')
+  Hint: Just type `summarize(books_df, avg_word_count = mean(word_count), med_word_count = median(word_count))`.
 
 - Class: text
-  Output: Great job! You've completed the tutorial on summarizing data in R using tidyverse packages. Up next, you'll learn about visual summaries with ggplot2.
+  Output: You can see that the `summarize()` function returns a data frame with one row and two columns. The column names are the variable names we assigned to the results of the summary functions.
+
+- Class: text
+  Output: Now, let's get to summarizing variables grouped by another variable. To do this, we will use the `group_by()` function from the `dplyr` package. The `group_by()` function takes two arguments- the data frame and the grouping variable. 
+
+- Class: text
+  Output: We can add the `group_by()` step before our `summarize()` step using the pipe operator to perform the summarizations grouped by the grouping variable. The format looks like this -- data_df |> group_by(grouping_var) |> summarize(summary_var = summary_func(var)). 
+
+- Class: cmd_question
+  Output: Let's try it out. Type `books_df |> group_by(text_genre) |> summarize(avg_word_count = mean(word_count), med_word_count = median(word_count))` into the console.
+  CorrectAnswer: books_df |> group_by(text_genre) |> summarize(avg_word_count = mean(word_count), med_word_count = median(word_count))
+  AnswerTests: omnitest(correctExpr='books_df |> group_by(text_genre) |> summarize(avg_word_count = mean(word_count), med_word_count = median(word_count))')
+  Hint: Just type `books_df |> group_by(text_genre) |> summarize(avg_word_count = mean(word_count), med_word_count = median(word_count))`.
+
+- Class: text
+  Output: With this logic, we can derive any number of summaries by any number of grouping variables. Note, however, that the grouping variable must have "groups". For example, grouping `text_genre` by `word_count` would not work because each value of `word_count` is unique.
+
+# Summary ----------------------------------------------
+
+- Class: text
+  Output: In this lesson, you learned how to summarize vectors and data frames with statistics and tables for better understanding and interpretation.
+
+- Class: text
+  Output: There is much more to learn about summarizing data, but for now you have a good foundation to build upon. Up next, you'll learn about visual summaries with the `ggplot2` package.

@@ -1,0 +1,146 @@
+- Class: meta
+  Course: R_Lessons
+  Lesson: Visual Summaries
+  Author: Jerid Francom
+  Type: Standard
+  Organization: Wake Forest University
+  Version: 0.9.0
+
+# Overview ---------------------------------------------------------
+
+- Class: text
+  Output: In this lesson we will continue to summarize data, but this time we will focus on visual summaries. We will learn how to create plots to summarize various relationships in datasets. 
+
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`."
+
+# Importance of visual summaries ------------------------------------
+
+- Class: text
+  Output: As we saw in the previous lesson, summarizing data is an important part of the data analysis process. Summaries, either statistical, tabular, or visual, allow us to quickly see patterns in our data. 
+
+- Class: text
+  Output: "Visual summaries are also important because they allow us to communicate our findings to others. It is often easier to communicate a pattern in a plot than it is to communicate the same pattern in a table of numbers or a paragraph of text."
+
+# Grammar of graphics -----------------------------------------------
+
+- Class: text
+  Output: So you are aware, R has a powerful plotting system which is included as part of the base installation, `graphics`. This plotting system is good for quick plots in an interactive session but in this course we will focus on a different plotting system, `ggplot2`.
+
+- Class: text
+  Output: The `gg` in `ggplot2` stands for the grammar of graphics. The grammar of graphics is a framework for thinking about how to create plots as a series of layers. 
+
+- Class: text
+  Output: Each plot can be thought of as having three layers- data, aesthetics, and geometry.
+
+- Class: text
+  Output: The data layer is the dataset that you are plotting. The aesthetics layer is how you map variables in the dataset to visual properties of the plot. The geometry layer is the type of plot that you are creating.
+
+- Class: text
+  Output: There are other layers that can be added to a plot, but we leave these for another lesson.
+
+- Class: mult_question
+  Output: "Which of the following is not a layer in the grammar of graphics?"
+  AnswerChoices: Data; Aesthetics; Geometry; Lines
+  CorrectAnswer: Lines
+  AnswerTests: omnitest(correctVal='Lines')
+  Hint: "Remember that the grammar of graphics is a framework for thinking about how to create plots as a series of layers. Each plot can be thought of as having three layers- data, aesthetics, and geometry."
+
+# ggplot2 -----------------------------------------------------------
+
+- Class: cmd_question
+  Output: To explore plotting with `ggplot2` we will use the `books_df` dataset that we used in the previous lesson. Enter `books_df` in the console to see a preview of the dataset.
+  CorrectAnswer: books_df
+  AnswerTests: omnitest(correctExpr='books_df')
+  Hint: Just type `books_df` in the console.
+
+- Class: text
+  Output: Let's now discuss how implement the grammar of graphics with the `ggplot2` package. Again, the three primary layers are data, aesthetics, and geometry. I've loaded the package for you, so let's get started!
+
+- Class: cmd_question
+  Output: The first step is to use the `ggplot()` function. With no arguments, this function simply creates a plot object- the scaffolding for a plot. Enter `ggplot()` in the console.
+  CorrectAnswer: ggplot()
+  AnswerTests: omnitest(correctExpr='ggplot()')
+  Hint: Just type `ggplot()` in the console.
+
+- Class: text
+  Output: You should see a plot object appear in the plots pane. The visual that appears is a blank plot with no data, aesthetics, or geometry. Again, the `ggplot()` function simply creates a plot object- the scaffolding for a plot.
+
+- Class: cmd_question
+  Output: The next step is to add the data layer. To do this we use the `data` argument of the `ggplot()` function. Enter `ggplot(data = books_df)` in the console.
+  CorrectAnswer: ggplot(data = books_df)
+  AnswerTests: omnitest(correctExpr='ggplot(data = books_df)')
+  Hint: Just type `ggplot(data = books_df)` in the console.
+
+- Class: text
+  Output: You should see the same blank plot object appear in the plots pane. However, this time the plot object has a data layer.
+
+- Class: cmd_question
+  Output: Since we will be creating various plots with the same dataset, let's save the plot object to a variable. Enter `books_p <- ggplot(data = books_df)` in the console. Remember you can use the up arrow to recall previous commands!
+  CorrectAnswer: books_p <- ggplot(data = books_df)
+  AnswerTests: omnitest(correctExpr='books_p <- ggplot(data = books_df)')
+  Hint: Just type `books_p <- ggplot(data = books_df)` in the console.
+
+- Class: text
+  Output: The `books_p` object should now appear in the environment pane of RStudio. If you inspect the object you will see that it is a `ggplot` object which is a particular type of `list` object. We haven't discussed lists yet, but simply put, a list is a collection of objects (vectors, data frames, other lists, etc.). A `ggplot` object contains objects that represent the data, aesthetics, and geometry layers, among other plot properties.
+
+- Class: text
+  Output: Before we talk about aesthetics, let's talk about the geometry layer. The geometry layer is the type of plot that you are creating. The `ggplot2` package has many different types geometry layers, such as `geom_histogram()`, `geom_boxplot()`, `geom_point()`, etc. 
+
+- Class: text
+  Output: To add a geometry layer to a plot object we use the `+` operator and then the geometry layer function. So for example, a histogram can be added to a plot object with `ggplot() + geom_histogram()`. 
+
+- Class: text
+  Output: The connecting link between the type of geometry layer and the data layer is the aesthetics layer. The aesthetics layer is how you map variables in the dataset to visual properties of the plot. In `ggplot2` we use the `aes()` function to map variables to visual properties.
+
+- Class: text
+  Output: For example, if we want to map the `word_count` variable to the x-axis, we would use `aes(x = word_count)`. If we want to map the `word_count` variable to the x-axis and the `avg_sent_len` variable to the y-axis, we would use `aes(x = word_count, y = avg_sent_len)`. And so on.
+
+- Class: text
+  Output: Being that `aes()` is the link between the data layer and the geometry layer, it does not get added to the plot object with the `+` operator. Instead, it is added either to the `ggplot()` function or to the geometry layer function as the value to the `mapping` argument of either function.
+
+- Class: text
+  Output: If added to the `ggplot()` function, the aesthetics layer will be applied to all geometry layers added to the plot object. If added to the geometry layer function, the aesthetics layer will only be applied to that geometry layer. Since we will only use one geometry layer per plot in this lesson, we will add the aesthetics layer to geometry layer function.
+
+- Class: cmd_question
+  Output: Let's now add a histogram to the plot object. A histogram is appropriate for summarizing the distribution of a single numeric variable. Let's summarize the distribution of the `word_count` variable. Enter `books_p + geom_histogram(aes(x = word_count))` in the console.
+  CorrectAnswer: books_p + geom_histogram(aes(x = word_count))
+  AnswerTests: omnitest(correctExpr='books_p + geom_histogram(aes(x = word_count))')
+  Hint: Just type `books_p + geom_histogram(aes(x = word_count))` in the console.
+
+- Class: mult_question
+  Output: Pop quiz! What does the `books_p` represent in the previous command?
+  AnswerChoices: The plot object; The data layer; The aesthetics layer; The geometry layer; The plot object and the data layer
+  CorrectAnswer: The plot object and the data layer
+  AnswerTests: omnitest(correctVal='The plot object and the data layer')
+  Hint: "Remember that the `books_p` object is a plot object that contains a data layer. The `geom_histogram()` function is the geometry layer."
+
+- Class: mult_question
+  Output: Pop quiz! What does the `geom_histogram()` represent in the previous command?
+  AnswerChoices: The plot object; The data layer; The aesthetics layer; The geometry layer; The plot object and the data layer
+  CorrectAnswer: The geometry layer
+  AnswerTests: omnitest(correctVal='The geometry layer')
+  Hint: "Remember that the `books_p` object is a plot object that contains a data layer. The `geom_histogram()` function is the geometry layer."
+
+- Class: text
+  Output: A histogram is appropriate for summarizing the distribution of a single numeric variable. A boxplot, on the other hand, is used for visualizing the relationship between a numeric variable and a categorical variable.
+
+- Class: cmd_question
+  Output: Let's now add a boxplot to the plot object. Let's use the `geom_boxplot()` as our geometry layer and map the `avg_sent_len` variable to the y-axis and the `text_genre` variable to the x-axis. Enter `books_p + geom_boxplot(aes(x = text_genre, y = avg_sent_len))` in the console.
+  CorrectAnswer: books_p + geom_boxplot(aes(x = text_genre, y = avg_sent_len))
+  AnswerTests: omnitest(correctExpr='books_p + geom_boxplot(aes(x = text_genre, y = avg_sent_len))')
+  Hint: Just type `books_p + geom_boxplot(aes(x = text_genre, y = avg_sent_len))` in the console.
+
+- Class: cmd_question
+  Output: Another common plot is a scatterplot. A scatterplot is used for visualizing the relationship between two numeric variables. Let's now add a scatterplot to the plot object. Let's use the `geom_point()` as our geometry layer and map the `word_count` variable to the x-axis and the `avg_sent_len` variable to the y-axis. Enter `books_p + geom_point(aes(x = word_count, y = avg_sent_len))` in the console.
+  CorrectAnswer: books_p + geom_point(aes(x = word_count, y = avg_sent_len))
+  AnswerTests: omnitest(correctExpr='books_p + geom_point(aes(x = word_count, y = avg_sent_len))')
+  Hint: Just type `books_p + geom_point(aes(x = word_count, y = avg_sent_len))` in the console.
+
+# Summary ----------------------------------------------------------
+
+- Class: text
+  Output: In this lesson we learned how to create plots to summarize various relationships in datasets using the `ggplot2`. We learned how to implement the grammar of graphics layer-based approach using the `ggplot()`, `aes()`, and `geom_*()` functions.
+
+- Class: text
+  Output: Plots are vital to the data analysis process and we will learn much much more. You should congratulate yourself on learning the basics of `ggplot2` as this lesson sets the stage for understanding how to create increasingly informative plots!

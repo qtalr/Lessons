@@ -15,7 +15,7 @@
 
 .pathtofile <<- function(fileName) {
   mypath <- file.path(.get_course_path(),
-                      "lessons", "Data_Visualization_I",
+                      "lessons", "Visual_Summaries",
                       fileName)
 }
 
@@ -31,3 +31,18 @@
   else
     utils::browseURL(temp)
 }
+
+# Variables
+
+# Data frame
+path_to_csv_file <-
+  file.path(
+    .get_course_path(),
+    "lessons",
+    "Visual_Summaries",
+    "books.csv"
+  )
+
+books_df <-
+  read_csv(path_to_csv_file) |>
+  suppressMessages()

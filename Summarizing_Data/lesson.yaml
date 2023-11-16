@@ -141,7 +141,7 @@
   Output: The output of the `summarize()` function is a data frame. In this case, we have a data frame with one row and one column. The column name is the name of the summary function used. The column name is `mean(word_count)`. This is not a very good column name, so in practice, we will assign the result of the `mean()` function to a variable and that variable name will be returned as the column name.
 
 - Class: cmd_question
-  Output: Let's try it out. Assign the result of the `mean()` function to a variable called `avg_word_count` inside the `summarize()` function. Type `summarize(books_df, avg_word_count = mean(word_count))` into the console.
+  Output: Let's try it out. Assign the result of the `mean()` function to a variable called `avg_word_count` inside the `summarize()` function. Type `summarize(books_df, avg_word_count = mean(word_count))` into the console. Remember you can use the up arrow to recall previous commands!
   CorrectAnswer: summarize(books_df, avg_word_count = mean(word_count))
   AnswerTests: omnitest(correctExpr='summarize(books_df, avg_word_count = mean(word_count))')
   Hint: Just type `summarize(books_df, avg_word_count = mean(word_count))`.

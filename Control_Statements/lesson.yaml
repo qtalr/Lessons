@@ -4,59 +4,223 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
-# [ ] Create less based on the outline template
-
-
-- Class: text
-  Output: Welcome to Control Flow Statements in R! In this lesson, you will learn about the main control statement used in modern R programming, if/else statements.
+# Overview ------------------------------------------------------
 
 - Class: text
-  Output: In general, control statements are used to control the flow of execution of a program. They can alter the order in which statements are executed.
+  Output: In this lesson we will learn about control statements. Control statements are used to control the flow of a program. They allow our code to make decisions and repeat actions dynamically. We will learn about conditional statements and iteration statements.
 
 - Class: text
-  Output: Think of control statements as forks in the road. There will be at least two paths that can be taken, and the path taken will depend on whether a condition is met or not.
+  Output: Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`.
+
+# Conditional statements -----------------------------------------
 
 - Class: text
-  Output: 'An if/else statement consists of a condition that returns TRUE or FALSE, a block of code that is executed if the condition is TRUE, and a block of code that is executed if the condition is FALSE.\n \n  The syntax of an if/else statement is:
+  Output: Conditional statements are used to make decisions in our code. They allow us to execute different code depending on the value of a condition. The most common conditional statement is the `if` statement. The `if` statement is used to execute code if a condition is true.
+
+# Syntax of the if statement
 
 - Class: text
-  Output: Let's look at an example. The following if/else statement checks if x is greater than 0. If it is, then the statement prints "x is positive". If it is not, then the statement prints "x is non-positive".
+  Output: The `if` statement has the following syntax- `if (condition) { code }`. The condition is a logical statement that evaluates to either `TRUE` or `FALSE`. If the condition is `TRUE` then the code inside the curly braces is executed. If the condition is `FALSE` then the code inside the curly braces is skipped.
+
+- Class: text
+  Output: I've loaded some variables for you so that we can practice using the `if` statement. They are `x_vec`, `y_vec`, `z_vec`, and `x_df`. You can view them in the environment pane in RStudio.
+
+# Statements that evaluate to TRUE
 
 - Class: cmd_question
-  Output: Write an if/else statement that prints "x is positive" if x is greater than 0 and "x is non-positive" otherwise. Let's assume x is 1 for this exercise.
-  CorrectAnswer: if (1 > 0) {print("x is positive")} else {print("x is non-positive")}
-  AnswerTests: omnitest(correctExpr='if (1 > 0) {print("x is positive")} else {print("x is non-positive")}')
-  Hint: Remember, the syntax of an if/else statement is if (condition) {code if TRUE} else {code if FALSE}.
+  Output: Using the `if` statement, print the value of `x_vec` if `x_vec` is less than 10. Type `if (x_vec < 10) { print(x_vec) }` and hit Enter.
+  CorrectAnswer: if (x_vec < 10) { print(x_vec) }
+  AnswerTests: omnitest(correctExpr='if (x_vec < 10) { print(x_vec) }')
+  Hint: Type `if (x_vec < 10) { print(x_vec) }` and hit Enter.
 
-- Class: text
-  Output: Good job! The if/else statement is a basic control statement in R.
-
-- Class: text
-  Output: Next, let's learn about the for loop. A for loop is used to iterate over a sequence of values and perform some action for each value.
+# Statements that evaluate to FALSE
 
 - Class: cmd_question
-  Output: Write a for loop that prints the squares of the numbers from 1 to 5.
-  CorrectAnswer: for (i in 1:5) {print(i^2)}
-  AnswerTests: omnitest(correctExpr='for (i in 1:5) {print(i^2)}')
-  Hint: The syntax of a for loop is for (value in sequence) {code}.
+  Output: Now, let's substitute the variable `y_vec` in our statement. Type `if (y_vec < 10) { print(y_vec) }` and hit Enter.
+  CorrectAnswer: if (y_vec < 10) { print(y_vec) }
+  AnswerTests: omnitest(correctExpr='if (y_vec < 10) { print(y_vec) }')
+  Hint: Type `if (y_vec < 10) { print(y_vec) }` and hit Enter.
 
 - Class: text
-  Output: Great! The for loop is a powerful tool for performing repetitive tasks.
+  Output: We see that in this case, the code inside the curly braces was not executed because the condition was `FALSE`. That is, `y_vec` is not less than 10, it is equal to 10.
+
+# Function output as part of the logical statement
+
+- Class: cmd_question
+  Output: We can also use the output of a function as part of the logical statement. For example, let's use the `length()` function which returns the length of a vector. Type `if (length(z_vec) > 1) { print(z_vec) }` and hit Enter.
+  CorrectAnswer: if (length(z_vec) > 1) { print(z_vec) }
+  AnswerTests: omnitest(correctExpr='if (length(z_vec) > 1) { print(z_vec) }')
+  Hint: Type `if (length(z_vec) > 1) { print(z_vec) }` and hit Enter.
+
+# Other useful logical operators
 
 - Class: text
-  Output: That's the end of this lesson. Keep practicing and exploring the many control statements that R has to offer. Happy coding!
+  Output: Beyond the standard logical operators (`<`, `>`, `==`, `!=`, `<=`, `>=`), there are functions which return logical values. For example, the `is.vector()` function returns `TRUE` if the object is a vector and `FALSE` otherwise. Others include `is.numeric()`, `is.character()`, `is.data.frame()`, etc.
 
+- Class: cmd_qestion
+  Output: To see this in action, let's use the `is.vector()` function with the `z_vec` variable. Type `is.vector(z_vec)` and hit Enter.
+  CorrectAnswer: is.vector(z_vec)
+  AnswerTests: omnitest(correctExpr='is.vector(z_vec)')
+  Hint: Type `is.vector(z_vec)` and hit Enter.
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: cmd_question
+  Output: Now, let's see if the `x_df` is a vector. Type `is.vector(x_df)` and hit Enter.
+  CorrectAnswer: is.vector(x_df)
+  AnswerTests: omnitest(correctExpr='is.vector(x_df)')
+  Hint: Type `is.vector(x_df)` and hit Enter.
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: We see that `z_vec` is a vector and `x_df` is not. We can use this information in our `if` statements as needed.
+
+- Class: cmd_question
+  Output: In some cases it makes more sense to not run code when a logical statement evaluates as TRUE. In these cases we can use the `!` operator to negate a logical statement. For example, `!TRUE` is `FALSE` and `!FALSE` is `TRUE`. Let's see this in action. Type `!is.vector(x_df)` and hit Enter.
+  CorrectAnswer: !is.vector(x_df)
+  AnswerTests: omnitest(correctExpr='!is.vector(x_df)')
+  Hint: Type `!is.vector(x_df)` and hit Enter.
+
+# Introduce the usefulness of the `else` statement
+
+- Class: text
+  Output: In some cases we want to execute some code if the condition is `TRUE` and some other code if the condition is `FALSE`. For this we combine the `if` statement with the `else` statement. The syntax is `if (condition) { code } else { code }`. If the condition is `TRUE` then the code inside the first set of curly braces is executed. If the condition is `FALSE` then the code inside the second set of curly braces is executed.
+
+# Example of if-else statement if is.vector ... else ...
+
+- Class: cmd_question
+  Output: Let's use the `if-else` statement to evaluate if a variable is a vector or not. Type `if (is.vector(z_vec)) { print("z_vec is a vector") } else { print("z_vec is not a vector") }` and hit Enter.
+  CorrectAnswer: if (is.vector(z_vec)) { print("z_vec is a vector") } else { print("z_vec is not a vector") }
+  AnswerTests: omnitest(correctExpr='if (is.vector(z_vec)) { print("z_vec is a vector") } else { print("z_vec is not a vector") }')
+  Hint: Type `if (is.vector(z_vec)) { print("z_vec is a vector") } else { print("z_vec is not a vector") }` and hit Enter.
+
+- Class: cmd_question
+  Output: Now, let's use the `if-else` statement to evaluate if `x_df` is a vector or not. Type `if (is.vector(x_df)) { print("x_df is a vector") } else { print("x_df is not a vector") }` and hit Enter.
+  CorrectAnswer: if (is.vector(x_df)) { print("x_df is a vector") } else { print("x_df is not a vector") }
+  AnswerTests: omnitest(correctExpr='if (is.vector(x_df)) { print("x_df is a vector") } else { print("x_df is not a vector") }')
+  Hint: Type `if (is.vector(x_df)) { print("x_df is a vector") } else { print("x_df is not a vector") }` and hit Enter.
+
+# Summary of the if-else section
+
+- Class: text
+  Output: In this section we learned about the `if` statement and the `if-else` statement. The `if` statement is used to execute code if a condition is `TRUE`. The `if-else` statement is used to execute code if a condition is `TRUE` and some other code if the condition is `FALSE`.
+
+# Two comprehension questions
+
+- Class: mult_question
+  Output: Assuming `x_vec = 5`, what will be the output of the following code? `if (is.numeric(x_vec)) { print("x_vec is numeric") } else { print("x_vec is not numeric") }`
+  AnswerChoices: x_vec is numeric; x_vec is not numeric; x_vec is a vector; x_vec is not a vector
+  CorrectAnswer: x_vec is numeric
+  AnswerTests: omnitest(correctVal='x_vec is numeric')
+  Hint: Consider the logical value of `is.numeric(x_vec)`.
+
+- Class: mult_question
+  Output: Now given the change in the code with the `!` operator, will the following code execute the `print()` function? `if (!is.numeric(x_vec)) { print("x_vec is numeric") }`
+  AnswerChoices: Yes; No
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal='No')
+  Hint: Consider the logical value of `is.numeric(x_vec)` and then reverse it given the `!` operator.
+
+# Iteration statements -------------------------------------------
+
+# Transition to the need for iteration statements in control flow
+
+- Class: text
+  Output: In the previous section we learned about conditional statements. Conditional statements are used to make decisions in our code. They allow us to execute different code depending on the value of a condition. In this section we will learn about iteration statements. Iteration statements are used to repeat code. They allow us to execute the same code multiple times.
+
+# Provide an overview of how vectorization in R works as iteration
+
+- Class: cmd_question
+  Output: In R, we can use vectorization to repeat code. Vectorization is the process of applying a function to each element of a vector. There are many functions and operators that are vectorized in R. For example, if we want to multiply by 2 for each element of a vector, we can use the `*` operator. Type `1:5 * 2` and hit Enter.
+  CorrectAnswer: 1:5 * 2
+  AnswerTests: omnitest(correctExpr='1:5 * 2')
+  Hint: Type `1:5 * 2` and hit Enter.
+
+- Class: cmd_question
+  Output: Now, vectorized operators can also apply the given operation to each element of multiple vectors in an element-wise fashion. For example, if we want to add `1:5` to `1:5`, we can use the `+` operator. Type `1:5 + 1:5` and hit Enter.
+  CorrectAnswer: 1:5 + 1:5
+  AnswerTests: omnitest(correctExpr='1:5 + 1:5')
+  Hint: Type `1:5 + 1:5` and hit Enter.
+
+- Class: text
+  Output: We see that the `+` operator added the first element of `1:5` to the first element of `1:5`, the second element of `1:5` to the second element of `1:5`, and so on. This is an example of vectorization in R.
+
+# Provide examples of functions that are vectorized in R
+
+- Class: text
+  Output: Many base R functions are also vectorized. For example, the `mean()` function returns the mean of a vector. Type `mean(1:5)` and hit Enter.
+  CorrectAnswer: mean(1:5)
+  AnswerTests: omnitest(correctExpr='mean(1:5)')
+  Hint: Type `mean(1:5)` and hit Enter.
+
+# Explain the `mean(1:5)` process
+
+- Class: text
+  Output: We see that the `mean()` function returned the mean of the vector `1:5`. It did this by iteratively adding all the elements of `1:5` together and then dividing by the number of elements in `1:5`.
+
+# Explain the need for iteration statements
+
+- Class: cmd_question
+  Output: In some cases, we need to repeat code that is not vectorized. For example, I've loaded a simple function called `check_odd_even()` for you. Take a look at the code for the `check_odd_even()` function by typing `check_odd_even` and hitting Enter.
+  CorrectAnswer: check_odd_even
+  AnswerTests: omnitest(correctExpr='check_odd_even')
+  Hint: Type `check_odd_even` without the parentheses and hit Enter.
+
+- Class: cmd_question
+  Output: The `check_odd_even()` function takes a single numeric argument, decides if it is odd or even, and prints a description of the result. Let's use the `check_odd_even()` function with the number 5. Type `check_odd_even(5)` and hit Enter.
+  CorrectAnswer: check_odd_even(5)
+  AnswerTests: omnitest(correctExpr='check_odd_even(5)')
+  Hint: Type `check_odd_even(5)` and hit Enter.
+
+# Introduce `purrr` and `map()` for iteration over non-vectorized functions
+
+- Class: cmd_question
+  Output: We see that the `check_odd_even()` function correctly identified that 5 is an odd number. Now, let's say we want to use the `check_odd_even()` function with the numbers 1 through 5. We could do this by typing `check_odd_even(1)`, `check_odd_even(2)`, `check_odd_even(3)`, `check_odd_even(4)`, and `check_odd_even(5)`. However, this is tedious and repetitive. Instead, we can use the `map()` function from the `purrr` package. The `map()` function applies a function to each element of a vector. Let's see this in action. First, we need to load the `purrr` package. Type `library(purrr)` and hit Enter.
+  CorrectAnswer: library(purrr)
+  AnswerTests: omnitest(correctExpr='library(purrr)')
+  Hint: Type `library(purrr)` and hit Enter.
+
+- Class: cmd_question
+  Output: Now, let's use the `map()` function to apply the `check_odd_even()` function to the numbers 1 through 5. Type `map(1:5, check_odd_even)` and hit Enter. Note that there are no parentheses after `check_odd_even` in the `map()` function!
+  CorrectAnswer: map(1:5, check_odd_even)
+  AnswerTests: omnitest(correctExpr='map(1:5, check_odd_even)')
+  Hint: Type `map(1:5, check_odd_even)` and hit Enter.
+
+- Class: text
+  Output: The output may look a little strange, as `map()` returns a list object, but we can see that the `check_odd_even()` function correctly identified that 1, 3, and 5 are odd numbers and that 2 and 4 are even numbers.
+
+# Point out that `map_*()` functions exist for expected output types
+
+- Class: cmd_question
+  Output: The `map()` function is a generic function that returns a list. However, there are also `map_*()` functions that return specific types of objects. For example, `map_vec()` returns a vector, `map_df()` returns a data frame, and so on. Let's use the `map_vec()` function to return a vector of the results of the `check_odd_even()` function. Type `map_vec(1:5, check_odd_even)` and hit Enter.
+  CorrectAnswer: map_vec(1:5, check_odd_even)
+  AnswerTests: omnitest(correctExpr='map_vec(1:5, check_odd_even)')
+  Hint: Type `map_vec(1:5, check_odd_even)` and hit Enter.
+
+# Summary of the iteration section
+
+- Class: text
+  Output: In this section we learned about iteration statements. Iteration statements are used to repeat code. They allow us to execute the same code multiple times. We learned that many functions and operators in R are vectorized. We also learned that we can use the `map()` function from the `purrr` package to apply any function to each element of a vector.
+
+# One simple comprehension questions on iteration
+
+- Class: mult_question
+  Output: T/F- The `map()` function is used to apply a function to each element of a vector.
+  AnswerChoices: True; False
+  CorrectAnswer: True
+  AnswerTests: omnitest(correctVal='True')
+  Hint: Consider the definition of the `map()` function.
+
+- Class: mult_question
+  Output: Mathematical operators, such as `+`, `-`, `*`, and `/`, are not vectorized in R. Therefore, we need to write a function for these calculations and use the `map()` function to apply the function to each element of a vector.
+  AnswerChoices: True; False
+  CorrectAnswer: False
+  AnswerTests: omnitest(correctVal='False')
+  Hint: Consider the definition of vectorization.
+
+# Summary --------------------------------------------------------
+
+- Class: text
+  Output: In this lesson we learned about control statements. Control statements are used to control the flow of our code. They allow our code to make decisions and repeat actions dynamically. We introduced the basics on conditional statements and iteration statements. There is much more to learn about control statements, but this is a good start.
+
+- Class: text
+  Output: This ends the lesson on control statements. In the next lesson, we will learn about writing our own functions in R.

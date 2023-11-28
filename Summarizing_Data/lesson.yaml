@@ -12,7 +12,7 @@
   Output: Welcome to the Summarizing Data in R lesson! In this lesson, you'll learn how to summarize vectors and data frames with statistics and tables for better understanding and interpretation.
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
 # Summarizing Data ----------------------------------------------
 

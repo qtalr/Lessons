@@ -12,7 +12,7 @@
   Output: "In this lesson, we will get familiar with our workspace in RStudio. We will learn about the four main panes and how we can use them to write, run, and save our code. Let's get started!"
 
 - Class: text
-  Output: "Don't forget you can, temporarily, leave the lesson by typing play() and then return by typing nxt()."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
 # 1 RStudio IDE ------------------------------------------
 

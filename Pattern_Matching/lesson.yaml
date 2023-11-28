@@ -6,7 +6,13 @@
   Organization: Wake Forest University
   Version: 0.1.0
 
-# [ ] Create less based on the outline template
+# Overview ----------------------------------------------
+
+- Class: text
+  Output: "In this lesson, ..."
+
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
 
 # Plot example

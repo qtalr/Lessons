@@ -4,13 +4,16 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
-# [ ] Create less based on the outline template
+# Overview ---------------------------------------------------------------
 
 - Class: text
   Output: Welcome to Reshaping Dataset by Rows! In this lesson, you will learn how to reshape rows in datasets in R.
 
+
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
 # Plot example
 - Class: figure

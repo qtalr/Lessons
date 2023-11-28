@@ -12,7 +12,7 @@
   Output: "In this lesson, we will learn about vectors. We will learn how to create vectors, discuss the types of vectors, and learn how to store them in variables."
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
 # Vectors ----------------------------------------------
 

@@ -1,10 +1,20 @@
 - Class: meta
   Course: lessons
-  Lesson: Dataset_Manipulation
-  Author: your name goes here
+  Lesson: Tidy Data
+  Author: Jerid Francom
   Type: Standard
-  Organization: your organization's name goes here
-  Version: 2.4.5
+  Organization: Wake Forest University
+  Version: 0.9.0
+
+
+# Overview ---------------------------------------------------------------
+
+- Class: text
+  Output: Welcome to Tidy Data! In this lesson, you will learn how to tidy data in R.
+
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+
 
 
 # Plot example

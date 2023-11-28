@@ -4,27 +4,65 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
+# Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Hello
+  Output: In this lesson, we will explore creating custom functions in R, discussing their creation, usage, arguments, and return values. We will also integrate the use of custom functions with control statements and iterative operations using purrr.
+
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+
+# Custom Functions -------------------------------------------------------
+
+- Class: text
+  Output: There are many functions available in R either built-in or through packages. However, there are times when you need to create your own function to perform a specific task. This is where custom functions come in. 
+
+- Class: text
+  Output: Custom functions are also helpful if you find yourself repeating the same code over and over again. Copying and pasting code may seem like a good idea at first, but it can lead to problems down the road. For example, if you need to make a change to the code, you will have to make the change in multiple places. Repeating code also makes your code harder to read and understand.
+
+- Class: text
+  Output: Writing a custom function allows you to write the code once and then call the function whenever you need to perform the task. This makes your code easier to read and understand, and it also makes it easier to make changes to the code. You may only use the function in one script, or you may use it in multiple scripts, or even in multiple projects! In any case, you only have to make the change in one place.
+
+- Class: mult_question
+  Output: Which of the following is NOT a reason to use custom functions?
+  AnswerChoices: To make your code easier to read and understand; To make your code harder to read and understand; To make your code easier to change; To be able to reuse code in multiple places
+  CorrectAnswer: To make your code harder to read and understand
+  AnswerTests: omnitest(correctVal='To make your code harder to read and understand')
+  Hint: Custom functions make your code easier to read and understand, easier to change, and allow you to reuse code in multiple places.
+
+# Creating Custom Functions -----------------------------------------------
+
+# Writing a function which takes one argument and returns that argument 
+
+- Class: text
+  Output: Let's start by creating a simple function. We will create a function which takes one argument and returns that argument. We will call the function `my_function`.
+
+# Introduce the `function()` function
+
+- Class: text
+  Output: "To create a function, we use the `function()` function. The syntax is as follows: `function(...) { code }`. The function takes any number of arguments, separated by commas, and inside the curly braces appears the code the function calls. The arguments are optional, but the curly braces are required."
 
 - Class: cmd_question
-  Output: Let's see what objects are currently in our R session. Use the `ls()` function.
-  CorrectAnswer: ls()
-  AnswerTests: omnitest(correctExpr='ls()')
-  Hint: Type `ls()` and hit ENTER.
+  Output: "To create the `my_function()` function, type the following code in the console: `my_function <- function(x) { return(x) }`."
+  CorrectAnswer: my_function <- function(x) { return(x) }
+  AnswerTests: omnitest(correctExpr='my_function <- function(x) { return(x) }')
+  Hint: Just type the code in the console and hit enter.
 
+- Class: cmd_question 
+  Output: The `my_function()` function is now available for use in our R session. To see the code for the function, type `my_function` in the console and hit enter.
+  CorrectAnswer: my_function
+  AnswerTests: omnitest(correctExpr='my_function')
+  Hint: Type `my_function` in the console and hit enter.
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: cmd_question 
+  Output: To use the `my_function()` function, type `my_function(x = "Hello World!")` in the console and hit enter.
+  CorrectAnswer: my_function(x = "Hello World!")
+  AnswerTests: omnitest(correctExpr='my_function(x = "Hello World!")')
+  Hint: Type `my_function(x = "Hello World!")` in the console and hit enter.
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: The `my_function()` function takes one argument, `x`, and returns that argument using the `return()` function. In this case, the argument is a character string, but it could be any type of object as defined in our function, more on this later!
+
+# 

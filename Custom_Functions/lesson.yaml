@@ -1,5 +1,5 @@
 - Class: meta
-  Course: R_Lessons
+  Course: Lessons
   Lesson: Custom Functions
   Author: Jerid Francom
   Type: Standard
@@ -9,7 +9,7 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: In this lesson, we will explore creating custom functions in R, discussing their creation, usage, arguments, and return values. We will also integrate the use of custom functions with control statements and iterative operations using purrr.
+  Output: In this lesson, we will explore creating custom functions in R, discussing their creation, usage, arguments, and return values. 
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
@@ -42,7 +42,7 @@
 # Introduce the `function()` function
 
 - Class: text
-  Output: "To create a function, we use the `function()` function. The syntax is as follows: `function(...) { code }`. The function takes any number of arguments, separated by commas, and inside the curly braces appears the code the function calls. The arguments are optional, but the curly braces are required."
+  Output: "To create a function, we use the `function()` function. The syntax is as follows- `function(...) { code }`. The function takes any number of arguments, separated by commas, and inside the curly braces appears the code the function calls. The arguments are optional, but the curly braces are required."
 
 - Class: cmd_question
   Output: "To create the `my_function()` function, type the following code in the console: `my_function <- function(x) { return(x) }`."
@@ -65,4 +65,91 @@
 - Class: text
   Output: The `my_function()` function takes one argument, `x`, and returns that argument using the `return()` function. In this case, the argument is a character string, but it could be any type of object as defined in our function, more on this later!
 
-# 
+# Practical Example -------------------------------------------------------
+
+- Class: figure
+  Output: "Let us look at a practical example of a custom function. I've created and loaded a custom function `create_word_tokens()`. The function takes one argument, `text`, which is a character string. The function returns a list of word tokens. For each word token, the text is given, the number of characters in the word, and an option to lowercase the word tokens."
+  Figure: script-create-word-tokens.R
+  FigureType: new
+
+- Class: text
+  Output: This function provides us an example to discuss more features of custom functions. 
+
+- Class: cmd_question 
+  Output: Let us put this function to use to see what it does. Type `create_word_tokens(text = "This is a short sentence")` in the console and hit enter.
+  CorrectAnswer: create_word_tokens(text = "This is a short sentence")
+  AnswerTests: omnitest(correctExpr='create_word_tokens(text = "This is a short sentence")')
+  Hint: Type `create_word_tokens(text = "This is a short sentence")` in the console and hit enter.
+
+- Class: text
+  Output: "The function returns a data frame with three columns: `text`, `token`, and `token_len`. Let's now go through the code for this function."
+
+- Class: text
+  Output: First, notice that the function takes one argument, `text`, which we expect to be a character string, say a sentence or paragraph of text. To ensure that the argument is a character string, we evaluate an `if` statement. If the argument is not a character string (`!is.character(text)`), then we return an error message using the `stop()` function and send an informative message to the console to the user.
+
+- Class: cmd_question 
+  Output: To see what happens when we pass a numeric value to the `text` argument, type `create_word_tokens(text = 123)` in the console and hit enter.
+  CorrectAnswer: create_word_tokens(text = 123)
+  AnswerTests: omnitest(correctExpr='create_word_tokens(text = 123)')
+  Hint: Type `create_word_tokens(text = 123)` in the console and hit enter.
+
+- Class: text
+  Output: The function returns an error message and sends an informative message to the console. This is helpful for the user to know what went wrong and how to fix it.
+
+- Class: text
+  Output: Second, to get individual words, we need to separate the text into word tokens. So, we use the `strsplit()` function to split the text into word tokens and assign the result to the `tokens` object. This variable is a character vector which has as many elements as the number of spaces between words in `text`. Importantly, since it is created and assigned inside the function, it is only available inside the function, unless we explicity return it.
+
+- Class: cmd_question
+  Output: "Use the `ls()` function to see what objects are available in the global environment. We will not see the `tokens` object because it is only available inside the function!"
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Type `ls()` in the console and hit enter.
+
+- Class: text
+  Output: Third, we use the `tolower()` function to convert the word tokens to lowercase and overwrite the `tokens` object. However, this code only runs if the `lowercase` argument is set to `TRUE`. Since the `lowercase` argument is given a value in the function definition, it is optional when calling the function. If the argument is not given a value, then it is set to the default value, which is `TRUE`. If we want to set the argument to `FALSE`, then we need to explicitly set the argument to `FALSE` when calling the function.
+
+- Class: cmd_question
+  Output: To see what happens when we set the `lowercase` argument to `FALSE`, type `create_word_tokens(text = "This is a short sentence", lowercase = FALSE)` in the console and hit enter.
+  CorrectAnswer: create_word_tokens(text = "This is a short sentence", lowercase = FALSE)
+  AnswerTests: omnitest(correctExpr='create_word_tokens(text = "This is a short sentence", lowercase = FALSE)')
+  Hint: Type `create_word_tokens(text = "This is a short sentence", lowercase = FALSE)` in the console and hit enter.
+
+- Class: text
+  Output: Notice that the word tokens are not converted to lowercase.
+
+- Class: text
+  Output: Fourth, we use the `nchar()` function to get the number of characters in each word token in `tokens` and assign the result to the `token_len` object.
+
+- Class: text
+  Output: "The fifth step is to organize the results into a data frame. We use the `data.frame()` function to create a data frame with three columns: `text`, `token`, and `token_len`. The `text` column is the original text passed to the function. The `token` column is the word tokens. The `token_len` column is the number of characters in each word token. Since the `text` is a character vector with one element, it is recycled to the length of the longest vector, which is the length of the `tokens` and the `token_len` vectors."
+
+- Class: text
+  Output: Finally, we return the data frame. This is important because if we do not return the data frame with the `return()` function, then the function will not return anything and nothing will be assigned to the object when we call the function.
+
+- Class: text
+  Output: Now, not all functions need to return anything. For example, a function may be used to create a directory or a file, print a message to the console, or any number of other tasks. 
+
+# Summary --------------------------------------------------------
+
+- Class: text
+  Output: In this lesson, we learned how to create a custom function using the `function()` function. We also learned how to use the `return()` function to return an object from a function. We also saw a practical example which showcased the use of optional arguments, the `if` statement, assigning objects inside a function, and returning an object from a function.
+
+# Two comprehension questions ---------------------------------------------
+
+- Class: mult_question
+  Output: When we declare an argument in a function definition with a default value, we call this a(n) ________ argument.
+  AnswerChoices: optional; required
+  CorrectAnswer: optional
+  AnswerTests: omnitest(correctVal='optional')
+  Hint: When we declare an argument in a function definition with a default value, we call this a(n) optional argument.
+
+- Class: mult_question
+  Output: "T/F: Objects created inside a function are only available outside the function if we explicitly return them with the `return()` function."
+  AnswerChoices: True; False
+  CorrectAnswer: True
+  AnswerTests: omnitest(correctVal='True')
+  Hint: Objects created inside a function are only available outside the function if we explicitly return them with the `return()` function.
+
+- Class: text
+  Output: This concludes the lesson on custom functions. In the next lesson, we will turn our attention to working with pattern matching functions to extract information from text.
+  

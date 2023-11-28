@@ -39,12 +39,12 @@ Install `swirl` lessons from GitHub:
 
 ```r
 library(swirl)
-install_course_github("qtalr/lessons")
+install_course_github("qtalr/Lessons")
 ```
 
 ## Usage
 
-Run `swirl()` to start the lessons:
+Run `swirl()` to start working on the lessons:
 
 ```r
 swirl()

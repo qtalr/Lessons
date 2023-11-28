@@ -1,4 +1,4 @@
-Getting_Started_with_Swirl
+Intro_to_Swirl
 Workspace
 Vectors
 Objects
@@ -10,9 +10,9 @@ Control_Statements
 Custom_Functions
 Pattern_Matching
 Tidy_Data
-Reshape_Dataset_Rows
-Reshape_Dataset_Columns
-Matrices
-Data_Visualization_II
-Tables
-Collaborating
+Reshape_Dataset_by_Rows
+Reshape_Dataset_by_Columns
+Advanced_Objects
+Advanced_Visualization
+Advanced_Tables
+Computing_Environment

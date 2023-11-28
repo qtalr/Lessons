@@ -1,6 +1,6 @@
 - Class: meta
   Course: lessons
-  Lesson: Reshape Dataset Columns
+  Lesson: Reshape Dataset by Rows
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
@@ -9,7 +9,8 @@
 # [ ] Create less based on the outline template
 
 - Class: text
-  Output: Welcome to Reshaping Dataset Columns! In this lesson, you will learn how to reshape columns in datasets in R.
+  Output: Welcome to Reshaping Dataset by Rows! In this lesson, you will learn how to reshape rows in datasets in R.
+
 
 # Plot example
 - Class: figure

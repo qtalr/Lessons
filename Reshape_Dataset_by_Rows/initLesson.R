@@ -14,7 +14,7 @@
   .pathtofile <<- function(fileName) {
     mypath <- file.path(
       .get_course_path(),
-      "lessons", "Reshape_Dataset_Columns",
+      "lessons", "Reshape_Dataset_by_Rows",
       fileName
     )
   }
@@ -32,3 +32,4 @@
       utils::browseURL(temp)
     }
   }
+  

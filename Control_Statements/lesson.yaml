@@ -6,6 +6,8 @@
   Organization: Wake Forest University
   Version: 0.9.0
 
+# [ ] update this lesson to be more applicable to linguistics (e.g., use of `nchar(), `str_starts()`, `str_detect()`, etc.)
+
 # Overview ------------------------------------------------------
 
 - Class: text

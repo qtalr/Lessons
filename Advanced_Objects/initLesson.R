@@ -2,7 +2,6 @@
 # lesson is started. Any variables created here will show up in
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
-
 .get_course_path <<- function() {
   tryCatch(
     swirl:::swirl_courses_dir(),
@@ -13,9 +12,9 @@
 }
 
 .pathtofile <<- function(fileName) {
-  mypath <- file.path( #nolint
+  mypath <- file.path(
     .get_course_path(),
-    "lessons", "Collaborating",
+    "lessons", "Advanced_Objects",
     fileName
   )
 }

@@ -15,7 +15,7 @@
 
 .pathtofile <<- function(fileName) {
   mypath <- file.path(.get_course_path(),
-                      "lessons", "Visual_Summaries",
+                      "Lessons", "Visual_Summaries",
                       fileName)
 }
 
@@ -38,7 +38,7 @@
 path_to_csv_file <-
   file.path(
     .get_course_path(),
-    "lessons",
+    "Lessons",
     "Visual_Summaries",
     "books.csv"
   )

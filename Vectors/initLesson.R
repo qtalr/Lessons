@@ -18,7 +18,7 @@ x <- 1:10
   .pathtofile <<- function(fileName) {
     mypath <- file.path(
       .get_course_path(),
-      "lessons", "Variables_and_Vectors",
+      "Lessons", "Variables_and_Vectors",
       fileName
     )
   }
@@ -49,7 +49,7 @@ x <- 1:10
   .pathtofile <<- function(fileName) {
     mypath <- file.path(
       .get_course_path(),
-      "lessons", "Vectors",
+      "Lessons", "Vectors",
       fileName
     )
   }

@@ -14,7 +14,7 @@
   .pathtofile <<- function(fileName) {
     mypath <- file.path(
       .get_course_path(),
-      "lessons", "Project_Management",
+      "Lessons", "Project_Management",
       fileName
     )
   }

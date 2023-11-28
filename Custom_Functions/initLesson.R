@@ -23,7 +23,7 @@ display_swirl_file("customTests.R", "Writing_swirl_Courses", "Custom_Tests")
 .pathtofile <<- function(fileName) {
   mypath <- file.path(
     .get_course_path(),
-    "lessons", "Custom_Functions",
+    "Lessons", "Custom_Functions",
     fileName
   )
 }

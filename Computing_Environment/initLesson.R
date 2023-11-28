@@ -15,7 +15,7 @@
 .pathtofile <<- function(fileName) {
   mypath <- file.path( # nolint
     .get_course_path(),
-    "lessons", "Computing_Environment",
+    "Lessons", "Computing_Environment",
     fileName
   )
 }

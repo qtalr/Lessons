@@ -14,7 +14,7 @@
   .pathtofile <<- function(fileName) {
     mypath <- file.path(
       .get_course_path(),
-      "lessons", "Reshape_Dataset_by_Columns",
+      "Lessons", "Reshape_Dataset_by_Columns",
       fileName
     )
   }

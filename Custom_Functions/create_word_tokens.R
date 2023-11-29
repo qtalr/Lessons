@@ -24,3 +24,4 @@ create_word_tokens <- function(text, lowercase = TRUE) {
   # 6. Return the data frame
   return(df)
 }
+

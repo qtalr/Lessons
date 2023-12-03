@@ -1,0 +1,30 @@
+- Class: meta
+  Course: lessons
+  Lesson: Tidy Datasets
+  Author: Jerid Francom
+  Type: Standard
+  Organization: Wake Forest University
+  Version: 0.9.0
+
+
+# Overview ---------------------------------------------------------------
+
+- Class: text
+  Output: Welcome to Tidy Data! In this lesson, you will learn how to tidy data in R.
+
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+
+
+
+# Plot example
+- Class: figure
+  Output: Check out this figure!
+  Figure: plot-ex.R
+  FigureType: new
+
+# Page example
+- Class: figure
+  Output: Check out this content!
+  Figure: page-ex.R
+  FigureType: new

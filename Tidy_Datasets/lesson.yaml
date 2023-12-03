@@ -186,8 +186,6 @@
   AnswerTests: omnitest(correctExpr='ns_tbl')
   Hint: Type `ns_tbl` and hit enter.
 
-# - str_split()
-
 - Class: cmd_question
   Output: Let's say we want to split each of the observations in the `text` column into sentences. We can do this with the `str_split()` function from the `stringr` package. The first argument to this function is the vector we want to split. The second argument is the pattern we want to split on. As it turns out, each sentence is separated by the `\n` character which is the newline character. Let's split the `text` column on the `\n` character, which is `\\n` in R. Type `ns_tbl |> mutate(sentences = str_split(text, "\\n"))` and hit enter.
   CorrectAnswer: ns_tbl |> mutate(sentences = str_split(text, "\\\\n"))

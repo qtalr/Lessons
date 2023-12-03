@@ -48,8 +48,3 @@ practice_chr <- c(
   "How many times does the word 'the' appear in this text?",
   "It's important to escape metacharacters, e.g., using \\ before them."
 )
-
-practice_df <- dplyr::tibble(
-  doc_id = 1:10,
-  text = practice_chr
-)

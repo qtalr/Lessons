@@ -4,25 +4,212 @@
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
-  Version: 0.1.0
+  Version: 0.9.0
 
 # Overview ----------------------------------------------
 
 - Class: text
-  Output: "In this lesson, ..."
+  Output: "In this lesson, we will introduce a fundamental concept for working with text data: pattern matching. The ability to match patterns in text is a powerful tool that can be used to find, extract, and replace text, among other things."
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
+# Pattern Matching ----------------------------------------------
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: You have undoubtedly used pattern matching before, even if you didn't know it. For example, if you have ever used the "find" function in a word processor, you have used pattern matching. In this case, the pattern is the word or phrase you are searching for.
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: This approach to pattern matching is very useful, but it is also limited. What if you want to find all the words that start with a capital letter? Or all the words that end with "ing"? Or all the words that are exactly 5 characters long? Your standard find function won't be able to do this.
+
+- Class: text
+  Output: Enter Regular Expressions. Regular expressions, or regex, are a way of specifying patterns in text. They are a powerful tool that can be used to find more complex patterns in text.
+
+- Class: text
+  Output: Let's explore some of the basic syntax of regular expressions using the `stringr` package's `str_view()` function. This function will highlight the parts of the text that match the pattern you specify.
+
+- Class: cmd_question
+  Output: I've already loaded the `stringr` package for you and created a variable called `practice_chr` that contains a sequence of 10 character vectors. Let's start by looking at the character vector. Type `practice_chr` to see what it contains.
+  CorrectAnswer: practice_chr
+  AnswerTests: omnitest(correctExpr='practice_chr')
+  Hint: Type `practice_chr` to see what it contains.
+
+- Class: cmd_question
+  Output: Now, let's use `str_view()` to highlight matches for the sequence 'the'. Type `str_view(practice_chr, "the")` to see the results.
+  CorrectAnswer: str_view(practice_chr, "the")
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "the")')
+  Hint: Type `str_view(practice_chr, "the")` to see the results.
+
+- Class: cmd_question
+  Output: By default `str_view()` shows the elements that match the pattern, their element index, and surround the match with angle brackets. This is useful for seeing which elements match and the context of the match. However, when developing pattern matches with regular expressions, it is often helpful to see the elements that match and those that don't. We can do this by setting the `match` argument to `NA` to return all elements. Type `str_view(practice_chr, "the", match = NA)` to see the results. Remember, you can use the up arrow to recall previous commands!
+  CorrectAnswer: str_view(practice_chr, "the", match = NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "the", match = NA)')
+  Hint: Type `str_view(practice_chr, "the", match = NA)` to see the results.
+
+# Basic Patterns ----------------------------------------------
+
+- Class: text
+  Output: Now that we have seen how to use `str_view()` to highlight matches, let's explore some of the basic patterns that can be used to match text in regular expressions.
+
+# Literals
+
+- Class: text
+  Output: The simplest pattern is a literal string, just like we used above. This will match the exact string you specify. Exact means exact. Case matters. Spaces matter. Everything matters. For example, for the pattern "the" that we used above, only the elements that contain the exact string "the" are matched- so "The" is not matched and the <the> in "them" is matched.
+
+# Metacharacters (., ^, $)
+
+- Class: cmd_question
+  Output: As you can imagine, using literal strings alone is limited if the pattern you are looking for is not exact. To allow for more flexibility, we can use metacharacters. Metacharacters are special characters that have a special meaning in regular expressions. For example, the metacharacter `.` matches any single character. Let's add the `.` to our pattern to match any element that contains "the" followed by any single character. Type `str_view(practice_chr, "the.", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "the.", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "the.", NA)')
+  Hint: Type `str_view(practice_chr, "the.", NA)` to see the results.
+
+- Class: text
+  Output: Notice that the <the> in "them" is now matched. This is because the `.` matches any single character, including the "m" in "them". We also see that the any other following character is matched too, including the space in "the "."
+
+- Class: cmd_question 
+  Output: Another set of metacharacters include the `^` and `$` characters. These metacharacters match the start and end of a vector element, respectively. So say we want to match the punctuation at the end of each element. We can use the `$` metacharacter to anchor our pattern to the end of the element. Type `str_view(practice_chr, ".$", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, ".$", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, ".$", NA)')
+  Hint: Type `str_view(practice_chr, ".$", NA)` to see the results.
+
+- Class: cmd_question
+  Output: Notice that the punctuation at the end of each element is matched. This is because the `$` metacharacter anchors the pattern to the end of the element. If we wanted to match the first character at the beginning of each element, we could use the `^` anchor and `.`. Give it a try!
+  CorrectAnswer: str_view(practice_chr, "^.", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "^.", NA)')
+  Hint: Type `str_view(practice_chr, "^.", NA)` to see the results.
+
+- Class: cmd_question
+  Output: Now, what if we want to actually match the `^` or `$` characters? We can do this by using another metacharacter, the `\\` character. The `\\` character is used to escape a metacharacter so that it is treated as a literal character. For example, if we want to match the `^` character, we can use the pattern `\\^`. Give it a try!
+  CorrectAnswer: str_view(practice_chr, "\\\\^", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\^", NA)')
+  Hint: Type `str_view(practice_chr, "\\^", NA)` to see the results. 
+
+- Class: text
+  Output: The escape character can be used to treat any special regex character as a literal character.
+
+- Class: cmd_question
+  Output: Now, the last anchor we will introduce here is a very useful one for working with text data. The `\\b` anchor matches a word boundary. Word boundaries include whitespace and non-alphanumeric characters. For example, if we want to match the word "the" in our elements, we could use the pattern `\\bthe\\b`. Give it a try!
+  CorrectAnswer: str_view(practice_chr, "\\\\bthe\\\\b", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\bthe\\\\b", NA)')
+  Hint: Type `str_view(practice_chr, "\\bthe\\b", NA)` to see the results.
+
+# Character Classes
+
+- Class: text
+  Output: Using literals and metacharacters we can start to see how powerful regular expressions can be. Another addition to our regular expression toolbox is character classes. Character classes allow us to match a set of characters in a more general way. 
+
+- Class: cmd_question
+  Output: There are two types of character classes- predefined and custom. Let's first look at predefined character classes. Predefined character classes are a set of characters, say all digits or all letters, that are predefined by regular expressions. For example, the character class `\\d` matches any digit. Type `str_view(practice_chr, "\\d", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "\\\\d", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\d", NA)')
+  Hint: Type `str_view(practice_chr, "\\d", NA)` to see the results.
+
+- Class: cmd_question
+  Output: We see that the individual digits in the elements are matched. The `\\w` character class matches any alphanumeric character, which includes letters, digits, and underscores. Give it a try!
+  CorrectAnswer: str_view(practice_chr, "\\\\w", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\w", NA)')
+  Hint: Type `str_view(practice_chr, "\\w", NA)` to see the results.
+
+- Class: text
+  Output: In addition to `\\d` and `\\w`, the `\\s` character class matches any whitespace character including spaces, tabs, and newlines. 
+
+- Class: cmd_question
+  Output: Now, these predefined character classes also have inverse character classes. For example, `\\D` matches any non-digit character, `\\W` matches any non-alphanumeric character, and `\\S` matches any non-whitespace character. Sometimes it is more convienent to use the inverse character classes. For example, if we want to match all the non-alphanumeric characters in our elements, we could use `\\W`. Give it a try!
+  CorrectAnswer: str_view(practice_chr, "\\\\W", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\W", NA)')
+  Hint: Type `str_view(practice_chr, "\\W", NA)` to see the results.
+
+- Class: text
+  Output: Now, let's look at custom character classes. Custom character classes allow us to specify a set of characters to match. For example, if we want to match all the vowels in our elements, we could use the pattern `[aeiou]`. The brackets mean that any character inside the brackets is matched. Type `str_view(practice_chr, "[aeiou]", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "[aeiou]", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "[aeiou]", NA)')
+  Hint: Type `str_view(practice_chr, "[aeiou]", NA)` to see the results.
+
+- Class: cmd_question
+  Output: Notice that the characters inside the brackets are taken as literals, so upper case vowels are not matched. Furthermore, special characters are also taken as literals. For example, if we want to match all the vowels and punctuation in our elements, we could use the pattern `[aeiouAEIOU,.?!]`. Give it a try!
+  CorrectAnswer: str_view(practice_chr, "[aeiouAEIOU,.?!]", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "[aeiouAEIOU,.?!]", NA)')
+  Hint: Type `str_view(practice_chr, "[aeiouAEIOU,.?!]", NA)` to see the results.
+
+- Class: text
+  Output: There are two important exceptions to the literal rule. First, the `^` character when used as the first character inside the brackets is used to negate the character class. For example, if we want to match all the characters that are not vowels, we could use the pattern `[^aeiou]`. Type `str_view(practice_chr, "[^aeiou]", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "[^aeiou]", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "[^aeiou]", NA)')
+  Hint: Type `str_view(practice_chr, "[^aeiou]", NA)` to see the results.
+
+- Class: cmd_question
+  Output: The second exception is the `-` character. When used inside the brackets, the `-` character is used to specify a range of characters. For example, if we want to match all the lowercase letters, we could use the pattern `[a-z]`. Type `str_view(practice_chr, "[a-z]", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "[a-z]", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "[a-z]", NA)')
+  Hint: Type `str_view(practice_chr, "[a-z]", NA)` to see the results.
+
+# Quantifiers
+
+- Class: text
+  Output: Now that we have seen how to match individual characters in various ways, let's look at how to match multiple characters. 
+  
+- Class: cmd_question
+  Output: One way to match multiple characters is to use the `|` metacharacter. The `|` metacharacter is used to specify alternatives. Think of the `|` as an "or" statement. For example, if we want to match all the elements that contain a form of the verb 'to be', we could use the pattern "be|am|are|is". Type `str_view(practice_chr, "be|am|are|is", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "be|am|are|is", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "be|am|are|is", NA)')
+  Hint: Type `str_view(practice_chr, "be|am|are|is", NA)` to see the results.
+
+- Class: cmd_question 
+  Output: OK, so we matched more than verbs as the literals appear within words as well! To fix this, we can add some context to our pattern. For example, we can add the `\\b` character class to anchor our pattern. But to make sure that we don't include the `\\b` in our "or" statement, we can use the `()` metacharacters to group our pattern. Type `str_view(practice_chr, "\\b(be|am|are|is)\\b", NA)` to see the results. 
+  CorrectAnswer: str_view(practice_chr, "\\\\b(be|am|are|is)\\\\b", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\b(be|am|are|is)\\\\b", NA)')
+  Hint: Type `str_view(practice_chr, "\\b(be|am|are|is)\\b", NA)` to see the results.
+
+- Class: text
+  Output: "Another way to match multiple characters is to use quantifiers. Quantifiers specify how many times the previous pattern should be matched. There are three basic quantifiers: `?`, `*`, and `+`. The `?` quantifier matches zero or one times. The `*` quantifier matches zero or more times. The `+` quantifier matches one or more times. Let's look at some examples."
+
+- Class: cmd_question
+  Output: Let's use a basic example to see how these quantifiers work. Say we have the regex pattern "\\bph\\w". This pattern matches the sequence "ph" followed by any alphanumeric character. Let's see what happens when we apply this to our elements. Type `str_view(practice_chr, "\\bph\\w", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "\\\\bph\\\\w", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\bph\\\\w", NA)')
+  Hint: Type `str_view(practice_chr, "\\bph\\w", NA)` to see the results.
+
+- Class: cmd_question
+  Output: Notice that the <ph> in "phone" is matched, but the <ph> in "ph" is not. This is because the `\\w` character class matches alphanumeric characters, so the <ph> in "ph" is not matched. Now, let's add the `?` quantifier to our pattern. Type `str_view(practice_chr, "\\bph\\w?", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "\\\\bph\\\\w?", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\bph\\\\w?", NA)')
+  Hint: Type `str_view(practice_chr, "\\bph\\w?", NA)` to see the results.
+
+- Class: cmd_question
+  Output: Notice that the <ph> in "ph" is now matched. This is because the `?` quantifier matches zero or one times. So the alphanumeric character is optional. Now, let's add the `*` quantifier to our pattern. Type `str_view(practice_chr, "\\bph\\w*", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "\\\\bph\\\\w*", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\bph\\\\w*", NA)')
+  Hint: Type `str_view(practice_chr, "\\bph\\w*", NA)` to see the results.
+
+- Class: cmd_question
+  Output: Notice that the <ph> in "ph" is still matched, but we also get matches for "phone", "phrase", and "philosophy". This is because the `*` quantifier matches zero or more times. So the alphanumeric character is optional and can be repeated. Now, let's add the `+` quantifier to our pattern. Type `str_view(practice_chr, "\\bph\\w+", NA)` to see the results.
+  CorrectAnswer: str_view(practice_chr, "\\\\bph\\\\w+", NA)
+  AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\bph\\\\w+", NA)')
+  Hint: Type `str_view(practice_chr, "\\bph\\w+", NA)` to see the results.
+
+- Class: text
+  Output: Notice that the <ph> in "ph" is no longer matched. This is because the `+` quantifier matches one or more times. So the alphanumeric character is required and can be repeated.
+
+# Summary ----------------------------------------------
+
+- Class: text
+  Output: In this lesson, we introduced regular expressions and explored some of the basic syntax for matching patterns in text. We saw how to match individual characters using literals, metacharacters, and character classes. We also saw how to match multiple characters using quantifiers.
+
+- Class: mult_question
+  Output: Now, let's test your knowledge. Which of the following patterns would NOT match the string "the"?
+  AnswerChoices: the; \\w+; \\bthe\\b; \\bThe
+  CorrectAnswer: \\bThe
+  AnswerTests: omnitest(correctVal='\\bThe')
+  Hint: Remember, case matters!
+
+- Class: mult_question
+  Output: Which of the following patterns will match the string "3.14159"?
+  AnswerChoices: \\d+; \\d+\\.\\d+; \\d+.\\d+; \\d\\.\\d+
+  CorrectAnswer: \\d+\\.\\d+
+  AnswerTests: omnitest(correctVal='\\d+\\.\\d+')
+  Hint: Remember, the `.` character is a metacharacter and needs to be escaped!
+
+- Class: text
+  Output: This concludes our lesson on pattern matching. In the next lesson, we will explore creating and manipulating data frammes. Our experience with pattern matching will come in handy when we start working with text data in data frames.
+  

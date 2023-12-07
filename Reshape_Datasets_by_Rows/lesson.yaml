@@ -9,20 +9,39 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Welcome to Reshaping Dataset by Rows! In this lesson, you will learn how to reshape rows in datasets in R.
-
+  Output: Welcome to Reshaping Datasets by Rows! In this lesson, you will learn how to increase and decrease the number of rows in a dataset. This will help you to reorganize your data into a format that is more useful for your analysis.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+# Reshaping Datasets by Rows ---------------------------------------------
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: Changing the number of rows in a dataset is a common task in data analysis. In many cases, a change in rows is employed to reorganize the unit of observation. Say for example that you have a dataset that has one row for each sentence from language learners' sample writing. You may want to change the observations from sentences to words. On the other hand, you may want to change the observations from sentences to paragraphs. 
+
+- Class: text
+  Output: In other cases, changing the number of rows reflects some filtering out of data or the combination of multiple datasets. For example, you may have a dataset that has one row for each student in a class. You may want to filter out students who have not completed the course. Or, you may want to combine the dataset for one course with datasets from other courses.
+
+- Class: text
+  Output: In this lesson, you will learn how to increase and decrease the number of rows in a dataset. This will help you to reorganize your data into a format that is more useful for your analysis.
+
+- Class: cmd_question
+  Output: I've loaded the necessary packages and a dataset called `sla_df` which contains hypothetical data from a second language acquisition study. Take a look at the dataset by typing `sla_df`.
+  CorrectAnswer: sla_df
+  AnswerTests: omnitest(correctExpr='sla_df')
+  Hint: Type `sla_df` to see the dataset.
+
+- Class: mult_question
+  Output: What are the dimensions of the dataset?
+  AnswerChoices: 10 rows, 7 columns; 7 rows, 10 columns; 10 rows, 6 columns; 6 rows, 10 columns
+  CorrectAnswer: 10 rows, 7 columns
+  AnswerTests: omnitest(correctVal='10 rows, 7 columns')
+  Hint: Remember that tibble dimensions are given as `rows, columns`.
+
+# Separate or collapse rows -----------------------------------------------
+
+- Class: text
+  Output: The first way to change the number of rows in a dataset we will look at is to separate or collapse rows. 
+
+- Class: cmd_question
+  Output: Let's say that we want to separate the rows in the `home_languages` column so that each language is in its own row while keeping the other columns the same. We can use the `separate_longer_delim()` function from the `tidyr` package to do this. The function takes the data frame, the column with the rows to separate, and the delimiter as arguments. The delimiter is the character that separates the rows, in this case ", ". Type `sla_df

@@ -13,10 +13,12 @@
   )
 }
 
-.pathtofile <<- function(fileName) {
-  mypath <- file.path(.get_course_path(),
-                      "Lessons", "Visual_Summaries",
-                      fileName)
+.pathtofile <<- function(file_name) {
+  file.path(
+    .get_course_path(),
+    "Lessons", "Visual_Summaries",
+    file_name
+  )
 }
 
 # @param html An html file.
@@ -26,10 +28,11 @@
   file.copy(path, temp, overwrite = TRUE)
 
   viewer <- getOption("viewer")
-  if (!is.null(viewer))
+  if (!is.null(viewer)) {
     viewer(temp)
-  else
+  } else {
     utils::browseURL(temp)
+  }
 }
 
 # Variables

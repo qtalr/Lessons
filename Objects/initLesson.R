@@ -13,7 +13,7 @@
 }
 
 .pathtofile <<- function(file_name) {
-  mypath <- file.path( # nolint
+  file.path( # nolint
     .get_course_path(),
     "Lessons", "Objects",
     file_name

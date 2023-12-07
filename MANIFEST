@@ -10,8 +10,8 @@ Control_Statements
 Custom_Functions
 Pattern_Matching
 Tidy_Datasets
-Reshape_Dataset_by_Rows
-Reshape_Dataset_by_Columns
+Reshape_Datasets_by_Rows
+Reshape_Datasets_by_Columns
 Advanced_Objects
 Advanced_Visualization
 Advanced_Tables

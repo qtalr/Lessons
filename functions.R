@@ -107,11 +107,11 @@ scaffold_display_questions <- function() {
     )
   }
 
-  .pathtofile <<- function(fileName) {
-    mypath <- file.path(
+  .pathtofile <<- function(file_name) {
+    file.path(
       .get_course_path(),
       "Lessons", "', par_dir, '",
-      fileName
+      file_name
     )
   }
 

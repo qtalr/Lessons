@@ -12,11 +12,11 @@
   )
 }
 
-.pathtofile <<- function(fileName) {
-  mypath <- file.path( # nolint
+.pathtofile <<- function(file_name) {
+  file.path( # nolint
     .get_course_path(),
     "Lessons", "Computing_Environment",
-    fileName
+    file_name
   )
 }
 

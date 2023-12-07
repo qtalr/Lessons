@@ -12,11 +12,11 @@
   )
 }
 
-.pathtofile <<- function(fileName) {
+.pathtofile <<- function(file_name) {
   file.path(
     .get_course_path(),
     "Lessons", "Pattern_Matching",
-    fileName
+    file_name
   )
 }
 

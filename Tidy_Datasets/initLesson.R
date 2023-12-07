@@ -2,6 +2,7 @@
 # lesson is started. Any variables created here will show up in
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
+
 .get_course_path <<- function() {
   tryCatch(
     swirl:::swirl_courses_dir(),
@@ -11,11 +12,11 @@
   )
 }
 
-.pathtofile <<- function(fileName) {
+.pathtofile <<- function(file_name) {
   file.path(
     .get_course_path(),
     "Lessons", "Tidy_Datasets",
-    fileName
+    file_name
   )
 }
 
@@ -34,8 +35,6 @@
 }
 
 # Variables created here will be available to the user
-
-# Create a character vector with English as a first language
 
 ns_chr <- c(
   "The sun sets over the ocean, a breathtaking sight.",

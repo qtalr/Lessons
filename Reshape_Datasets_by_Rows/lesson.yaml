@@ -44,4 +44,204 @@
   Output: The first way to change the number of rows in a dataset we will look at is to separate or collapse rows. 
 
 - Class: cmd_question
-  Output: Let's say that we want to separate the rows in the `home_languages` column so that each language is in its own row while keeping the other columns the same. We can use the `separate_longer_delim()` function from the `tidyr` package to do this. The function takes the data frame, the column with the rows to separate, and the delimiter as arguments. The delimiter is the character that separates the rows, in this case ", ". Type `sla_df
+  Output: Let's say that we want to separate the rows in the `home_languages` column so that each language is in its own row while keeping the other columns the same. We can use the `separate_longer_delim()` function from the `tidyr` package to do this. The function takes the data frame, the column with the rows to separate, and the delimiter as arguments. The delimiter is the character that separates the rows, in this case ", ". Type `sla_df |> separate_longer_delim(home_languages, ", ")` to see the result.
+  CorrectAnswer: sla_df |> separate_longer_delim(home_languages, ", ")
+  AnswerTests: omnitest(correctExpr='sla_df |> separate_longer_delim(home_languages, ", ")')
+  Hint: Type `sla_df |> separate_longer_delim(home_languages, ", ")` to see the result.
+
+- Class: exact_question
+  Output: Now, how many rows are in the dataset?
+  CorrectAnswer: 18
+  AnswerTests: omnitest(correctVal=18)
+  Hint: Remember that tibble dimensions are given as `rows, columns`.
+
+- Class: text
+  Output: Notice that the `home_languages` column has been separated into multiple rows, one for each language. The other columns have been repeated for each row.
+
+- Class: cmd_question
+  Output: Let's assign the result to a new variable called `sla_langs_df`. Use the up arrow to get the previous command and assign it to `sla_langs_df`. The command should look like `sla_langs_df <- sla_df |> separate_longer_delim(home_languages, ", ")`.
+  CorrectAnswer: sla_langs_df <- sla_df |> separate_longer_delim(home_languages, ", ")
+  AnswerTests: omnitest(correctExpr='sla_langs_df <- sla_df |> separate_longer_delim(home_languages, ", ")')
+  Hint: Type `sla_langs_df <- sla_df |> separate_longer_delim(home_languages, ", ")` to assign the result to a new variable.
+
+- Class: text
+  Output: Imagine, now, that instead we started this data frame (`sla_langs_df`) -- that is, a data frame that had one row for each language. And we wanted to collapse the rows in `home_languages` so that each learner was represented by one row. 
+
+- Class: cmd_question
+  Output: The key function we want to use is the `str_c()` function from the `stringr` package. This function takes a vector of strings and combines them into one string. Let's see how this works on a simple example. Type `str_c(c("a", "b", "c"), collapse = ", ")` to see the result.
+  CorrectAnswer: str_c(c("a", "b", "c"), collapse = ", ")
+  AnswerTests: omnitest(correctExpr='str_c(c("a", "b", "c"), collapse = ", ")')
+  Hint: Type `str_c(c("a", "b", "c"), collapse = ", ")` to see the result.
+
+- Class: cmd_question
+  Output: We want to apply this function to the `home_languages` column. To apply a function to a column, we use the `mutate()` function from the `dplyr` package. Type `sla_langs_df |> mutate(home_languages = str_c(home_languages, collapse = ", "))` to see the result.
+  CorrectAnswer: sla_langs_df |> mutate(home_languages = str_c(home_languages, collapse = ", "))
+  AnswerTests: omnitest(correctExpr='sla_langs_df |> mutate(home_languages = str_c(home_languages, collapse = ", "))')
+  Hint: Type `sla_langs_df |> mutate(home_languages = str_c(home_languages, collapse = ", "))` to see the result.
+
+- Class: text
+  Output: Wow! That's not what we want. It looks like the `str_c()` function has collapsed all of the rows in the `home_languages` column into one row for each of the existing 18 rows. 
+
+- Class: cmd_question 
+  Output: The problem is that we need to tell `mutate()` to take each value of `learner_id` and collapse the rows for that learner. To do this we introduce the `group_by()` function between the data frame and the `mutate()` function. Type `sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))` to see the result.
+  CorrectAnswer: sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))
+  AnswerTests: omnitest(correctExpr='sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))')
+  Hint: Type `sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))` to see the result.
+
+- Class: cmd_question 
+  Output: Now, that looks better than before. The languages in the `home_languages` column have been collapsed for each learner. But, we still have multiple rows for each learner. Furthermore, each learner has multiple rows which are identical. To remove the duplicate rows, we can use the `distinct()` function from the `dplyr` package. With no arguments, this function will remove duplicates across all columns. Add `distinct()` to the end of the previous command to see the result.
+  CorrectAnswer: sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", ")) |> distinct()
+  AnswerTests: omnitest(correctExpr='sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", ")) |> distinct()')
+  Hint: Type `sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", ")) |> distinct()` to see the result.
+
+- Class: text
+  Output: Now, we have one row for each learner, and the `home_languages` column has been collapsed by rows --the same dataset we started with! 
+
+# Tokenizing and unnesting rows ------------------------------------------
+
+- Class: text
+  Output: Another common practice in text analysis that involves changing the number of rows in a dataset is tokenizing text. Tokenizing text means to split the text into smaller units. We can also collapse tokens into larger units.
+
+- Class: cmd_question
+  Output: Let's first looking at tokenizing text. We will start by exploring the `tokenizers` package. This package has a number of functions for tokenizing text. Type `ls("package:tokenizers")` and look for the functions that start with `tokenize_`. These are the functions we will use to tokenize text.
+  CorrectAnswer: ls("package:tokenizers")
+  AnswerTests: omnitest(correctExpr='ls("package:tokenizers")')
+  Hint: Type `ls("package:tokenizers")` to see the functions in the `tokenizers` package.
+
+- Class: mult_question
+  Output: Which of the following functions from the `tokenizers` package will split text into words?
+  AnswerChoices: tokenize_words(); tokenize_characters(); tokenize_sentences(); tokenize_lines()
+  CorrectAnswer: tokenize_words()
+  AnswerTests: omnitest(correctVal='tokenize_words()')
+  Hint: Look for `tokenize_words()` in the output of `ls("package:tokenizers")`.
+
+- Class: cmd_question
+  Output: The `tokenize_words()` function takes a vector of text as an argument. Type `tokenize_words(c("Hello world!", "This is a sentence."))` to see the result.
+  CorrectAnswer: tokenize_words(c("Hello world!", "This is a sentence."))
+  AnswerTests: omnitest(correctExpr='tokenize_words(c("Hello world!", "This is a sentence."))')
+  Hint: Type `tokenize_words(c("Hello world!", "This is a sentence."))` to see the result.
+
+- Class: text
+  Output: The `tokenize_words()` function returns a list of character vectors, one list element for each element of the input vector. Since lists allow for different lengths of elements, this is a good way to store the tokens. 
+
+- Class: cmd_question 
+  Output: Another things to notice concern the tokens themselves. First, notice that the punctuation has been removed. Second, notice that the words have been converted to lower case. This is because the `tokenize_words()` function has a set of defaults that it uses. Take a look at the defaults by typing `?tokenize_words`.
+  CorrectAnswer: ?tokenize_words
+  AnswerTests: omnitest(correctExpr='?tokenize_words')
+  Hint: Type `?tokenize_words` to see the defaults.
+
+- Class: mult_question
+  Output: Which of the following arguments to `tokenize_words()` will keep the punctuation?
+  AnswerChoices: lowercase = TRUE; lowercase = FALSE; strip_punct = TRUE; strip_punct = FALSE
+  CorrectAnswer: strip_punct = FALSE
+  AnswerTests: omnitest(correctVal='strip_punct = FALSE')
+  Hint: We want to set `strip_punct = FALSE`.
+
+- Class: cmd_question
+  Output: Now, let's apply the `tokenize_words()` function to the `sentence` column of the `sla_df` dataset. We do this by passing the dataset to `mutate()` and then assigning the result to a new column. Type `sla_df |> mutate(word = tokenize_words(sentence))` to see the result.
+  CorrectAnswer: sla_df |> mutate(word = tokenize_words(sentence))
+  AnswerTests: omnitest(correctExpr='sla_df |> mutate(word = tokenize_words(sentence))')
+  Hint: Type `sla_df |> mutate(word = tokenize_words(sentence))` to see the result.
+
+- Class: text
+  Output: Notice that the `word` column is a list column. This means that each element of the column is a list. We can also see that the elements of each list are character vectors of different lengths. This is because each sentence has a different number of tokens. When a two-dimensional object, like a data frame, has a list column, it is called a nested data frame.
+
+- Class: cmd_question
+  Output: We can unnest the nested data frame using the `unnest()` function from the `tidyr` package. We can add this function to the end of the previous command to see the result. Type `sla_df |> mutate(word = tokenize_words(sentence)) |> unnest(word)` to see the result.
+  CorrectAnswer: sla_df |> mutate(word = tokenize_words(sentence)) |> unnest(word)
+  AnswerTests: omnitest(correctExpr='sla_df |> mutate(word = tokenize_words(sentence)) |> unnest(word)')
+  Hint: Type `sla_df |> mutate(word = tokenize_words(sentence)) |> unnest(word)` to see the result.
+
+- Class: exact_question
+  Output: How many rows are in the dataset now?
+  CorrectAnswer: 87
+  AnswerTests: omnitest(correctVal=18)
+  Hint: Remember that tibble dimensions are given as `rows, columns`.
+
+- Class: text
+  Output: Notice that the `word` column has been unnested. Each token is now in its own row. The other columns have been repeated for each row.
+
+- Class: cmd_question
+  Output: The process of passing a dataset to `mutate()` and then unnesting the result is so common that there is a function that does both of these things at once. This function is called `unnest_tokens()` and it's found in the `tidytext` package. Type `sla_df |> unnest_tokens(word, sentence)` to see the result.
+  CorrectAnswer: sla_df |> unnest_tokens(word, sentence)
+  AnswerTests: omnitest(correctExpr='sla_df |> unnest_tokens(word, sentence)')
+  Hint: Type `sla_df |> unnest_tokens(word, sentence)` to see the result.
+
+- Class: cmd_question 
+  Output: Notice that the `word` column reflects the word tokens from the `sentence` column, but the `sentence` column is no longer in the dataset. This is because the `unnest_tokens()` function removes the column that it tokenizes by default. Let's look at some of the other defaults by typing `?unnest_tokens`.
+  CorrectAnswer: ?unnest_tokens
+  AnswerTests: omnitest(correctExpr='?unnest_tokens')
+  Hint: Type `?unnest_tokens` to see the defaults.
+
+- Class: mult_question
+  Output: Can the `token` argument by set to "ngrams"?
+  AnswerChoices: Yes; No
+  CorrectAnswer: Yes
+  AnswerTests: omnitest(correctVal='Yes')
+  Hint: Look for the `token` argument in the output of `?unnest_tokens`.
+
+- Class: cmd_question
+  Output: There are various options for tokenizing text using the `unnest_tokens()` function. We won't explore them here, however. For now, let's just use the defaults and assign the result to a new variable called `sla_words_df`. Type `sla_words_df <- sla_df |> unnest_tokens(word, sentence)`.
+  CorrectAnswer: sla_words_df <- sla_df |> unnest_tokens(word, sentence)
+  AnswerTests: omnitest(correctExpr='sla_words_df <- sla_df |> unnest_tokens(word, sentence)')
+  Hint: Type `sla_words_df <- sla_df |> unnest_tokens(word, sentence)` to assign the result to a new variable.
+
+# Filtering out rows ------------------------------------------------------
+
+- Class: text
+  Output: The previous row-wise operations we looked at change the unit of observation. In some cases, however, we aim to filter out or combine rows. 
+
+- Class: cmd_question 
+  Output: Let's say that we want to filter out the rows in the `sla_words_df` dataset that `word` is "i". We can do this using the `filter()` function from the `dplyr` package. Type `sla_words_df |> filter(word != "i")` to see the result.
+  CorrectAnswer: sla_words_df |> filter(word != "i")
+  AnswerTests: omnitest(correctExpr='sla_words_df |> filter(word != "i")')
+  Hint: Type `sla_words_df |> filter(word != "i")` to see the result.
+
+- Class: exact_question
+  Output: How many rows were filtered out?
+  CorrectAnswer: 6
+  AnswerTests: omnitest(correctVal=6)
+  Hint: Compare the number of rows in `sla_words_df` to the number of rows in the result of `sla_words_df |> filter(word != "i")`.
+
+- Class: cmd_question
+  Output: We can add words to filter out by using the `%in%` operator. Type `sla_words_df |> filter(!word %in% c("i", "a"))` to see the result.
+  CorrectAnswer: sla_words_df |> filter(!word %in% c("i", "a"))
+  AnswerTests: omnitest(correctExpr='sla_words_df |> filter(!word %in% c("i", "a"))')
+  Hint: Type `sla_words_df |> filter(!word %in% c("i", "a"))` to see the result.
+
+- Class: cmd_question
+  Output: We could contine to add words to filter out, but this would be tedious. Often, we want to filter out words that are not informative for our analysis. These are known as 'stop words'. We can create our own list of stop words or use a list that is already available. In this, case we will use the `stop_words` dataset from the `tidytext` package. Type `stop_words` to see the dataset.
+  CorrectAnswer: stop_words
+  AnswerTests: omnitest(correctExpr='stop_words')
+  Hint: Type `stop_words` to see the dataset.
+
+- Class: cmd_question
+  Output: This `stop_words` data frame has a large number of common stop words. The words appear in the `word` column. We can use this data frame to filter out the stop words from the `sla_words_df` dataset. For this, we will use the `anti_join()` function from the `dplyr` package. Type `sla_words_df |> anti_join(stop_words)` to see the result.
+  CorrectAnswer: sla_words_df |> anti_join(stop_words)
+  AnswerTests: omnitest(correctExpr='sla_words_df |> anti_join(stop_words)')
+  Hint: Type `sla_words_df |> anti_join(stop_words)` to see the result.
+
+- Class: exact_question
+  Output: How many rows are in the dataset now?
+  CorrectAnswer: 29
+  AnswerTests: omnitest(correctVal=29)
+  Hint: Remember that tibble dimensions are given as `rows, columns`.
+
+- Class: text
+  Output: Notice that the `word` column no longer contains any of the stop words. This is because the `anti_join()` function removes rows from the data frame that match the rows in the second argument. By default, `anti_join()` will match rows based on all columns that are shared between the two data frames. In this case, the `word` column is the only column shared between the two data frames.
+
+- Class: text
+  Output: Note, there is nothing special about the `stop_words` data frame. We could have created our own data frame of stop words and used that instead. This can be useful if you want to use a different set of stop words or if you want to add words to the `stop_words` data frame.
+
+# Combining datasets by rows ----------------------------------------------
+
+# Summary ----------------------------------------------------------------
+
+- Class: text
+  Output: In this lesson, you learned how to increase and decrease the number of rows in a dataset. 
+
+- Class: text
+  Output: You learned how to separate or collapse rows using the `separate_longer_delim()` and `str_c()` functions. You also learned about tokenizing text using the `tokenize_words()` and `unnest_tokens()` functions. Finally, you learned how to filter out rows using the `filter()` and `anti_join()` functions.
+
+- Class: text
+  Output: In the next lesson, you will learn how to increase and decrease the number of columns in a dataset, adding to your data reshaping toolkit.

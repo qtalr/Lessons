@@ -11,7 +11,7 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: In this lesson, we will explore creating custom functions in R, discussing their creation, usage, arguments, and return values. 
+  Output: In this lesson, we will explore creating custom functions in R, discussing their creation, usage, arguments, and return values.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
@@ -19,7 +19,7 @@
 # Custom Functions -------------------------------------------------------
 
 - Class: text
-  Output: There are many functions available in R either built-in or through packages. However, there are times when you need to create your own function to perform a specific task. This is where custom functions come in. 
+  Output: There are many functions available in R either built-in or through packages. However, there are times when you need to create your own function to perform a specific task. This is where custom functions come in.
 
 - Class: text
   Output: Custom functions are also helpful if you find yourself repeating the same code over and over again. Copying and pasting code may seem like a good idea at first, but it can lead to problems down the road. For example, if you need to make a change to the code, you will have to make the change in multiple places. Repeating code also makes your code harder to read and understand.
@@ -36,7 +36,7 @@
 
 # Creating Custom Functions -----------------------------------------------
 
-# Writing a function which takes one argument and returns that argument 
+# Writing a function which takes one argument and returns that argument
 
 - Class: text
   Output: Let's start by creating a simple function. We will create a function which takes one argument and returns that argument. We will call the function `my_function`.
@@ -52,13 +52,13 @@
   AnswerTests: omnitest(correctExpr='my_function <- function(x) { return(x) }')
   Hint: Just type the code in the console and hit enter.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: The `my_function()` function is now available for use in our R session. To see the code for the function, type `my_function` in the console and hit enter.
   CorrectAnswer: my_function
   AnswerTests: omnitest(correctExpr='my_function')
   Hint: Type `my_function` in the console and hit enter.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: To use the `my_function()` function, type `my_function(x = "Hello World!")` in the console and hit enter.
   CorrectAnswer: my_function(x = "Hello World!")
   AnswerTests: omnitest(correctExpr='my_function(x = "Hello World!")')
@@ -75,9 +75,9 @@
   FigureType: new
 
 - Class: text
-  Output: This function provides us an example to discuss more features of custom functions. 
+  Output: This function provides us an example to discuss more features of custom functions.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: Let us put this function to use to see what it does. Type `create_word_tokens(text = "This is a short sentence")` in the console and hit enter.
   CorrectAnswer: create_word_tokens(text = "This is a short sentence")
   AnswerTests: omnitest(correctExpr='create_word_tokens(text = "This is a short sentence")')
@@ -89,7 +89,7 @@
 - Class: text
   Output: First, notice that the function takes one argument, `text`, which we expect to be a character string, say a sentence or paragraph of text. To ensure that the argument is a character string, we evaluate an `if` statement. If the argument is not a character string (`!is.character(text)`), then we return an error message using the `stop()` function and send an informative message to the console to the user.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: To see what happens when we pass a numeric value to the `text` argument, type `create_word_tokens(text = 123)` in the console and hit enter.
   CorrectAnswer: create_word_tokens(text = 123)
   AnswerTests: omnitest(correctExpr='create_word_tokens(text = 123)')
@@ -129,7 +129,7 @@
   Output: Finally, we return the data frame. This is important because if we do not return the data frame with the `return()` function, then the function will not return anything and nothing will be assigned to the object when we call the function.
 
 - Class: text
-  Output: Now, not all functions need to return anything. For example, a function may be used to create a directory or a file, print a message to the console, or any number of other tasks. 
+  Output: Now, not all functions need to return anything. For example, a function may be used to create a directory or a file, print a message to the console, or any number of other tasks.
 
 # Summary --------------------------------------------------------
 
@@ -154,4 +154,4 @@
 
 - Class: text
   Output: This concludes the lesson on custom functions. In the next lesson, we will turn our attention to working with pattern matching functions to extract information from text.
-  
+

@@ -67,7 +67,7 @@
 - Class: text
   Output: Notice that the <the> in "them" is now matched. This is because the `.` matches any single character, including the "m" in "them". We also see that the any other following character is matched too, including the space in "the "."
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: Another set of metacharacters include the `^` and `$` characters. These metacharacters match the start and end of a vector element, respectively. So say we want to match the punctuation at the end of each element. We can use the `$` metacharacter to anchor our pattern to the end of the element. Type `str_view(practice_chr, ".$", NA)` to see the results.
   CorrectAnswer: str_view(practice_chr, ".$", NA)
   AnswerTests: omnitest(correctExpr='str_view(practice_chr, ".$", NA)')
@@ -83,7 +83,7 @@
   Output: Now, what if we want to actually match the `^` or `$` characters? We can do this by using another metacharacter, the `\\` character. The `\\` character is used to escape a metacharacter so that it is treated as a literal character. For example, if we want to match the `^` character, we can use the pattern `\\^`. Give it a try!
   CorrectAnswer: str_view(practice_chr, "\\\\^", NA)
   AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\^", NA)')
-  Hint: Type `str_view(practice_chr, "\\^", NA)` to see the results. 
+  Hint: Type `str_view(practice_chr, "\\^", NA)` to see the results.
 
 - Class: text
   Output: The escape character can be used to treat any special regex character as a literal character.
@@ -97,7 +97,7 @@
 # Character Classes
 
 - Class: text
-  Output: Using literals and metacharacters we can start to see how powerful regular expressions can be. Another addition to our regular expression toolbox is character classes. Character classes allow us to match a set of characters in a more general way. 
+  Output: Using literals and metacharacters we can start to see how powerful regular expressions can be. Another addition to our regular expression toolbox is character classes. Character classes allow us to match a set of characters in a more general way.
 
 - Class: cmd_question
   Output: There are two types of character classes- predefined and custom. Let's first look at predefined character classes. Predefined character classes are a set of characters, say all digits or all letters, that are predefined by regular expressions. For example, the character class `\\d` matches any digit. Type `str_view(practice_chr, "\\d", NA)` to see the results.
@@ -112,7 +112,7 @@
   Hint: Type `str_view(practice_chr, "\\w", NA)` to see the results.
 
 - Class: text
-  Output: In addition to `\\d` and `\\w`, the `\\s` character class matches any whitespace character including spaces, tabs, and newlines. 
+  Output: In addition to `\\d` and `\\w`, the `\\s` character class matches any whitespace character including spaces, tabs, and newlines.
 
 - Class: cmd_question
   Output: Now, these predefined character classes also have inverse character classes. For example, `\\D` matches any non-digit character, `\\W` matches any non-alphanumeric character, and `\\S` matches any non-whitespace character. Sometimes it is more convienent to use the inverse character classes. For example, if we want to match all the non-alphanumeric characters in our elements, we could use `\\W`. Give it a try!
@@ -147,16 +147,16 @@
 # Quantifiers
 
 - Class: text
-  Output: Now that we have seen how to match individual characters in various ways, let's look at how to match multiple characters. 
-  
+  Output: Now that we have seen how to match individual characters in various ways, let's look at how to match multiple characters.
+
 - Class: cmd_question
   Output: One way to match multiple characters is to use the `|` metacharacter. The `|` metacharacter is used to specify alternatives. Think of the `|` as an "or" statement. For example, if we want to match all the elements that contain a form of the verb 'to be', we could use the pattern "be|am|are|is". Type `str_view(practice_chr, "be|am|are|is", NA)` to see the results.
   CorrectAnswer: str_view(practice_chr, "be|am|are|is", NA)
   AnswerTests: omnitest(correctExpr='str_view(practice_chr, "be|am|are|is", NA)')
   Hint: Type `str_view(practice_chr, "be|am|are|is", NA)` to see the results.
 
-- Class: cmd_question 
-  Output: OK, so we matched more than verbs as the literals appear within words as well! To fix this, we can add some context to our pattern. For example, we can add the `\\b` character class to anchor our pattern. But to make sure that we don't include the `\\b` in our "or" statement, we can use the `()` metacharacters to group our pattern. Type `str_view(practice_chr, "\\b(be|am|are|is)\\b", NA)` to see the results. 
+- Class: cmd_question
+  Output: OK, so we matched more than verbs as the literals appear within words as well! To fix this, we can add some context to our pattern. For example, we can add the `\\b` character class to anchor our pattern. But to make sure that we don't include the `\\b` in our "or" statement, we can use the `()` metacharacters to group our pattern. Type `str_view(practice_chr, "\\b(be|am|are|is)\\b", NA)` to see the results.
   CorrectAnswer: str_view(practice_chr, "\\\\b(be|am|are|is)\\\\b", NA)
   AnswerTests: omnitest(correctExpr='str_view(practice_chr, "\\\\b(be|am|are|is)\\\\b", NA)')
   Hint: Type `str_view(practice_chr, "\\b(be|am|are|is)\\b", NA)` to see the results.
@@ -212,4 +212,4 @@
 
 - Class: text
   Output: This concludes our lesson on pattern matching. In the next lesson, we will explore creating and manipulating data frammes. Our experience with pattern matching will come in handy when we start working with text data in data frames.
-  
+

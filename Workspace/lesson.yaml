@@ -142,9 +142,9 @@
 
 - Class: text
   Output: "At this moment, you are following this Swirl lesson in the console pane."
-  
+
 - Class: text
-  Output: "The console pane is comprised of three tabs- Console, Terminal, and Background Jobs."  
+  Output: "The console pane is comprised of three tabs- Console, Terminal, and Background Jobs."
 
 - Class: text
   Output: "The console is our direct line to the R interpreter."

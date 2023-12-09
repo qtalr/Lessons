@@ -41,7 +41,7 @@
   Hint: Just type `c("a", "b", "c", "d", "e", 1)`.
 
 - Class: text
-  Output: Looking at the output we can see that when we mix numerals with characters, the vector is returned as a character vector. Importantly, vectors can only be of one type. 
+  Output: Looking at the output we can see that when we mix numerals with characters, the vector is returned as a character vector. Importantly, vectors can only be of one type.
 
 - Class: cmd_question
   Output: Another primary vector type is a logical vector. Logical vectors contain logical values, which are either `TRUE` or `FALSE` (uppercase). Let's create a logical vector with the values `TRUE`, `FALSE`, `TRUE`, `FALSE`, `TRUE` by inputing `c(TRUE, FALSE, TRUE, FALSE, TRUE)` into the console.
@@ -53,7 +53,7 @@
   Output: Logical vectors are not enclosed by quotes because they are not characters. They are logical values.
 
 - Class: text
-  Output: Another property of vectors is that they can be of any length. Now, typing out a vector of length 100 would be tedious. So in practice vectors (and other data structures that we will see later) are read into R from external sources, such as a file. 
+  Output: Another property of vectors is that they can be of any length. Now, typing out a vector of length 100 would be tedious. So in practice vectors (and other data structures that we will see later) are read into R from external sources, such as a file.
 
 - Class: cmd_question
   Output: There are, however, functions that can be used to generate vectors of a specified type and length. One such function is the `seq()` function. The `seq()` function generates a sequence of numbers. It takes three arguments... `from`, `to`, and `by`. `from` is the starting number, `to` is the ending number, and `by` is the increment. Let's create a numeric vector with the numbers 1 through 99 by inputing `seq(1, 99, by = 1)` into the console.
@@ -101,7 +101,7 @@
 - Class: text
   Output: Take for example our variable `vec_1_num`. It is not the most meaningful variable name, as the vector it contains is for demonstration purposes, but it is more meaningful than `x`.
 
-# - Variable names have some restrictions: 
+# - Variable names have some restrictions:
 - Class: text
   Output: Variable names have some restrictions in R that we need to be mindful of. They cannot start with a number, cannot contain spaces, cannot contain special characters (except for `_` and `.`), and cannot be a reserved word (e.g., `if`, `else`, `for`, `while`, `function`, `TRUE`, `FALSE`, `NULL`, etc.
 

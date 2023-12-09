@@ -1,5 +1,5 @@
 - Class: meta
-  Course: lessons
+  Course: Lessons
   Lesson: Reshape Dataset by Rows
   Author: Jerid Francom
   Type: Standard
@@ -17,7 +17,7 @@
 # Reshaping Datasets by Rows ---------------------------------------------
 
 - Class: text
-  Output: Changing the number of rows in a dataset is a common task in data analysis. In many cases, a change in rows is employed to reorganize the unit of observation. Say for example that you have a dataset that has one row for each sentence from language learners' sample writing. You may want to change the observations from sentences to words. On the other hand, you may want to change the observations from sentences to paragraphs. 
+  Output: Changing the number of rows in a dataset is a common task in data analysis. In many cases, a change in rows is employed to reorganize the unit of observation. Say for example that you have a dataset that has one row for each sentence from language learners' sample writing. You may want to change the observations from sentences to words. On the other hand, you may want to change the observations from sentences to paragraphs.
 
 - Class: text
   Output: In other cases, changing the number of rows reflects some filtering out of data or the combination of multiple datasets. For example, you may have a dataset that has one row for each student in a class. You may want to filter out students who have not completed the course. Or, you may want to combine the dataset for one course with datasets from other courses.
@@ -41,7 +41,7 @@
 # Separate or collapse rows -----------------------------------------------
 
 - Class: text
-  Output: The first way to change the number of rows in a dataset we will look at is to separate or collapse rows. 
+  Output: The first way to change the number of rows in a dataset we will look at is to separate or collapse rows.
 
 - Class: cmd_question
   Output: Let's say that we want to separate the rows in the `home_languages` column so that each language is in its own row while keeping the other columns the same. We can use the `separate_longer_delim()` function from the `tidyr` package to do this. The function takes the data frame, the column with the rows to separate, and the delimiter as arguments. The delimiter is the character that separates the rows, in this case ", ". Type `sla_df |> separate_longer_delim(home_languages, ", ")` to see the result.
@@ -65,7 +65,7 @@
   Hint: Type `sla_langs_df <- sla_df |> separate_longer_delim(home_languages, ", ")` to assign the result to a new variable.
 
 - Class: text
-  Output: Imagine, now, that instead we started this data frame (`sla_langs_df`) -- that is, a data frame that had one row for each language. And we wanted to collapse the rows in `home_languages` so that each learner was represented by one row. 
+  Output: Imagine, now, that instead we started this data frame (`sla_langs_df`) -- that is, a data frame that had one row for each language. And we wanted to collapse the rows in `home_languages` so that each learner was represented by one row.
 
 - Class: cmd_question
   Output: The key function we want to use is the `str_c()` function from the `stringr` package. This function takes a vector of strings and combines them into one string. Let's see how this works on a simple example. Type `str_c(c("a", "b", "c"), collapse = ", ")` to see the result.
@@ -80,22 +80,22 @@
   Hint: Type `sla_langs_df |> mutate(home_languages = str_c(home_languages, collapse = ", "))` to see the result.
 
 - Class: text
-  Output: Wow! That's not what we want. It looks like the `str_c()` function has collapsed all of the rows in the `home_languages` column into one row for each of the existing 18 rows. 
+  Output: Wow! That's not what we want. It looks like the `str_c()` function has collapsed all of the rows in the `home_languages` column into one row for each of the existing 18 rows.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: The problem is that we need to tell `mutate()` to take each value of `learner_id` and collapse the rows for that learner. To do this we introduce the `group_by()` function between the data frame and the `mutate()` function. Type `sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))` to see the result.
   CorrectAnswer: sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))
   AnswerTests: omnitest(correctExpr='sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))')
   Hint: Type `sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", "))` to see the result.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: Now, that looks better than before. The languages in the `home_languages` column have been collapsed for each learner. But, we still have multiple rows for each learner. Furthermore, each learner has multiple rows which are identical. To remove the duplicate rows, we can use the `distinct()` function from the `dplyr` package. With no arguments, this function will remove duplicates across all columns. Add `distinct()` to the end of the previous command to see the result.
   CorrectAnswer: sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", ")) |> distinct()
   AnswerTests: omnitest(correctExpr='sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", ")) |> distinct()')
   Hint: Type `sla_langs_df |> group_by(learner_id) |> mutate(home_languages = str_c(home_languages, collapse = ", ")) |> distinct()` to see the result.
 
 - Class: text
-  Output: Now, we have one row for each learner, and the `home_languages` column has been collapsed by rows --the same dataset we started with! 
+  Output: Now, we have one row for each learner, and the `home_languages` column has been collapsed by rows --the same dataset we started with!
 
 # Tokenizing and unnesting rows ------------------------------------------
 
@@ -122,9 +122,9 @@
   Hint: Type `tokenize_words(c("Hello world!", "This is a sentence."))` to see the result.
 
 - Class: text
-  Output: The `tokenize_words()` function returns a list of character vectors, one list element for each element of the input vector. Since lists allow for different lengths of elements, this is a good way to store the tokens. 
+  Output: The `tokenize_words()` function returns a list of character vectors, one list element for each element of the input vector. Since lists allow for different lengths of elements, this is a good way to store the tokens.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: Another things to notice concern the tokens themselves. First, notice that the punctuation has been removed. Second, notice that the words have been converted to lower case. This is because the `tokenize_words()` function has a set of defaults that it uses. Take a look at the defaults by typing `?tokenize_words`.
   CorrectAnswer: ?tokenize_words
   AnswerTests: omnitest(correctExpr='?tokenize_words')
@@ -167,7 +167,7 @@
   AnswerTests: omnitest(correctExpr='sla_df |> unnest_tokens(word, sentence)')
   Hint: Type `sla_df |> unnest_tokens(word, sentence)` to see the result.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: Notice that the `word` column reflects the word tokens from the `sentence` column, but the `sentence` column is no longer in the dataset. This is because the `unnest_tokens()` function removes the column that it tokenizes by default. Let's look at some of the other defaults by typing `?unnest_tokens`.
   CorrectAnswer: ?unnest_tokens
   AnswerTests: omnitest(correctExpr='?unnest_tokens')
@@ -189,9 +189,9 @@
 # Filtering out rows ------------------------------------------------------
 
 - Class: text
-  Output: The previous row-wise operations we looked at change the unit of observation. In some cases, however, we aim to filter out or combine rows. 
+  Output: The previous row-wise operations we looked at change the unit of observation. In some cases, however, we aim to filter out or combine rows.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: Let's say that we want to filter out the rows in the `sla_words_df` dataset that `word` is "i". We can do this using the `filter()` function from the `dplyr` package. Type `sla_words_df |> filter(word != "i")` to see the result.
   CorrectAnswer: sla_words_df |> filter(word != "i")
   AnswerTests: omnitest(correctExpr='sla_words_df |> filter(word != "i")')
@@ -238,7 +238,7 @@
 # Summary ----------------------------------------------------------------
 
 - Class: text
-  Output: In this lesson, you learned how to increase and decrease the number of rows in a dataset. 
+  Output: In this lesson, you learned how to increase and decrease the number of rows in a dataset.
 
 - Class: text
   Output: You learned how to separate or collapse rows using the `separate_longer_delim()` and `str_c()` functions. You also learned about tokenizing text using the `tokenize_words()` and `unnest_tokens()` functions. Finally, you learned how to filter out rows using the `filter()` and `anti_join()` functions.

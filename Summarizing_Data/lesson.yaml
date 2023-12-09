@@ -109,7 +109,7 @@
 # skimr::skim()
 
 - Class: text
-  Output: As we know, a data frame is simply a collection of vectors of the same length. So to get a summary of each vector in the data frame, it would be nice to be able to run a single function and return summaries of each vector. Luckily, there is a function that does just that- `skim()` from the `skimr` package. 
+  Output: As we know, a data frame is simply a collection of vectors of the same length. So to get a summary of each vector in the data frame, it would be nice to be able to run a single function and return summaries of each vector. Luckily, there is a function that does just that- `skim()` from the `skimr` package.
 
 - Class: cmd_question
   Output: Let's try it out. Type `skim(books_df)` into the console.
@@ -118,7 +118,7 @@
   Hint: Just type `skim(books_df)`.
 
 - Class: text
-  Output: You can see that the `skim()` function returns quite a bit of information. In addition to information about the data frame, it groups the vectors by vector type and returns relevant for each given vector type. 
+  Output: You can see that the `skim()` function returns quite a bit of information. In addition to information about the data frame, it groups the vectors by vector type and returns relevant for each given vector type.
 
 # dplyr::summarize()
 
@@ -156,10 +156,10 @@
   Output: You can see that the `summarize()` function returns a data frame with one row and two columns. The column names are the variable names we assigned to the results of the summary functions.
 
 - Class: text
-  Output: Now, let's get to summarizing variables grouped by another variable. To do this, we will use the `group_by()` function from the `dplyr` package. The `group_by()` function takes two arguments- the data frame and the grouping variable. 
+  Output: Now, let's get to summarizing variables grouped by another variable. To do this, we will use the `group_by()` function from the `dplyr` package. The `group_by()` function takes two arguments- the data frame and the grouping variable.
 
 - Class: text
-  Output: We can add the `group_by()` step before our `summarize()` step using the pipe operator to perform the summarizations grouped by the grouping variable. The format looks like this -- data_df |> group_by(grouping_var) |> summarize(summary_var = summary_func(var)). 
+  Output: We can add the `group_by()` step before our `summarize()` step using the pipe operator to perform the summarizations grouped by the grouping variable. The format looks like this -- data_df |> group_by(grouping_var) |> summarize(summary_var = summary_func(var)).
 
 - Class: cmd_question
   Output: Let's try it out. Type `books_df |> group_by(text_genre) |> summarize(avg_word_count = mean(word_count), med_word_count = median(word_count))` into the console.

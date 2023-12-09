@@ -9,7 +9,7 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Welcome to the lesson on tidying data. This lesson will cover the basics of tidying data. We review and expand our knowledge of object types in R and demonstrate some common data manipulation techniques. 
+  Output: Welcome to the lesson on tidying data. This lesson will cover the basics of tidying data. We review and expand our knowledge of object types in R and demonstrate some common data manipulation techniques.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
@@ -17,7 +17,7 @@
 # Object Types -----------------------------------------------------------
 
 - Class: text
-  Output: As we have seen in previous lessons, there are various types of objects in R. Primarily, we have worked with vectors and data frames. We will review these objects and introduce a few new ones. 
+  Output: As we have seen in previous lessons, there are various types of objects in R. Primarily, we have worked with vectors and data frames. We will review these objects and introduce a few new ones.
 
 # 1-dimensional
 
@@ -34,7 +34,7 @@
 
 # - Inspection and subsetting
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: We can inspect the contents of a vector by typing the name of the vector and hitting enter, as we just did. We can also find out other information about the vector. For example, a 1-dimensional vector has a length. Type `length(ns_chr)` and hit enter.
   CorrectAnswer: length(ns_chr)
   AnswerTests: omnitest(correctExpr='length(ns_chr)')
@@ -65,14 +65,14 @@
 
 # - Data frames
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: To create a data frame, we can use the `data.frame()` function. from base R. As arguments, we pass vectors to this function. If the vector is not already named, or we want to change the name as it appears in the data frame, we can use the `name = vector` syntax. Let's create a data frame called `ns_df` with the vector `ns_chr` named `text`. Type `ns_df <- data.frame(text = ns_chr)` and hit enter.
   CorrectAnswer: ns_df <- data.frame(text = ns_chr)
   AnswerTests: omnitest(correctExpr='ns_df <- data.frame(text = ns_chr)')
   Hint: Type `ns_df <- data.frame(text = ns_chr)` and hit enter.
 
 - Class: text
-  Output: Data frames are the backbone of data analysis in R. In the Tidyverse ecosystem, data frames are often worked with as tibbles. Tibbles are a special type of data frame that have some additional features. But at the end of the day, they are still data frames. 
+  Output: Data frames are the backbone of data analysis in R. In the Tidyverse ecosystem, data frames are often worked with as tibbles. Tibbles are a special type of data frame that have some additional features. But at the end of the day, they are still data frames.
 
 - Class: cmd_question
   Output: We can create a tibble from vectors using the `tibble()` function from the `tibble` package. It works just like the `data.frame()` function. We can also use the `as_tibble()` function to convert a data frame to a tibble. Let's create a tibble from our data frame. Type `ns_tbl <- as_tibble(ns_df)` and hit enter.
@@ -89,14 +89,14 @@
 # Matrices
 
 - Class: text
-  Output: Another type of 2-dimensional object is a matrix. A matrix is a collection vectors of the same length and the same type. So the primary difference between a matrix and a data frame is that a matrix can only contain one type of data. We will not work with matrices in this lesson, but you should be aware of them. 
+  Output: Another type of 2-dimensional object is a matrix. A matrix is a collection vectors of the same length and the same type. So the primary difference between a matrix and a data frame is that a matrix can only contain one type of data. We will not work with matrices in this lesson, but you should be aware of them.
 
 # Lists
 
 - Class: text
   Output: Finally, we have lists. Lists are 2-dimensional objects that can contain any type of data with any length. In fact, lists are actually the most common type of 2-dimensional object in R. Why is this? Well, data frames and matrices are actually lists with restrictions on data types and/ or length.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: We can create a list using the `list()` function. We can pass any type of object to this function. Let's create a list called `ns_lst` with the vector `ns_chr` and the data frame `ns_tbl`. Type `ns_lst <- list(chr = ns_chr, dataframe = ns_tbl)` and hit enter.
   CorrectAnswer: ns_lst <- list(chr = ns_chr, dataframe = ns_tbl)
   AnswerTests: omnitest(correctExpr='ns_lst <- list(chr = ns_chr, dataframe = ns_tbl)')
@@ -111,7 +111,7 @@
 # - Inspection and subsetting
 
 - Class: text
-  Output: As we've seen previously, data frames can be subsetted using brackets, much like vectors. Yet, since there are 2 dimensions, we need to specify both the rows and columns we want to subset. For example, `ns_tbl[3, 1]`. Will return the value in the third row and first column. 
+  Output: As we've seen previously, data frames can be subsetted using brackets, much like vectors. Yet, since there are 2 dimensions, we need to specify both the rows and columns we want to subset. For example, `ns_tbl[3, 1]`. Will return the value in the third row and first column.
 
 - Class: cmd_question
   Output: We also saw that we can subset vectors with functions from the `dplyr` package. For example, we can use the `select()` function to select columns. And we can use the `slice()` function to select rows. Let's select the first row of the `ns_tbl` tibble. Type `ns_tbl |> slice(1)` and hit enter.
@@ -119,14 +119,14 @@
   AnswerTests: omnitest(correctExpr='ns_tbl |> slice(1)')
   Hint: Type `ns_tbl |> slice(1)` and hit enter.
 
-- Class: cmd_question 
+- Class: cmd_question
   Output: A useful operation is to extract a vector from a data frame. We can do this with the `pull()` function. The argument to this function is the name of the column we want to extract. Let's extract the `text` column from the `ns_tbl` tibble. Type `ns_tbl |> pull("text")` and hit enter.
   CorrectAnswer: ns_tbl |> pull("text")
   AnswerTests: omnitest(correctExpr='ns_tbl |> pull("text")')
   Hint: Type `ns_tbl |> pull("text")` and hit enter.
 
 - Class: text
-  Output: The `pull()` function can also take a numeric index. This is helpful when we want to extract a column by position. Furthermore, the `pull()` function will allow us to use the column name without quotes. 
+  Output: The `pull()` function can also take a numeric index. This is helpful when we want to extract a column by position. Furthermore, the `pull()` function will allow us to use the column name without quotes.
 
 - Class: cmd_question
   Output: We can also subset lists with brackets. However, the syntax is a bit different. We use double brackets to subset lists. For example, `ns_lst[[1]]` will return the first element of the list. Let's subset the first element of the `ns_lst` list. Type `ns_lst[[1]]` and hit enter.
@@ -135,7 +135,7 @@
   Hint: Type `ns_lst[[1]]` and hit enter.
 
 - Class: cmd_question
-  Output: Since the first element in the `ns_lst` list is a character vector, the vector elements are returned. If we want to subset the first element of the list and return the first element in the vector, we can use brackets after our double brackets. For example, `ns_lst[[1]][1]` will return the first element of the first element of the list. 
+  Output: Since the first element in the `ns_lst` list is a character vector, the vector elements are returned. If we want to subset the first element of the list and return the first element in the vector, we can use brackets after our double brackets. For example, `ns_lst[[1]][1]` will return the first element of the first element of the list.
   CorrectAnswer: ns_lst[[1]][1]
   AnswerTests: omnitest(correctExpr='ns_lst[[1]][1]')
   Hint: Type `ns_lst[[1]][1]` and hit enter.
@@ -147,7 +147,7 @@
   Hint: Type `ns_lst |> pluck(1)` and hit enter.
 
 - Class: cmd_question
-  Output: We can also use the `pluck()` function to subset the first element of the list and return the first element of the vector. We do this by passing a second argument to the function. This argument is the index of the element we want to subset. For example, `ns_lst |> pluck(1, 1)` will return the first element of the first element of the list. 
+  Output: We can also use the `pluck()` function to subset the first element of the list and return the first element of the vector. We do this by passing a second argument to the function. This argument is the index of the element we want to subset. For example, `ns_lst |> pluck(1, 1)` will return the first element of the first element of the list.
   CorrectAnswer: ns_lst |> pluck(1, 1)
   AnswerTests: omnitest(correctExpr='ns_lst |> pluck(1, 1)')
   Hint: Type `ns_lst |> pluck(1, 1)` and hit enter.
@@ -200,7 +200,7 @@
   Hint: Look at the type shown directly below the column name.
 
 - Class: text
-  Output: The `sentences` column is a list because the `str_split()` function returns a list. This is because each element in the `text` column is split into a vector of sentences and for each element in the `text` column, the number of sentences could be different. When we have a two-dimensional object embedded in a two-dimensional object, we have a nested structure. 
+  Output: The `sentences` column is a list because the `str_split()` function returns a list. This is because each element in the `text` column is split into a vector of sentences and for each element in the `text` column, the number of sentences could be different. When we have a two-dimensional object embedded in a two-dimensional object, we have a nested structure.
 
 - Class: cmd_question
   Output: Before we move forward, let's assign the output of the `str_split()` operation to `ns_tbl`. Type `ns_tbl <- ns_tbl |> mutate(sentences = str_split(text, "\\n"))` and hit enter.

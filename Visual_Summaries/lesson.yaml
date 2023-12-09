@@ -9,7 +9,7 @@
 # Overview ---------------------------------------------------------
 
 - Class: text
-  Output: In this lesson we will continue to summarize data, but this time we will focus on visual summaries. We will learn how to create plots to summarize various relationships in datasets. 
+  Output: In this lesson we will continue to summarize data, but this time we will focus on visual summaries. We will learn how to create plots to summarize various relationships in datasets.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
@@ -17,7 +17,7 @@
 # Importance of visual summaries ------------------------------------
 
 - Class: text
-  Output: As we saw in the previous lesson, summarizing data is an important part of the data analysis process. Summaries, either statistical, tabular, or visual, allow us to quickly see patterns in our data. 
+  Output: As we saw in the previous lesson, summarizing data is an important part of the data analysis process. Summaries, either statistical, tabular, or visual, allow us to quickly see patterns in our data.
 
 - Class: text
   Output: "Visual summaries are also important because they allow us to communicate our findings to others. It is often easier to communicate a pattern in a plot than it is to communicate the same pattern in a table of numbers or a paragraph of text."
@@ -28,7 +28,7 @@
   Output: So you are aware, R has a powerful plotting system which is included as part of the base installation, `graphics`. This plotting system is good for quick plots in an interactive session but in this course we will focus on a different plotting system, `ggplot2`.
 
 - Class: text
-  Output: The `gg` in `ggplot2` stands for the grammar of graphics. The grammar of graphics is a framework for thinking about how to create plots as a series of layers. 
+  Output: The `gg` in `ggplot2` stands for the grammar of graphics. The grammar of graphics is a framework for thinking about how to create plots as a series of layers.
 
 - Class: text
   Output: Each plot can be thought of as having three layers- data, aesthetics, and geometry.
@@ -85,10 +85,10 @@
   Output: The `books_p` object should now appear in the environment pane of RStudio. If you inspect the object you will see that it is a `ggplot` object which is a particular type of `list` object. We haven't discussed lists yet, but simply put, a list is a collection of objects (vectors, data frames, other lists, etc.). A `ggplot` object contains objects that represent the data, aesthetics, and geometry layers, among other plot properties.
 
 - Class: text
-  Output: Before we talk about aesthetics, let's talk about the geometry layer. The geometry layer is the type of plot that you are creating. The `ggplot2` package has many different types geometry layers, such as `geom_histogram()`, `geom_boxplot()`, `geom_point()`, etc. 
+  Output: Before we talk about aesthetics, let's talk about the geometry layer. The geometry layer is the type of plot that you are creating. The `ggplot2` package has many different types geometry layers, such as `geom_histogram()`, `geom_boxplot()`, `geom_point()`, etc.
 
 - Class: text
-  Output: To add a geometry layer to a plot object we use the `+` operator and then the geometry layer function. So for example, a histogram can be added to a plot object with `ggplot() + geom_histogram()`. 
+  Output: To add a geometry layer to a plot object we use the `+` operator and then the geometry layer function. So for example, a histogram can be added to a plot object with `ggplot() + geom_histogram()`.
 
 - Class: text
   Output: The connecting link between the type of geometry layer and the data layer is the aesthetics layer. The aesthetics layer is how you map variables in the dataset to visual properties of the plot. In `ggplot2` we use the `aes()` function to map variables to visual properties.

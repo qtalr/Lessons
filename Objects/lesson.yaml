@@ -9,7 +9,7 @@
 # Overview --------------------------------------------------------
 
 - Class: text
-  Output: In this lesson, we will learn about R objects. We have already introduced one R object, the vector. We will learn about another R object in this lesson- data frames. We will also learn how to inspect objects, how to change the type of an object, and how to subset an object. 
+  Output: In this lesson, we will learn about R objects. We have already introduced one R object, the vector. We will learn about another R object in this lesson- data frames. We will also learn how to inspect objects, how to change the type of an object, and how to subset an object.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
@@ -17,7 +17,7 @@
 # Inspecting objects -----------------------------------------------
 
 - Class: text
-  Output: The vector is a one-dimensional object. As you remember, there are three primary types of vectors- numeric, character, and logical. 
+  Output: The vector is a one-dimensional object. As you remember, there are three primary types of vectors- numeric, character, and logical.
 
 - Class: cmd_question
   Output: As part of this lesson, I've include a number of vectors of different types. You should be able to view them in the environment pane in RStudio, or you can use the `ls()` function to list the objects in your environment. Type `ls()` in the console to see these objects.
@@ -58,10 +58,10 @@
   Hint: Just type `data.frame(speaker_id, speaker_age)`.
 
 - Class: text
-  Output: Whoa! That's a lot of information. You may need to scroll up to see the columns of this data frame as all 100 rows are displayed. We can see that the first column is the `speaker_id` vector and the second column is the `speaker_age` vector. 
+  Output: Whoa! That's a lot of information. You may need to scroll up to see the columns of this data frame as all 100 rows are displayed. We can see that the first column is the `speaker_id` vector and the second column is the `speaker_age` vector.
 
 - Class: text
-  Output: In the Tidyverse, it is common to use the `tibble()` function to create data frames, which is part of the `tibble` package. Tibbles are a modern reimagining of the data frame which add a number of useful features. 
+  Output: In the Tidyverse, it is common to use the `tibble()` function to create data frames, which is part of the `tibble` package. Tibbles are a modern reimagining of the data frame which add a number of useful features.
 
 - Class: cmd_question
   Output: Let's create a tibble with the vectors `speaker_id`,  `speaker_age`, and `english_native` and assign it to a variable named `speaker_info_df`. Type `speaker_info_df <- tibble(speaker_id, speaker_age, english_native)` in the console.
@@ -128,10 +128,10 @@
   Hint: Just type `modality[c(1, 3, 5)]`.
 
 - Class: text
-  Output: This type of subsetting is called bracket subsetting. And in addition to passing a indices, we can also pass a logical vector. Let's extract elements that return `TRUE`. 
+  Output: This type of subsetting is called bracket subsetting. And in addition to passing a indices, we can also pass a logical vector. Let's extract elements that return `TRUE`.
 
 - Class: text
-  Output: R has a number of operators that return logical values. For equality, we can use the double equals operator `==`. For inequality, we can use the not equals operator `!=`. This works for both numeric (`1`) and character (`"1"`) values. 
+  Output: R has a number of operators that return logical values. For equality, we can use the double equals operator `==`. For inequality, we can use the not equals operator `!=`. This works for both numeric (`1`) and character (`"1"`) values.
 
 - Class: text
   Output: For other numeric comparisons, we can use the greater than operator `>`, the less than operator `<`, the greater than or equal to operator `>=`, and the less than or equal to operator `<=`.
@@ -164,7 +164,7 @@
   Hint: Just type `speaker_info_df[speaker_info_df$english_native == TRUE, ]`.
 
 - Class: text
-  Output: These expressions can get quite complex and unweildy to type and read. So in practice, we will tend to use a number of functions to subset data frames either by rows or columns. We will learn about these functions later in the course. 
+  Output: These expressions can get quite complex and unweildy to type and read. So in practice, we will tend to use a number of functions to subset data frames either by rows or columns. We will learn about these functions later in the course.
 
 # Summary ----------------------------------------------------------
 

@@ -9,7 +9,7 @@
 # Overview --------------------------------------------------------------
 
 - Class: text
-  Output: In this lesson, we will step back from the details of using R and focus on the computing environment. We will introduce how components of the computing environment are important for project management and reproducibility. 
+  Output: In this lesson, we will step back from the details of using R and focus on the computing environment. We will introduce how components of the computing environment are important for project management and reproducibility.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
@@ -17,7 +17,7 @@
 # Computing Environments ------------------------------------------------
 
 - Class: text
-  Output: The computing environment is the collection of hardware and software that you have available. This includes the computer, operating system, and installed software. 
+  Output: The computing environment is the collection of hardware and software that you have available. This includes the computer, operating system, and installed software.
 
 - Class: text
   Output: From one computing environment to another, aspects of the computing environment often differ. For example, you may have a different operating system than your collaborator. Or, you may have a different version of R or different packages installed.
@@ -35,7 +35,7 @@
   Output: We will explore methods for safeguarding against these differences in later in the course. For now, let's become familiar with how to explore the computing environment.
 
 - Class: mult_question
-  Output: A computing environment includes the computer, operating system, and installed software. 
+  Output: A computing environment includes the computer, operating system, and installed software.
   AnswerChoices: True; False
   CorrectAnswer: True
   AnswerTests: omnitest(correctVal='True')
@@ -54,7 +54,7 @@
   Output: Whenever you open an R console, you are starting an R session. An R session connects you to the R software and provides an interface for interacting with R.
 
 - Class: text
-  Output: The R session registers the computing environment that you are working in and keeps track of the objects that you create. 
+  Output: The R session registers the computing environment that you are working in and keeps track of the objects that you create.
 
 - Class: cmd_question
   Output: Let's explore the R session. Type `sessionInfo()` to display details about your computing environment.
@@ -76,7 +76,7 @@
   Output: The last few sections concern the packages that our R session has loaded. By default, R loads a number of base packages. The 'other attached packages' section lists packages that have been loaded using the `library()` function. And the 'loaded via a namespace' section lists packages that have been loaded as dependencies of other packages.
 
 - Class: text
-  Output: Those packages that appear in these sections that contain 'attached' in the name make their functions available to you when you type them at the console. For example, the `stats` package is attached by default, so you can use the `mean()` function. In fact, the `sessionInfo()` function is in the `utils` package, which is also attached by default. 
+  Output: Those packages that appear in these sections that contain 'attached' in the name make their functions available to you when you type them at the console. For example, the `stats` package is attached by default, so you can use the `mean()` function. In fact, the `sessionInfo()` function is in the `utils` package, which is also attached by default.
 
 - Class: text
   Output: Those packages that appear in the 'loaded via a namespace' section, or any other package you have installed on your machine, are not attached, so you cannot immediately use their functions in the current R session. For example, the `readr` package is not attached by default, so you cannot use the `read_csv()` function without attaching the package with `library(readr)` or specifying the package name with `readr::read_csv()`.
@@ -88,7 +88,7 @@
   Output: Whereas, specifying the package name with `::` makes only the specified function available to you on a one-time basis, much like consulting a book you pulled off the shelf in the library.
 
 - Class: text
-  Output: We will not get into the advantages and disadvantages of these two methods for accessing package functions here. Just know that you have both options available to you. 
+  Output: We will not get into the advantages and disadvantages of these two methods for accessing package functions here. Just know that you have both options available to you.
 
 - Class: mult_question
   Output: Pop quiz! Which of the following descriptions is NOT true?
@@ -100,7 +100,7 @@
 # Exploring the R Session with sessioninfo -------------------------------
 
 - Class: text
-  Output: There is more information about the R session that you can access with the `sessionInfo()` function. But let's access this information in a different way using the `sessioninfo` package. 
+  Output: There is more information about the R session that you can access with the `sessionInfo()` function. But let's access this information in a different way using the `sessioninfo` package.
 
 - Class: cmd_question
   Output: The `session_info()` function from the `sessioninfo` package provides a nicely formatted output of the R session information. Let's take a look at it. We will use the `::` operator to access the function without attaching the package, for practice. Type `sessioninfo::session_info()` to display details about your computing environment.
@@ -129,7 +129,7 @@
   Output: When you render a Quarto document, Quarto creates a new R session to run the code in the document. This means that the R session that you are using to interactively develop the code in the document is not affected by the rendering process or vice versa.
 
 - Class: text
-  Output: Therefore we must include all the code to load packages and set R session options in the Quarto document itself. 
+  Output: Therefore we must include all the code to load packages and set R session options in the Quarto document itself.
 
 - Class: text
   Output: This is actually a feature and not a bug. It ensures a minimal standard for reproducibility. Each time you render a Quarto document, the R session is reset to a clean state and the code in the document is responsible for setting up the proper packages and options for the code to successfully run.

@@ -95,6 +95,9 @@
 - Class: text
   Output: It is a good habit to specify arguments by name while you are learning R and in your own code. This makes your code easier to read and understand. However, when you are working interactively, it is often easier to specify arguments by position.
 
+- Class: text
+  Output: A helpful keyboard shortcut that can help you learn the names of the arguments is to type the function name followed by a `(` and then hit the `TAB` key. This will bring up a list of the arguments and their default values.
+
 - Class: cmd_question
   Output: Now, let's use the `read_csv()` function. The first argument is the `file` argument which takes a character vector with the path to the file we want to read. The path to the file is stored as a character vector in the variable `path_to_csv_file`. Type `read_csv(path_to_csv_file)` into the console now.
   CorrectAnswer: read_csv(path_to_csv_file)

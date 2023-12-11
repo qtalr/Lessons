@@ -1,5 +1,5 @@
 - Class: meta
-  Course: lessons
+  Course: Lessons
   Lesson: Reshape Datasets by Columns
   Author: Jerid Francom
   Type: Standard
@@ -9,21 +9,205 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Welcome to Reshaping Dataset by Columns! In this lesson, you will learn how to reshape columns in datasets in R.
+  Output: Welcome to Reshaping Datasets by Columns! In this lesson, you will gain a basic understanding of types of operations that change columns in datasets and how to implement them in R.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
+# Reshaping Datasets by Columns ------------------------------------------
 
+# Purpose
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: "As we established in the previous lesson, there are two main ways to reshape a dataset: by rows and by columns. Where row-wise changes tend to change the unit of observation, column-wise changes modify, add or remove attributes of the unit of observation, that is, variables."
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: "In this lesson we will cover various operations that change columns in a dataset including: normalizing values, separating and collapsing columns, recoding values, and joining columns. We will continue to use the `sla_df` dataset. This dataset and the packages will will use should already be loaded in the workspace."
+
+# Normalizing columns -----------------------------------------------------
+
+# Using `str_trim()`, `str_to_sentence()`, `str_remove()`, `str_replace()`
+- Class: text
+  Output: Normalizing values is the process of transforming values in a column to a common scale. When the values contain text, normalization serves to make the values more consistent. This can be done by adjusting, removing, or replacing text.
+
+- Class: cmd_question
+  Output: Before we work with the `sla_df` dataset, let's explore some common issues that arise when working with text data and how to address them. Type `sentences` to see a character vector of sentences.
+  CorrectAnswer: sentences
+  AnswerTests: omnitest(correctExpr='sentences')
+  Hint: Type `sentences`.
+
+- Class: cmd_question
+  Output: We can see that the sentences are not consistent. The `stringr` package provides a number of functions that can be used to normalize text. For example, the `str_trim()` function can be used to remove leading and trailing whitespace. Type `str_trim(sentences)` to see the result.
+  CorrectAnswer: str_trim(sentences)
+  AnswerTests: omnitest(correctExpr='str_trim(sentences)')
+  Hint: Type `str_trim(sentences)`.
+
+- Class: cmd_question
+  Output: We can see that the leading and trailing whitespace has been removed. The `str_to_lower()` function can be used to convert all characters to lowercase. Type `str_to_lower(sentences)` to see the result.
+  CorrectAnswer: str_to_lower(sentences)
+  AnswerTests: omnitest(correctExpr='str_to_lower(sentences)')
+  Hint: Type `str_to_lower(sentences)`.
+
+- Class: cmd_question
+  Output: We can see that all characters are now lowercase. There are other case-oriented functions in the stringr package such as `str_to_upper()`, `str_to_title()`, and `str_to_sentence()`. Try the `str_to_sentence()` function on the `sentences` vector.
+  CorrectAnswer: str_to_sentence(sentences)
+  AnswerTests: omnitest(correctExpr='str_to_sentence(sentences)')
+  Hint: Type `str_to_sentence(sentences)`.
+
+- Class: text
+  Output: Another set of functions that can be used to normalize text are the `str_remove()` and `str_replace()` functions. As the names suggest, these functions can be used to remove or replace text. We can use literals or regular expressions to specify the text to remove or replace.
+
+- Class: cmd_question
+  Output: In the fifth sentence, there is erroneous punctuation. (Punctuation,marks;are!Not used correctly here?) Use the `str_remove()` function to remove the punctuation. Type `str_remove(sentences, "[,;!]")`. (Note that the punctuation is specified using a regular expression.)
+  CorrectAnswer: str_remove(sentences, "[,;!]")
+  AnswerTests: omnitest(correctExpr='str_remove(sentences, "[,;!]")')
+  Hint: Type `str_remove(sentences, "[,;!]")`.
+
+- Class: cmd_question
+  Output: OK, this may not be what you expected. The `str_remove()` function removes the first instance of the specified text. To remove all instances of the specified text, we can use the `str_remove_all()` function. Type `str_remove_all(sentences, "[,;!]")` to see the result.
+  CorrectAnswer: str_remove_all(sentences, "[,;!]")
+  AnswerTests: omnitest(correctExpr='str_remove_all(sentences, "[,;!]")')
+  Hint: Type `str_remove_all(sentences, "[,;!]")`.
+
+- Class: cmd_question
+  Output: Closer, as we now have removed all instances of the specified punctuation. However, `str_remove()` and `str_remove_all()` only remove the specified text. In this case, this leaves no space between the words. To remove the punctuation and replace it with a space, we can use the `str_replace()` and `str_replace_all()` functions. Type `str_replace_all(sentences, "[,;!]", " ")` to see the result.
+  CorrectAnswer: str_replace_all(sentences, "[,;!]", " ")
+  AnswerTests: omnitest(correctExpr='str_replace_all(sentences, "[,;!]"," ")')
+  Hint: Type `str_replace_all(sentences, "[,;!]", " ")`.
+
+- Class: cmd_question
+  Output: In these examples, we have applied the functions to the `sentences` vector one at a time. However, we can apply the functions in sequence using the pipe `|>` operator. Type `sentences |> str_to_sentence() |> str_replace_all("[,;!]", " ") |> str_trim()` to see the result.
+  CorrectAnswer: sentences |> str_to_sentence() |> str_replace_all("[,;!]", " ") |> str_trim()
+  AnswerTests: omnitest(correctExpr='sentences |> str_to_sentence() |> str_replace_all("[,;!]"," ") |> str_trim()')
+  Hint: Type `sentences |> str_to_sentence() |> str_replace_all("[,;!]", " ") |> str_trim()`.
+
+- Class: mult_question
+  Output: In the previous output, the "N" in "Not" is erroneously capitalized. How can we fix this using the same functions?
+  AnswerChoices: Put `str_trim()` before `str_to_sentence()`; Put `str_replace_all()` at the end; Put `str_to_sentence()` after `str_replace_all()`
+  CorrectAnswer: Put `str_to_sentence()` after `str_replace_all()`
+  AnswerTests: omnitest(correctVal='Put `str_to_sentence()` after `str_replace_all()`')
+  Hint: Putting `str_to_sentence()` after `str_replace_all()` will ensure that the the sentence punctuation is removed before the sentence is capitalized.
+
+- Class: cmd_question
+  Output: So this same logic can be applied to columns in data frames. The only addition is that we need to use the `mutate()` function to specify the columns to modify. Let's take a look at the `sla_df` and see what we can do to normalize the values. Type `sla_df` to see the result.
+  CorrectAnswer: sla_df
+  AnswerTests: omnitest(correctExpr='sla_df')
+  Hint: Type `sla_df`.
+
+- Class: text
+  Output: Looking at the `sentence` column, we can see that the values are pretty clean overall. However, if we plan on tokenizing the sentences into words or phrases, we may want to introduce spaces between the punctuation and the words so that they are retained as tokens. We can do this using the `str_replace_all()` function inside the `mutate()` function. The code will take the generic form `data |> mutate(new_column = function(column))`.
+
+- Class: cmd_question
+  Output: The `mutate()` function allows us to iterate over each row in a data frame column and assign the result to a new column, or overwrite the existing column. Type `sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]", " "))` to see the result.
+  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]", " "))
+  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]"," "))')
+  Hint: Type `sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]", " "))`.
+
+- Class: cmd_question
+  Output: We can see that the punctuation has been replaced with spaces for all the rows in `sentences`. But this has removed the punctuation in the process. To retain the punctuation, we can declare our regex pattern as a group by surrounding it with parentheses and then use the `\\1` backreference in the replacement argument. Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))` to see the result.
+  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))
+  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])"," \\1"))')
+  Hint: Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))`.
+
+# Separate or collapse columns -------------------------------------------
+
+# Using `separate_wider_delim()` and `unite()`
+
+- Class: text
+  Output: Another common operation is to separate or collapse columns. This is often done to make the data more tidy. For example, we may want to separate a column that contains multiple values into multiple columns. Or we may want to collapse multiple columns into a single column. We can do this using the `separate_wider_delim()` and `unite()` functions from the `tidyr` package.
+
+- Class: cmd_question
+  Output: Let's take a look at the `sla_df` dataset again. Type `sla_df` to see the result.
+  CorrectAnswer: sla_df
+  AnswerTests: omnitest(correctExpr='sla_df')
+  Hint: Type `sla_df`.
+
+- Class: cmd_question
+  Output: We can see that the `learner_age` column contains two values separated by a dash `-`. The first value is the age of the learner in years and the second value is additional months. We can separate these values into two columns using the `separate_wider_delim()` function. The code will take the generic form `data |> separate_wider_delim(column, delim, new_column_names)`. Type `sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))` to see the result.
+  CorrectAnswer: sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))
+  AnswerTests: omnitest(correctExpr='sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))')
+  Hint: Type `sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))`.
+
+- Class: cmd_question
+  Output: We can see that the `learner_age` column has been separated into two columns- `age` and `months`. Let's assign the result to a new data frame called `sla_sep_df`. Type `sla_sep_df <- sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))`.
+  CorrectAnswer: sla_sep_df <- sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))
+  AnswerTests: omnitest(correctExpr='sla_sep_df <- sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))')
+  Hint: Type `sla_sep_df <- sla_df |> separate_wider_delim(learner_age, "-", names = c("age", "months"))`.
+
+- Class: cmd_question
+  Output: The `sla_sep_df` data frame now contains the `age` and `months` columns. We can now demonstrate how to collapse columns using the `unite()` function. This function takes the data frame, the name of the new column, then names of the columns to collapse, and the separator. Type `sla_sep_df |> unite(learner_age, age, months, sep = "-")` to see the result.
+  CorrectAnswer: sla_sep_df |> unite(learner_age, age, months, sep = "-")
+  AnswerTests: omnitest(correctExpr='sla_sep_df |> unite(learner_age, age, months, sep = "-")')
+  Hint: Type `sla_sep_df |> unite(learner_age, age, months, sep = "-")`.
+
+# Recoding columns -------------------------------------------------------
+
+- Class: text
+  Output: Another common operation is to recode values based on column or columns. This is often done to make implicit values explicit or to group values into categories.
+
+- Class: cmd_question
+  Output: Let's take a look at the `sla_sep_df` dataset again. Type `sla_sep_df` to see the result.
+  CorrectAnswer: sla_sep_df
+  AnswerTests: omnitest(correctExpr='sla_sep_df')
+  Hint: Type `sla_sep_df`.
+
+# Calculating new columns
+- Class: cmd_question
+  Output: Say we want to recode the `age` and `months` into a variable `learner_months` where the values is the age of each learner in number of months. In essence, we want to multiply the `age` column by 12 and add the `months` column. We can do this using the `mutate()` function. Type `sla_sep_df |> mutate(learner_months = age * 12 + months)` to see the result.
+  CorrectAnswer: sla_sep_df |> mutate(learner_months = age * 12 + months)
+  AnswerTests: omnitest(correctExpr='sla_sep_df |> mutate(learner_months = age * 12 + months)')
+  Hint: Type `sla_sep_df |> mutate(learner_months = age * 12 + months)`.
+
+- Class: cmd_question
+  Output: Wow, OK. We get an error. This is because the `age` and `months` columns are of type character. We need to convert them to numeric before we can perform mathematical operations on them. We can do this by applying the `as.numeric()` function to the columns. Type `sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))` to see the result.
+  CorrectAnswer: sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))
+  AnswerTests: omnitest(correctExpr='sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))')
+  Hint: Type `sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))`.
+
+# Using `case_when()`
+- Class: text
+  Output: Now say that instead of, or in addition to, creating the `learner_months` column, we want to categorize the age of our learners. For example, we might want to categorize learners as "child", "teen", "young adult", "adult", or "senior" based on their `age`. We can do this using the `case_when()` function from the `dplyr` package.
+
+- Class: cmd_question
+  Output: The `case_when()` function takes a series of conditions and values to assign if the condition is met. The code will take the generic form `data |> mutate(new_column = case_when(condition1 ~ value1, condition2 ~ value2, ...))`. Type `sla_sep_df |> mutate(learner_age_group = case_when(age < 13 ~ "child", age < 20 ~ "teen", age < 30 ~ "young adult", age < 65 ~ "adult", TRUE ~ "senior"))` to see the result.
+  CorrectAnswer: sla_sep_df |> mutate(learner_age_group = case_when(age < 13 ~ "child", age < 20 ~ "teen", age < 30 ~ "young adult", age < 65 ~ "adult", TRUE ~ "senior"))
+  AnswerTests: omnitest(correctExpr='sla_sep_df |> mutate(learner_age_group = case_when(age < 13 ~ "child", age < 20 ~ "teen", age < 30 ~ "young adult", age < 65 ~ "adult", TRUE ~ "senior"))')
+  Hint: Type `sla_sep_df |> mutate(learner_age_group = case_when(age < 13 ~ "child", age < 20 ~ "teen", age < 30 ~ "young adult", age < 65 ~ "adult", TRUE ~ "senior"))`.
+
+# Joining columns --------------------------------------------------------
+
+- Class: text
+  Output: Another common operation is to join columns from different datasets. This is often done to add additional information to a dataset or to combine datasets. We can do this using the `left_join()` function from the `dplyr` package.
+
+- Class: cmd_question
+  Output: Let's take a look at the `sla_df` dataset again. Type `sla_df` to see the result.
+  CorrectAnswer: sla_df
+  AnswerTests: omnitest(correctExpr='sla_df')
+  Hint: Type `sla_df`.
+
+- Class: cmd_question
+  Output: Now let's look at the `sla_meta_df` dataset that I loaded into the workspace. Type `sla_meta_df` to see the result.
+  CorrectAnswer: sla_meta_df
+  AnswerTests: omnitest(correctExpr='sla_meta_df')
+  Hint: Type `sla_meta_df`.
+
+# Using `left_join()`
+- Class: cmd_question
+  Output: We can see that the `sla_df` and `sla_meta_df` datasets have a common column- `learner_id`. This column can be used to join the datasets. The `left_join()` function takes the data frame, the data frame to join, and the column to join on. If there is a common column name, the join function will automatically use that column. Type `sla_df |> left_join(sla_meta_df)` to see the result.
+  CorrectAnswer: sla_df |> left_join(sla_meta_df)
+  AnswerTests: omnitest(correctExpr='sla_df |> left_join(sla_meta_df)')
+  Hint: Type `sla_df |> left_join(sla_meta_df)`.
+
+- Class: cmd_question
+  Output: The `left_join()` takes the dataset on the left-hand side of the expression and only joins the columns from the dataset on the right-hand side of the expression where there is a match for the common column. If we switch the order of the datasets, we can see that all the observations in `sla_meta_df` are retained. Where there are matches in `sla_df` we get the columns from `sla_df` and where there are no matches we get `NA` values. Type `sla_meta_df |> left_join(sla_df)` to see the result.
+  CorrectAnswer: sla_meta_df |> left_join(sla_df)
+  AnswerTests: omnitest(correctExpr='sla_meta_df |> left_join(sla_df)')
+  Hint: Type `sla_meta_df |> left_join(sla_df)`.
+
+# Summary ----------------------------------------------------------------
+
+- Class: text
+  Output: "In this lesson, we covered various operations that change columns in a dataset including: normalizing values, separating and collapsing columns, recoding values, and joining columns. We also covered how to use the `stringr`, `tidyr`, and `dplyr` packages to implement these operations in R."
+
+- Class: text
+  Output: There are many, many more operations that can be performed on columns in a dataset. The best way to learn them is to practice. I encourage you to explore the `stringr`, `tidyr`, and `dplyr` packages to learn more about the functions we covered and to learn about other functions that can be used to reshape datasets by columns.

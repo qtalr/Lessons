@@ -1,20 +1,224 @@
 - Class: meta
   Course: Lessons
   Lesson: Advanced Objects
-  Author: your name goes here
+  Author: Jerid Frarncom
   Type: Standard
-  Organization: your organization's name goes here
+  Organization: Wake Forest University
   Version: 0.9.0
 
+# Overview ---------------------------------------------------------------
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: Welcome to Advanced Objects! In this lesson, explore some of the more advanced objects in R. We will focus primarily on matrices and data frames. This will prepare you to work with methods in data analysis.
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+
+# Matrices ---------------------------------------------------------------
+
+# Definition
+
+- Class: cmd_question
+  Output: A matrix is a collection of data elements arranged in a two-dimensional rectangular layout. The following is an example of a matrix with 2 rows and 3 columns. Type `ex_int_mat` to see the matrix.
+  CorrectAnswer: ex_int_mat
+  AnswerTests: omnitest(correctExpr='ex_int_mat')
+  Hint: Type `ex_int_mat` to see the matrix.
+
+- Class: cmd_question
+  Output: A matrix is similar to a data frame in that it has rows and columns and the columns have the same length. However, a matrix is different from a data frame in that all of the elements in a matrix must be of the same type (e.g., numeric, character). Type `ex_char_mat` to see a matrix with character elements.
+  CorrectAnswer: ex_char_mat
+  AnswerTests: omnitest(correctExpr='ex_char_mat')
+  Hint: Type `ex_char_mat` to see the matrix.
+
+- Class: cmd_question
+  Output: Let's see what happens if we attempt to combine the two matrices we just saw by columns with the `cbind()` function. Type `cbind(ex_int_mat, ex_char_mat)` to see what happens.
+  CorrectAnswer: cbind(ex_int_mat, ex_char_mat)
+  AnswerTests: omnitest(correctExpr='cbind(ex_int_mat, ex_char_mat)')
+  Hint: Type `cbind(ex_int_mat, ex_char_mat)` to see what happens.
+
+- Class: mult_question
+  Output: What type are the elements in the combined matrix?
+  AnswerChoices: Numeric; Character; Logical; Complex
+  CorrectAnswer: Character
+  AnswerTests: omnitest(correctVal='Character')
+  Hint: Look at the use of quotations in the combined matrix.
+
+- Class: text
+  Output: Our numeric matrix was converted to a character matrix, as all of the elements in the combined matrix must be of the same type.
+
+# Creating Matrices
+
+- Class: cmd_question
+  Output: We can create a matrix using the `matrix()` function. The first argument is the vector of elements to be arranged in the matrix. The second argument is the number of rows. The third argument is the number of columns. Type `matrix(1:6, 2, 3)` to see an example.
+  CorrectAnswer: matrix(1:6, 2, 3)
+  AnswerTests: omnitest(correctExpr='matrix(1:6, 2, 3)')
+  Hint: Type `matrix(1:6, 2, 3)` to see an example.
+
+- Class: cmd_question
+  Output: We can also specify the elements to be arranged in the matrix by rows or columns. Type `matrix(1:6, 2, 3, byrow = TRUE)` to see an example.
+  CorrectAnswer: matrix(1:6, 2, 3, byrow = TRUE)
+  AnswerTests: omnitest(correctExpr='matrix(1:6, 2, 3, byrow = TRUE)')
+  Hint: Type `matrix(1:6, 2, 3, byrow = TRUE)` to see an example.
+
+# Naming Matrices
+
+- Class: cmd_question
+  Output: We can name the rows and columns of a matrix using the `dimnames()` function. The first argument is the matrix. The second argument is a list of the names of the rows. The third argument is a list of the names of the columns. Type `dimnames(ex_int_mat) <- list(c("row1", "row2"), c("col1", "col2", "col3"))` to add names to the rows and columns of the matrix.
+  CorrectAnswer: dimnames(ex_int_mat) <- list(c("row1", "row2"), c("col1", "col2", "col3"))
+  AnswerTests: omnitest(correctExpr='dimnames(ex_int_mat) <- list(c("row1", "row2"), c("col1", "col2", "col3"))')
+  Hint: Type `dimnames(ex_int_mat) <- list(c("row1", "row2"), c("col1", "col2", "col3"))`.
+
+- Class: cmd_question
+  Output: Now type `ex_int_mat` to see the matrix with the row and column names.
+  CorrectAnswer: ex_int_mat
+  AnswerTests: omnitest(correctExpr='ex_int_mat')
+  Hint: Type `ex_int_mat`.
+
+- Class: text
+  Output: You may have wondered why a function appears to be on the left side of the assignment operator. This is because the `dimnames()` function is a special type of function called a setter function. Setter functions are used to change the value of an object. In this case, we are changing the value of the `dimnames` attribute of the matrix.
+
+- Class: text
+  Output: Other setter functions for matrices include `rownames()` and `colnames()`. These functions are used to change the row and column names of a matrix, respectively.
+
+# Inspecting Matrices
+
+- Class: cmd_question
+  Output: We can inspect the dimensions of a matrix using the `dim()` function. Type `dim(ex_int_mat)` to see the dimensions of the matrix.
+  CorrectAnswer: dim(ex_int_mat)
+  AnswerTests: omnitest(correctExpr='dim(ex_int_mat)')
+  Hint: Type `dim(ex_int_mat)`.
+
+- Class: cmd_question
+  Output: Just as we can use `dim()` for matrices and data frames, so too we can use `nrow()` and `ncol()` for matrices. Type `nrow(ex_int_mat)` to see the number of rows in the matrix.
+  CorrectAnswer: nrow(ex_int_mat)
+  AnswerTests: omnitest(correctExpr='nrow(ex_int_mat)')
+  Hint: Type `nrow(ex_int_mat)`.
+
+# Accessing Elements of Matrices
+
+- Class: cmd_question
+  Output: We can access elements of a matrix using the row and column indices. Type `ex_int_mat[1, 2]` to see the element in the first row and second column.
+  CorrectAnswer: ex_int_mat[1, 2]
+  AnswerTests: omnitest(correctExpr='ex_int_mat[1, 2]')
+  Hint: Type `ex_int_mat[1, 2]`.
+
+- Class: cmd_question
+  Output: Just like with data frames, bracket notation can be used to access multiple elements of a matrix. Type `ex_int_mat[1:2, 2:3]` to see the elements in the first and second rows and second and third columns.
+  CorrectAnswer: ex_int_mat[1:2, 2:3]
+  AnswerTests: omnitest(correctExpr='ex_int_mat[1:2, 2:3]')
+  Hint: Type `ex_int_mat[1:2, 2:3]`.
+
+- Class: cmd_question
+  Output: If the matrix has row and column names, we can access elements using the names. Type `ex_int_mat["row1", "col2"]` to see the element in the first row and second column.
+  CorrectAnswer: ex_int_mat["row1", "col2"]
+  AnswerTests: omnitest(correctExpr='ex_int_mat["row1", "col2"]')
+  Hint: Type `ex_int_mat["row1", "col2"]`.
+
+- Class: cmd_question
+  Output: We can use a vector of row and column names to access multiple elements of a matrix. Type `ex_int_mat[, c("col2", "col3")]` to see the elements in the second and third columns.
+  CorrectAnswer: ex_int_mat[, c("col2", "col3")]
+  AnswerTests: omnitest(correctExpr='ex_int_mat[, c("col2", "col3")]')
+  Hint: Type `ex_int_mat[, c("col2", "col3")]`.
+
+# Calculations with Matrices
+
+- Class: cmd_question
+  Output: We can perform calculations with matrices. Type `ex_int_mat * 2` to see the matrix with each element multiplied by 2.
+  CorrectAnswer: ex_int_mat * 2
+  AnswerTests: omnitest(correctExpr='ex_int_mat * 2')
+  Hint: Type `ex_int_mat * 2`.
+
+- Class: cmd_question
+  Output: The ability to apply mathematical operations to matrices is one of the reasons they are so useful. Say we want to calculate the sum of the elements in each row of a matrix. Type `rowSums(ex_int_mat)` to see the sum of the elements in each row.
+  CorrectAnswer: rowSums(ex_int_mat)
+  AnswerTests: omnitest(correctExpr='rowSums(ex_int_mat)')
+  Hint: Type `rowSums(ex_int_mat)`.
+
+- Class: cmd_question
+  Output: As you can imagine, `colSums()` calculates the sum of the elements in each column of a matrix. What do you predict that the function `sum()` does? Type `sum(ex_int_mat)` to see if you are correct.
+  CorrectAnswer: sum(ex_int_mat)
+  AnswerTests: omnitest(correctExpr='sum(ex_int_mat)')
+  Hint: Type `sum(ex_int_mat)`.
+
+- Class: cmd_question
+  Output: Since matrices only contain values of the same type, this allows us to use appropriate operations. For numeric matrices, we can use `mean()`, `median()`, `sd()`, `var()`, etc. For character matrices, we can use `unique()`, `length()`, `nchar()`, etc. Type `nchar(ex_char_mat)` to see the number of characters in each element of the matrix.
+  CorrectAnswer: nchar(ex_char_mat)
+  AnswerTests: omnitest(correctExpr='nchar(ex_char_mat)')
+  Hint: Type `nchar(ex_char_mat)`.
+
+# Document-Term Matrix ---------------------------------------------------
+
+# Definition
+
+- Class: text
+  Output: A document-term matrix is a special type of matrix in which the rows represent documents and the columns represent terms. The elements of the matrix represent some distribution measure, say the frequency, of each term in each document.
+
+- Class: text
+  Output: Note that in fact there is another variant which is a term-document matrix. In this case, the rows represent terms and the columns represent documents. The names are easy to confuse, but just remember, that rows come first in the name.
+
+# Creating Document-Term Matrices
+
+- Class: cmd_question
+  Output: In text analysis research, it is often the case that we will be working with a tidy data frame that contains information about some unit of text and documents (contexts in which the terms occur). For example, we may have a data frame with a column for the text of each document and a column for the document ID. Type `ex_text_df` to see an example.
+  CorrectAnswer: ex_text_df
+  AnswerTests: omnitest(correctExpr='ex_text_df')
+  Hint: Type `ex_text_df`.
+
+- Class: text
+  Output: The `ex_text_df` data frame contains some hypothetical text messages. To have the minimum information needed to create a document-term matrix, we need a column for the term, a column for the document, and a column for the measure of distribution. Let's work towards transforming the data frame into a document-term matrix where the documents are each text message, the terms are each word in the text messages, and the distribution measure is the frequency of each word in each text message.
+
+- Class: cmd_question
+  Output: First, we need to create a column for the terms. We can do this using the `unnest_tokens()` function from the `tidytext` package. The first argument is the data frame. The second argument is the name of the new column. The third argument is the name of the column containing the text. Type `ex_word_df <- unnest_tokens(ex_text_df, term, text)` to create the column for the terms.
+  CorrectAnswer: ex_word_df <- unnest_tokens(ex_text_df, term, text)
+  AnswerTests: omnitest(correctExpr='ex_word_df <- unnest_tokens(ex_text_df, term, text)')
+  Hint: Type `ex_word_df <- unnest_tokens(ex_text_df, term, text)`.
+
+- Class: cmd_question
+  Output: Now type `ex_word_df` to see the data frame with the new column for the terms.
+  CorrectAnswer: ex_word_df
+  AnswerTests: omnitest(correctExpr='ex_word_df')
+  Hint: Type `ex_word_df`.
+
+- Class: cmd_question
+  Output: Now we have a column for the terms and for the documents. Next, we need to create a column for the distribution measure. We can do this using the `count()` function from the `dplyr` package. To group our word frequency counts by document, we apply `count()` to both the `doc_id` and `term` columns. Type `ex_word_df |> count(doc_id, term)` to create the column for the distribution measure.
+  CorrectAnswer: ex_word_df |> count(doc_id, term)
+  AnswerTests: omnitest(correctExpr='ex_word_df |> count(doc_id, term)')
+  Hint: Type `ex_word_df |> count(doc_id, term)`.
+
+- Class: cmd_question
+  Output: We see that the new column is named `n`. With this information we can create a document-term matrix. The `tidytext` package contains a function called `cast_dtm()` that creates a document-term matrix from a tidy data frame. We can pass the output of `count()` to `cast_dtm()` to create the document-term matrix. Type `ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)` to create the document-term matrix.
+  CorrectAnswer: ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)
+  AnswerTests: omnitest(correctExpr='ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)')
+  Hint: Type `ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)`.
+
+- Class: cmd_question
+  Output: Now type `ex_dtm` to see the document-term matrix.
+  CorrectAnswer: ex_dtm
+  AnswerTests: omnitest(correctExpr='ex_dtm')
+  Hint: Type `ex_dtm`.
+
+- Class: text
+  Output: The matrix created by `cast_dtm()` is a DocumentTermMatrix object. This is a special type of matrix object called a sparse matrix. This means that the matrix is stored in a special way that saves memory. Specifically, only the non-zero elements of the matrix are stored. This is important because most of the elements in a document-term matrix are zero. This is because most documents only contain a small fraction of the terms in the matrix.
+
+- Class: text
+  Output: Look at the output of `ex_dtm`. You will see some descriptive information about the DTM. There are 5 documents and 23 terms. 33 of the elements are non-zero (of the 115 elements in the matrix). The sparsity reflects the proportion of zero-valued elements in the matrix. In this case, 71% of the elements are zero.
+
+- Class: cmd_question
+  Output: Sparse matrix formats have some advantages and disadvantages. One advantage is that they save memory. One disadvantage is that they are not as easy to work with as regular matrices. We can convert a sparse matrix to a regular matrix using the `as.matrix()` function. Type `as.matrix(ex_dtm)` to convert the DTM to a regular matrix.
+  CorrectAnswer: as.matrix(ex_dtm)
+  AnswerTests: omnitest(correctExpr='as.matrix(ex_dtm)')
+  Hint: Type `as.matrix(ex_dtm)`.
+
+- Class: text
+  Output: We can now see that the matrix is a regular matrix. This is fine for a small toy matrix such as `ex_dtm`, but for a large matrix, this could be problematic as it prints out the entire matrix, which in some cases could be millions of elements!
+
+- Class: text
+  Output: For this reason, it is recommended to inspect matrices using bracket subsetting to avoid printing out the entire matrix. For example, we can use `ex_dtm[1:2, 1:2]` to see the first two rows and columns of the matrix.
+
+# Summary --------------------------------------------------------------
+
+- Class: text
+  Output: In this lesson, we learned about matrices and document-term matrices. We learned how to create matrices and document-term matrices. We also learned how to inspect, access elements, and perform calculations with them. Converting data frames to document-term matrices and back is a common task in text analysis research.
+
+- Class: text
+  Output: That concludes the lesson on advanced objects. In the next lesson, we will learn about more advanced techniques for creating visualizations.

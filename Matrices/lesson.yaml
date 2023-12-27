@@ -1,6 +1,6 @@
 - Class: meta
   Course: Lessons
-  Lesson: Advanced Objects
+  Lesson: Matrices
   Author: Jerid Frarncom
   Type: Standard
   Organization: Wake Forest University
@@ -9,7 +9,7 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Welcome to Advanced Objects! In this lesson, explore some of the more advanced objects in R. We will focus primarily on matrices and data frames. This will prepare you to work with methods in data analysis.
+  Output: Welcome to Matrices! In this lesson, explore some of the more advanced objects in R. We will focus primarily on matrices and data frames. This will prepare you to work with methods in data analysis.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."

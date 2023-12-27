@@ -5,3 +5,4 @@ _*
 outline.R
 *code-workspace
 *.Rproj
+.lintr

@@ -1,6 +1,6 @@
 - Class: meta
   Course: Lessons
-  Lesson: Reshape Datasets by Columns
+  Lesson: Reshape by Columns
   Author: Jerid Francom
   Type: Standard
   Organization: Wake Forest University
@@ -9,12 +9,12 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Welcome to Reshaping Datasets by Columns! In this lesson, you will gain a basic understanding of types of operations that change columns in datasets and how to implement them in R.
+  Output: Welcome to Reshape by Columns! In this lesson, you will gain a basic understanding of types of operations that change columns in datasets and how to implement them in R.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
-# Reshaping Datasets by Columns ------------------------------------------
+# Reshape by Columns ------------------------------------------
 
 # Purpose
 

@@ -9,12 +9,12 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Welcome to Reshaping Datasets by Rows! In this lesson, you will learn how to increase and decrease the number of rows in a dataset. This will help you to reorganize your data into a format that is more useful for your analysis.
+  Output: Welcome to Reshape by Rows! In this lesson, you will learn how to increase and decrease the number of rows in a dataset. This will help you to reorganize your data into a format that is more useful for your analysis.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
 
-# Reshaping Datasets by Rows ---------------------------------------------
+# Reshape by Rows ---------------------------------------------
 
 - Class: text
   Output: Changing the number of rows in a dataset is a common task in data analysis. In many cases, a change in rows is employed to reorganize the unit of observation. Say for example that you have a dataset that has one row for each sentence from language learners' sample writing. You may want to change the observations from sentences to words. On the other hand, you may want to change the observations from sentences to paragraphs.

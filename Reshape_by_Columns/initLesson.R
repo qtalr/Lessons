@@ -15,7 +15,7 @@
 .pathtofile <<- function(file_name) {
   file.path(
     .get_course_path(),
-    "Lessons", "Reshape_Datasets_by_Columns",
+    "Lessons", "Reshape_by_Columns",
     file_name
   )
 }

@@ -1,6 +1,6 @@
 - Class: meta
   Course: Lessons
-  Lesson: Matrices
+  Lesson: Advanced Objects
   Author: Jerid Frarncom
   Type: Standard
   Organization: Wake Forest University
@@ -9,7 +9,7 @@
 # Overview ---------------------------------------------------------------
 
 - Class: text
-  Output: Welcome to Matrices! In this lesson, explore some of the more advanced objects in R. We will focus primarily on matrices and data frames. This will prepare you to work with methods in data analysis.
+  Output: Welcome to Advanced Objects! In this lesson, explore some of the more advanced objects in R. We will focus on matrices and lists. This will prepare you to work with methods in data analysis.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
@@ -145,6 +145,12 @@
   CorrectAnswer: nchar(ex_char_mat)
   AnswerTests: omnitest(correctExpr='nchar(ex_char_mat)')
   Hint: Type `nchar(ex_char_mat)`.
+
+- Class: cmd_question
+  Output: If we want to apply a function by rows or by columns, we can use the `apply()` function. The first argument is the matrix. The second argument is the dimension (rows = 1, columns = 2). And the third argument is the function. Type `apply(ex_int_mat, 1, sd)` to see the standard deviation of the elements in each row.
+  CorrectAnswer: apply(ex_int_mat, 1, sd)
+  AnswerTests: omnitest(correctExpr='apply(ex_int_mat, 1, sd)')
+  Hint: Type `apply(ex_int_mat, 1, sd)`.
 
 # Document-Term Matrix ---------------------------------------------------
 

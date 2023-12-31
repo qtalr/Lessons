@@ -15,7 +15,7 @@
 .pathtofile <<- function(file_name) {
   file.path(
     .get_course_path(),
-    "Lessons", "Matrices",
+    "Lessons", "Advanced_Objects",
     file_name
   )
 }

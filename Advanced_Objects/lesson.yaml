@@ -152,79 +152,139 @@
   AnswerTests: omnitest(correctExpr='apply(ex_int_mat, 1, sd)')
   Hint: Type `apply(ex_int_mat, 1, sd)`.
 
-# Document-Term Matrix ---------------------------------------------------
-
-# Definition
+# Lists ------------------------------------------------------------------
 
 - Class: text
-  Output: A document-term matrix is a special type of matrix in which the rows represent documents and the columns represent terms. The elements of the matrix represent some distribution measure, say the frequency, of each term in each document.
+  Output: A list is a collection of objects. The objects can be of different types (e.g., vectors, matrices, data frames, or lists). Lists are useful for storing a collection of objects that are related to each other.
+
+- Class: cmd_question
+  Output: To create a list, we can use the `list()` function. The first argument is the first object. The second argument is the second object. Type `ex_ls <- list(1:5, c("a", "b", "c"))` to see an example.
+  CorrectAnswer: ex_ls <- list(1:5, c("a", "b", "c"))
+  AnswerTests: omnitest(correctExpr='ex_ls <- list(1:5, c("a", "b", "c"))')
+  Hint: Type `ex_ls <- list(1:5, c("a", "b", "c"))`.
+
+- Class: cmd_question
+  Output: Now type `ex_ls` to see the list.
+  CorrectAnswer: ex_ls
+  AnswerTests: omnitest(correctExpr='ex_ls')
+  Hint: Type `ex_ls`.
+
+- Class: mult_question
+  Output: Lists only have one dimension, so they do not have rows and columns. With this in mind, how many elements are in the list?
+  AnswerChoices: 2; 3; 4; 5
+  CorrectAnswer: 2
+  AnswerTests: omnitest(correctVal='2')
+  Hint: Look at the number of double brackets in the list.
+
+# Inspecting Lists
+
+- Class: cmd_question
+  Output: We can inspect the elements of a list using the `length()` function. Type `length(ex_ls)` to see the number of elements in the list.
+  CorrectAnswer: length(ex_ls)
+  AnswerTests: omnitest(correctExpr='length(ex_ls)')
+  Hint: Type `length(ex_ls)`.
+
+# Accessing Elements of Lists
+
+- Class: cmd_question
+  Output: We can access elements of a list using double brackets. Type `ex_ls[[1]]` to see the first element of the list.
+  CorrectAnswer: ex_ls[[1]]
+  AnswerTests: omnitest(correctExpr='ex_ls[[1]]')
+  Hint: Type `ex_ls[[1]]`.
+
+- Class: cmd_question
+  Output: We can also access elements of a list using single brackets. Type `ex_ls[1]` to see the first element of the list.
+  CorrectAnswer: ex_ls[1]
+  AnswerTests: omnitest(correctExpr='ex_ls[1]')
+  Hint: Type `ex_ls[1]`.
 
 - Class: text
-  Output: Note that in fact there is another variant which is a term-document matrix. In this case, the rows represent terms and the columns represent documents. The names are easy to confuse, but just remember, that rows come first in the name.
-
-# Creating Document-Term Matrices
+  Output: The difference between single and double brackets is that single brackets return a list, while double brackets return the object in the list. This is why we see the name of the object when we use single brackets.
 
 - Class: cmd_question
-  Output: In text analysis research, it is often the case that we will be working with a tidy data frame that contains information about some unit of text and documents (contexts in which the terms occur). For example, we may have a data frame with a column for the text of each document and a column for the document ID. Type `ex_text_df` to see an example.
-  CorrectAnswer: ex_text_df
-  AnswerTests: omnitest(correctExpr='ex_text_df')
-  Hint: Type `ex_text_df`.
+  Output: The `ex_ls` list contains two objects which are not named. We can name the objects in an existing list using the `names()` function. This is a setter function, so to use it we need to assign the result to the list. Type `names(ex_ls) <- c("num", "char")` to name the objects in the list.
+  CorrectAnswer: names(ex_ls) <- c("num", "char")
+  AnswerTests: omnitest(correctExpr='names(ex_ls) <- c("num", "char")')
+  Hint: Type `names(ex_ls) <- c("num", "char")`.
+
+- Class: cmd_question
+  Output: Now type `ex_ls` to see the list with the named objects.
+  CorrectAnswer: ex_ls
+  AnswerTests: omnitest(correctExpr='ex_ls')
+  Hint: Type `ex_ls`.
 
 - Class: text
-  Output: The `ex_text_df` data frame contains some hypothetical text messages. To have the minimum information needed to create a document-term matrix, we need a column for the term, a column for the document, and a column for the measure of distribution. Let's work towards transforming the data frame into a document-term matrix where the documents are each text message, the terms are each word in the text messages, and the distribution measure is the frequency of each word in each text message.
+  Output: Now that the list has named elements we can access the elements either with the names or with the indices. Type `ex_ls[["num"]]` to see the first element of the list.
+  CorrectAnswer: ex_ls[["num"]]
+  AnswerTests: omnitest(correctExpr='ex_ls[["num"]]')
+  Hint: Type `ex_ls[["num"]]`.
+
+# Calculations with Lists
 
 - Class: cmd_question
-  Output: First, we need to create a column for the terms. We can do this using the `unnest_tokens()` function from the `tidytext` package. The first argument is the data frame. The second argument is the name of the new column. The third argument is the name of the column containing the text. Type `ex_word_df <- unnest_tokens(ex_text_df, term, text)` to create the column for the terms.
-  CorrectAnswer: ex_word_df <- unnest_tokens(ex_text_df, term, text)
-  AnswerTests: omnitest(correctExpr='ex_word_df <- unnest_tokens(ex_text_df, term, text)')
-  Hint: Type `ex_word_df <- unnest_tokens(ex_text_df, term, text)`.
-
-- Class: cmd_question
-  Output: Now type `ex_word_df` to see the data frame with the new column for the terms.
-  CorrectAnswer: ex_word_df
-  AnswerTests: omnitest(correctExpr='ex_word_df')
-  Hint: Type `ex_word_df`.
-
-- Class: cmd_question
-  Output: Now we have a column for the terms and for the documents. Next, we need to create a column for the distribution measure. We can do this using the `count()` function from the `dplyr` package. To group our word frequency counts by document, we apply `count()` to both the `doc_id` and `term` columns. Type `ex_word_df |> count(doc_id, term)` to create the column for the distribution measure.
-  CorrectAnswer: ex_word_df |> count(doc_id, term)
-  AnswerTests: omnitest(correctExpr='ex_word_df |> count(doc_id, term)')
-  Hint: Type `ex_word_df |> count(doc_id, term)`.
-
-- Class: cmd_question
-  Output: We see that the new column is named `n`. With this information we can create a document-term matrix. The `tidytext` package contains a function called `cast_dtm()` that creates a document-term matrix from a tidy data frame. We can pass the output of `count()` to `cast_dtm()` to create the document-term matrix. Type `ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)` to create the document-term matrix.
-  CorrectAnswer: ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)
-  AnswerTests: omnitest(correctExpr='ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)')
-  Hint: Type `ex_dtm <- ex_word_df |> count(doc_id, term) |> cast_dtm(doc_id, term, n)`.
-
-- Class: cmd_question
-  Output: Now type `ex_dtm` to see the document-term matrix.
-  CorrectAnswer: ex_dtm
-  AnswerTests: omnitest(correctExpr='ex_dtm')
-  Hint: Type `ex_dtm`.
+  Output: We can perform calculations with lists. To explore how to do this let's work with the `ex_text_ls` I've created for you. Type `ex_text_ls` to see the list.
+  CorrectAnswer: ex_text_ls
+  AnswerTests: omnitest(correctExpr='ex_text_ls')
+  Hint: Type `ex_text_ls`.
 
 - Class: text
-  Output: The matrix created by `cast_dtm()` is a DocumentTermMatrix object. This is a special type of matrix object called a sparse matrix. This means that the matrix is stored in a special way that saves memory. Specifically, only the non-zero elements of the matrix are stored. This is important because most of the elements in a document-term matrix are zero. This is because most documents only contain a small fraction of the terms in the matrix.
-
-- Class: text
-  Output: Look at the output of `ex_dtm`. You will see some descriptive information about the DTM. There are 5 documents and 23 terms. 33 of the elements are non-zero (of the 115 elements in the matrix). The sparsity reflects the proportion of zero-valued elements in the matrix. In this case, 71% of the elements are zero.
+  Output: The `ex_text_ls` list contains five character vectors of hypothetical text messages. Each of the elements are named with the name of the person who sent the text message.
 
 - Class: cmd_question
-  Output: Sparse matrix formats have some advantages and disadvantages. One advantage is that they save memory. One disadvantage is that they are not as easy to work with as regular matrices. We can convert a sparse matrix to a regular matrix using the `as.matrix()` function. Type `as.matrix(ex_dtm)` to convert the DTM to a regular matrix.
-  CorrectAnswer: as.matrix(ex_dtm)
-  AnswerTests: omnitest(correctExpr='as.matrix(ex_dtm)')
-  Hint: Type `as.matrix(ex_dtm)`.
+  Output: Since all of the elements are character vectors, we can use a function like `nchar()` to calculate the number of characters in each text message. Type `nchar(ex_text_ls)` to see the number of characters in each text message.
+  CorrectAnswer: nchar(ex_text_ls)
+  AnswerTests: omnitest(correctExpr='nchar(ex_text_ls)')
+  Hint: Type `nchar(ex_text_ls)`.
+
+- Class: cmd_question
+  Output: The output is a vector of the number of characters in each text message. Note, however, that the output is no longer a list but rather a named character vector. This is because the `nchar()` function returns a vector and not a list.
 
 - Class: text
-  Output: We can now see that the matrix is a regular matrix. This is fine for a small toy matrix such as `ex_dtm`, but for a large matrix, this could be problematic as it prints out the entire matrix, which in some cases could be millions of elements!
+  Output: "To apply a function to each element of a list and return a chosen object type we can use functions from the `purrr` package. The key function to understand is the `map()` function."
+
+- Class: cmd_question
+  Output: The `map()` function takes a list, applies a function to each element, and returns a list. The first argument is the list. The second argument is the function. Type `map(ex_text_ls, nchar)` to see the number of characters in each text message. Note that the `nchar()` function does not have parentheses!
+  CorrectAnswer: map(ex_text_ls, nchar)
+  AnswerTests: omnitest(correctExpr='map(ex_text_ls, nchar)')
+  Hint: Type `map(ex_text_ls, nchar)`.
 
 - Class: text
-  Output: For this reason, it is recommended to inspect matrices using bracket subsetting to avoid printing out the entire matrix. For example, we can use `ex_dtm[1:2, 1:2]` to see the first two rows and columns of the matrix.
+  Output: The output is a list of the number of characters in each text message. Note that the output is a list and not a named character vector. This is because the `map()` function returns a list and not a vector.
+
+- Class: cmd_question
+  Output: The map function has variants that allow us to return different object types. For example, we can use the `map_int()` function to return an integer vector. Type `map_int(ex_text_ls, nchar)` to see the number of characters in each text message.
+  CorrectAnswer: map_int(ex_text_ls, nchar)
+  AnswerTests: omnitest(correctExpr='map_int(ex_text_ls, nchar)')
+  Hint: Type `map_int(ex_text_ls, nchar)`.
+
+- Class: text
+  Output: The output is an integer vector of the number of characters in each text message. Other variants include `map_dbl()`, `map_lgl()`, `map_chr()`, and `map_dfr()`. The type of object returned depends on the type of object returned by the function. Using `map_chr()` with the `nchar()` function would return an error because `nchar()` returns an integer vector!
+
+- Class: cmd_question
+  Output: The function that is applied to the list does not have to be a built-in function. It can be a custom function that you have created or a function you create on the fly. For example, we can create a function that returns the number of words in a text message. Type `map(ex_text_ls, function(x) length(strsplit(x, " ")[[1]]))` to see the number of words in each text message.
+  CorrectAnswer: map(ex_text_ls, function(x) length(strsplit(x, " ")[[1]]))
+  AnswerTests: omnitest(correctExpr='map(ex_text_ls, function(x) length(strsplit(x, " ")[[1]]))')
+  Hint: Type `map(ex_text_ls, function(x) length(strsplit(x, " ")[[1]]))`.
+
+- Class: text
+  Output: I want to focus on the `function(x)` component. This is a function that we create on the fly, or 'anonymous function'. The `x` is a placeholder for the elements of the list. In the subsequent code, we use the `x` placeholder where we want to apply the function. In this case, we use the `x` placeholder in the `strsplit()` function. It is important to note that `x` is a placeholder and not a variable and can be named anything.
+
+- Class: cmd_question
+  Output: Another way to write anonymous functions is to use the `\(x)` notation. Type `map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))` to see the number of words in each text message.
+  CorrectAnswer: map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))
+  AnswerTests: omnitest(correctExpr='map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))')
+  Hint: Type `map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))`.
+
+- Class: cmd_question
+  Output: Anonymous functions are useful when we want to apply a function to a list but do not want to create a function that we will use again. Furthermore, just as regular functions, anonymous functions can have multiple arguments. In the case of lists, we can use the `imap()` function to apply a function to a list and also make the element index available to the function. Type `imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))` to see the text messages with the element index.
+  CorrectAnswer: imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))
+  AnswerTests: omnitest(correctExpr='imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))')
+  Hint: Type `imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))`.
 
 # Summary --------------------------------------------------------------
 
 - Class: text
-  Output: In this lesson, we learned about matrices and document-term matrices. We learned how to create matrices and document-term matrices. We also learned how to inspect, access elements, and perform calculations with them. Converting data frames to document-term matrices and back is a common task in text analysis research.
+  Output: In this lesson, we learned about how to create, inspect, and perform calculations on matrices and lists. We learned how to create matrices and document-term matrices. There are many more functions for matrices and lists that we did not cover in this lesson. I encourage you to explore the documentation for these functions to learn more.
 
 - Class: text
   Output: That concludes the lesson on advanced objects. In the next lesson, we will learn about more advanced techniques for creating visualizations.

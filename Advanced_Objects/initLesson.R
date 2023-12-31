@@ -53,3 +53,14 @@ ex_text_df <- tibble(
     "She is on her way."
   )
 )
+
+# Create a hypothetical named list of text messages
+
+ex_text_ls <-
+  list(
+    bill = "I am on my way. I will be there soon.",
+    veronica = "I am running late.",
+    rich = "Are you going to be home soon?",
+    sam = "I am running late. Maybe we should reschedule.",
+    justin = "She is on her way."
+  )

@@ -1,20 +1,286 @@
 - Class: meta
   Course: Lessons
   Lesson: Advanced Visualization
-  Author: your name goes here
+  Author: Jerid Frarncom
   Type: Standard
-  Organization: your organization's name goes here
+  Organization: Wake Forest University
   Version: 0.9.0
 
+# Overview ---------------------------------------------------------------
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: This lesson will cover advanced visualization techniques in R. We will build on our knowledge of ggplot2 and learn how to create more complex plots with features from ggplot2 and other packages which extend ggplot2 features.
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+
+# Customizing ggplot2 plots -----------------------------------------------
+
+# Review
+
+- Class: cmd_question
+  Output: To explore visualization methods, I've loaded various datasets and model objects. The first we will use is a dataset summarizing the use of passive voice in the American and British English. Type `passives_df` to preview the dataset.
+  CorrectAnswer: passives_df
+  AnswerTests: omnitest(correctExpr='passives_df')
+  Hint: Type `passives_df` to preview the dataset.
+
+- Class: text
+  Output: "Let's review some of the basics of ggplot2. In the Grammar of Graphics there are three main components: data, aesthetics, and geometries. The `ggplot()` function is used to initialize a ggplot object. The `aes()` function is used to specify the aesthetic mappings between data and plot elements. The `geom_*()` functions are used to specify the geometric objects that will be plotted."
+
+- Class: cmd_question
+  Output: Let's start by creating a basic scatterplot plotting the number of passive voice constructions against the number of words for each text. First, let's initialize a ggplot object using the `ggplot()` function and add the aesthetic mappings using the `aes()` function. Type `p <- ggplot(passives_df, aes(x = num_words, y = num_passives))` to initialize the ggplot object.
+  CorrectAnswer: p <- ggplot(passives_df, aes(x = num_words, y = num_passives))
+  AnswerTests: omnitest(correctExpr='p <- ggplot(passives_df, aes(x = num_words, y = num_passives))')
+  Hint: Type `p <- ggplot(passives_df, aes(x = num_words, y = num_passives))` to initialize the ggplot object.
+
+- Class: cmd_question
+  Output: The ggplot object `p` does not have any geometric objects specified, so the plot is empty at the moment. To add points to the plot, we can use the `geom_point()` function. Type `p + geom_point()` to add points to the plot.
+  CorrectAnswer: p + geom_point()
+  AnswerTests: omnitest(correctExpr='p + geom_point()')
+  Hint: Type `p + geom_point()` to add points to the plot.
+
+# Aesthestics: color, shape, size, alpha, linetype, fill, group, label
+
+- Class: cmd_question
+  Output: In addition to the `x` and `y` aesthetics, we can also specify a number of other aesthetics. Let's add a `color` aesthetic to the points specifying that the color should be determined by the `genre` variable. Type `p + geom_point(aes(color = genre))` to add a color aesthetic to the points.
+  CorrectAnswer: p + geom_point(aes(color = genre))
+  AnswerTests: omnitest(correctExpr='p + geom_point(aes(color = genre))')
+  Hint: Type `p + geom_point(aes(color = genre))` to add a color aesthetic to the points.
+
+- Class: text
+  Output: Other aesthetics include `shape`, `size`, `alpha`, `linetype`, `fill`, `group`, and `label`. It is important to note that not all aesthetics are available for all geometric objects. For example, the `shape` aesthetic is only available for geometric objects that can be represented by a shape, such as points. And `fill` is only available for geometric objects that can be filled, such as bars.
+
+- Class: cmd_question
+  Output: Let's change our geometry to a trend line. Type `p + geom_smooth()` to change the geometry to a smoothed trend line.
+  CorrectAnswer: p + geom_smooth()
+  AnswerTests: omnitest(correctExpr='p + geom_smooth()')
+  Hint: Type `p + geom_smooth()` to change the geometry to a smoothed trend line.
+
+- Class: cmd_question
+  Output: Before we add an aesthetic mapping to this geometry, let's discuss some parameters that can be used to customize this geom. The `geom_smooth()` function uses the `loess` method by default. We can change the span of the loess fit using the `span` parameter. Type `p + geom_smooth(span = 1)` to change the span of the loess fit to 1.
+  CorrectAnswer: p + geom_smooth(span = 1)
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(span = 1)')
+  Hint: Type `p + geom_smooth(span = 1)` to change the span of the loess fit to 1.
+
+- Class: cmd_question
+  Output: We can see that the line is now less wigglely. We can also change the method used to fit the line. A common method is `lm`, which fits a linear model. Type `p + geom_smooth(method = "lm")` to change the method used to fit the line to `lm`.
+  CorrectAnswer: p + geom_smooth(method = "lm")
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(method = "lm")')
+  Hint: Type `p + geom_smooth(method = "lm")` to change the method used to fit the line to `lm`.
+
+- Class: cmd_question
+  Output: The grey area around the line is known as a ribbon. It represents the standard error of the fit. We can remove the ribbon by setting the `se` parameter to `FALSE`. Type `p + geom_smooth(method = "lm", se = FALSE)` to remove the ribbon.
+  CorrectAnswer: p + geom_smooth(method = "lm", se = FALSE)
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(method = "lm", se = FALSE)')
+  Hint: Type `p + geom_smooth(method = "lm", se = FALSE)` to remove the ribbon.
+
+- Class: cmd_question
+  Output: OK, let's get back to aesthetics. Let's add a `color` aesthetic to the trend line specifying that the color should be determined by the `lang` variable. Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = lang))` to add a color aesthetic to the trend line.
+  CorrectAnswer: p + geom_smooth(method = "lm", se = FALSE, aes(color = lang))
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(method = "lm", se = FALSE, aes(color = lang))')
+  Hint: Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = lang))` to add a color aesthetic to the trend line.
+
+- Class: cmd_question
+  Output: We can see that we now have a trend line for both language varieties. Now imagine we instead want to get a trend line for each of the genres in `genre`. Update the `color` aesthetic to use the `genre` variable.
+  CorrectAnswer: p + geom_smooth(method = "lm", se = FALSE, aes(color = genre))
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(method = "lm", se = FALSE, aes(color = genre))')
+  Hint: Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = genre))` to add a color aesthetic to the trend line.
+
+- Class: cmd_question
+  Output: We can see that we now have a trend line for each genre. Let's add a `linetype` aesthetic to the trend line specifying that the line type should be determined by the `lang` variable. Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = genre, linetype = lang))` to add a `linetype` aesthetic to the trend line.
+  CorrectAnswer: p + geom_smooth(method = "lm", se = FALSE, aes(color = genre, linetype = lang))
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(method = "lm", se = FALSE, aes(color = genre, linetype = lang))')
+  Hint: Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = genre, linetype = lang))` to add a `linetype` aesthetic to the trend line.
+
+# Facets: facet_wrap, facet_grid
+
+- Class: cmd_question
+  Output: Now this plot is quite difficult to read. There is too much visual information. In these cases it is often better to use facets to separate the data into multiple plots. We can remove the `linetype` aesthetic and instead use `facet_wrap(~ lang)` to create a separate plot for each language variety. Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = genre)) + facet_wrap(~ lang)` to create a separate plot for each language variety.
+  CorrectAnswer: p + geom_smooth(method = "lm", se = FALSE, aes(color = genre)) + facet_wrap(~ lang)
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(method = "lm", se = FALSE, aes(color = genre)) + facet_wrap(~ lang)')
+  Hint: Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = genre)) + facet_wrap(~ lang)` to create a separate plot for each language variety.
+
+- Class: cmd_question
+  Output: If can just as easily switch the `genre` and `lang` variables so that we have a separate plot for each genre and a separate line for each language variety. Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)` to create a separate plot for each genre.
+  CorrectAnswer: p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)
+  AnswerTests: omnitest(correctExpr='p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)')
+  Hint: Type `p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)` to create a separate plot for each genre.
+
+- Class: text
+  Output: The choice of using an aesthetic or a facet depends on the data and the question you are trying to answer. You should always consider both options as you are creating your plots.
+
+# Cluster models: factoextra ----------------------------------------------
+
+- Class: text
+  Output: Now let's turn our attention to functions from other packages that extend ggplot2. The first package we will look at is `factoextra`. This package provides functions for extracting and visualizing the model output from dimensionality reduction and clustering models.
+
+- Class: text
+  Output: The data frame is the primary data structure used as input to `ggplot2`. However, operations such as dimensionality reduction and clustering produce model objects as output. The `factoextra` package provides functions for extracting the data from these model objects and converting them to appropriate visualizations.
+
+- Class: cmd_question
+  Output: To demonstrate the use of `factoextra`, I've created a series of model objects which based on the `passives_df` dataset. The objects include a distance matrix, a Principle Components Analysis (PCA) model, a hierarchical clustering model, and a K-means clustering model. Each of these objects is derived from a Document-Term Matrix (DTM) in which the rows represent the genres, the columns represent the individual texts, and the values represent the relative frequency of passives. Type `passives_dtm` to preview the DTM.
+  CorrectAnswer: passives_dtm
+  AnswerTests: omnitest(correctExpr='passives_dtm')
+  Hint: Type `passives_dtm` to preview the DTM.
+
+# Distance matrix
+
+- Class: cmd_question
+  Output: The `passives_dst` object is a distance matrix. It contains the calculated distances (use of passives) between each pair of genres. To visualize a distance matrix with `factoextra` we can use the `fviz_dist()` function. Type `fviz_dist(passives_dst)` to visualize the distance matrix.
+  CorrectAnswer: fviz_dist(passives_dst)
+  AnswerTests: omnitest(correctExpr='fviz_dist(passives_dst)')
+  Hint: Type `fviz_dist(passives_dst)` to visualize the distance matrix.
+
+- Class: text
+  Output: To interpret a distance matrix, we need to consider the distance between each pair of genres. The distance between two genres is represented by the color of the cell. The diagonal cells represent the distance between a genre and itself, which is always 0. We can see in this distance matrix that the distance between Science Fiction and the other genres is quite large. More subtley, we can see that the distance between Learned and Press Reportage is smaller than the distance between Press Reportage and Romance.
+
+# PCA
+
+- Class: cmd_question
+  Output: The `passives_pca` object is a PCA model. It contains the calculated principle components for each genre. To visualize a PCA model with `factoextra` we can use the `fviz_pca_ind()` function. Type `fviz_pca_ind(passives_pca)` to visualize the PCA model.
+  CorrectAnswer: fviz_pca_ind(passives_pca)
+  AnswerTests: omnitest(correctExpr='fviz_pca_ind(passives_pca)')
+  Hint: Type `fviz_pca_ind(passives_pca)` to visualize the PCA model.
+
+- Class: text
+  Output: "To interpret a PCA model, we need to consider the principle components for each genre. The principle components are represented by the position of the points. The first principle component is represented by the x-axis and the second principle component is represented by the y-axis. We can see in this PCA model that the first principle component separates the genres into two groups: Science Fiction on the right and the other genres on the left. The second principle component separates the genres into Romance on the bottom and the other genres on the top."
+
+# Hierarchical clustering
+
+- Class: cmd_question
+  Output: The `passives_hcl` object is a hierarchical clustering model. It contains the calculated clusters for each genre. To visualize a hierarchical clustering model with `factoextra` we can use the `fviz_dend()` function. Type `fviz_dend(passives_hcl)` to visualize the hierarchical clustering model.
+  CorrectAnswer: fviz_dend(passives_hcl)
+  AnswerTests: omnitest(correctExpr='fviz_dend(passives_hcl)')
+  Hint: Type `fviz_dend(passives_hcl)` to visualize the hierarchical clustering model.
+
+- Class: text
+  Output: "Hierarchical clustering models are often visualized as dendrograms. A dendrogram is a tree diagram that shows the hierarchical relationship between objects. In this dendrogram, the height of the branches represents the distance between the clusters. The closer the clusters are to each other, the lower the height of the branch. We can see in this dendrogram that the Science Fiction genre is the most distinct from the other genres and that Press Reportage and Learned are the most similar."
+
+# K-means clustering
+
+- Class: cmd_question
+  Output: The `passives_kcl` object is a K-means clustering model. It contains the calculated clusters (`k` = 2) for each genre. To visualize a K-means clustering model with `factoextra` we can use the `fviz_cluster()` function. In addition to the model object, we also need to specify the original DTM. Type `fviz_cluster(passives_kcl, passives_dtm)` to visualize the K-means clustering model.
+  CorrectAnswer: fviz_cluster(passives_kcl, passives_dtm)
+  AnswerTests: omnitest(correctExpr='fviz_cluster(passives_kcl, passives_dtm)')
+  Hint: Type `fviz_cluster(passives_kcl, passives_dtm)` to visualize the K-means clustering model.
+
+- Class: text
+  Output: K-means clustering models are often visualized as a scatterplot with the clusters represented by different colors. We can see in this scatterplot that the Science Fiction genre forms its own cluster and that the other genres form a second cluster. We can also see that within the second cluster, Press Reportage and Learned are distant from the other genres.
+
+- Class: text
+  Output: Each `fviz_*()` function has a number of parameters that can be used to customize the visualization. Some of these parameters are common to all functions and others are specific to each function. It is recommended that you review the documentation for each function to learn more about the available parameters.
+
+# Other models: ggfortify -------------------------------------------------
+
+- Class: text
+  Output: Another package that extends ggplot2 is `ggfortify`. This package provides the `autoplot()` function for extracting and visualizing the model output from a number of other models not covered by `factoextra`. `autoplot()` is a generic function that detects the model type and calls the appropriate function to extract and visualize the model output.
+
+# Confusion Matrix
+
+- Class: text
+  Output: The `genre_conf_mat` object is a confusion matrix. A confusion matrix is a table that is used to describe the performance of a classification model. In this case, the model is a classifier that predicts the genre "Press Reportage" or "Science Fiction" based on the use of passives. To visualize a confusion matrix with `ggfortify` we can use the `autoplot()` function. Type `autoplot(genre_conf_mat)` to visualize the confusion matrix.
+  CorrectAnswer: autoplot(genre_conf_mat)
+  AnswerTests: omnitest(correctExpr='autoplot(genre_conf_mat)')
+  Hint: Type `autoplot(genre_conf_mat)` to visualize the confusion matrix.
+
+- Class: cmd_question
+  Output: The default plot for a confusion matrix is a mosaic plot. A mosaic plot is a graphical method for visualizing the cell frequencies of a contingency table. The area of each rectangle is proportional to the cell frequency. A sometimes more intiutive way to visualize a confusion matrix is with a heatmap. To change the plot type to a heatmap, we can use the `type` parameter. Type `autoplot(genre_conf_mat, type = "heatmap")` to change the plot type to a heatmap.
+  CorrectAnswer: autoplot(genre_conf_mat, type = "heatmap")
+  AnswerTests: omnitest(correctExpr='autoplot(genre_conf_mat, type = "heatmap")')
+  Hint: Type `autoplot(genre_conf_mat, type = "heatmap")` to change the plot type to a heatmap.
+
+- Class: text
+  Output: To interpret a confusion matrix, we need to consider the predicted and actual values. The predicted values are represented by the columns and the actual values are represented by the rows. The right-downward diagonal cells represent the correct predictions. The left-downward diagonal cells represent the incorrect predictions. From this visualization, we can see that the classifier is quite accurate, but is not perfect.
+
+# ROC Curve
+
+- Class: text
+  Output: The `genre_roc_curve` object is a ROC curve. A ROC curve is a graphical method for visualizing the performance of a classification model under different probability thresholds. To visualize a ROC curve with `ggfortify` we again use the `autoplot()` function. Type `autoplot(genre_roc_curve)` to visualize the ROC curve.
+  CorrectAnswer: autoplot(genre_roc_curve)
+  AnswerTests: omnitest(correctExpr='autoplot(genre_roc_curve)')
+  Hint: Type `autoplot(genre_roc_curve)` to visualize the ROC curve.
+
+- Class: text
+  Output: To interpret a ROC curve, we need to consider the true positive rate (TPR) and the false positive rate (FPR). The TPR is represented by the y-axis and the FPR is represented by the x-axis. The dotted line represents a random classifier. The closer the curve is to the top-left corner, the better the classifier.
+
+# Theming -----------------------------------------------------------------
+
+- Class: text
+  Output: In this lesson, we have learned how to customize ggplot2 plots using aesthetics and how to extend ggplot2 using functions from other packages. Before we conclude, let's discuss how to customize the appearance of these plots in terms of the x and y scales and labels, the legend, and the overall theme.
+
+- Class: cmd_question
+  Output: The plots generated by `ggplot2`, `factoextra`, and `ggfortify` all are based on the `ggplot2` package. This means that we can use the same functions to customize the appearance of these plots. Let's create a base plot to explore some of these functions. Type `pass_p <- p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)` to create a base plot.
+  CorrectAnswer: pass_p <- p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)
+  AnswerTests: omnitest(correctExpr='pass_p <- p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)')
+  Hint: Type `pass_p <- p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre)` to create a base plot.
+
+- Class: cmd_question
+  Output: Now let's visualize the plot. Type `pass_p` to visualize the base plot we will use.
+  CorrectAnswer: pass_p
+  AnswerTests: omnitest(correctExpr='pass_p')
+  Hint: Type `pass_p` to visualize the base plot we will use.
+
+# Scales
+
+- Class: text
+  Output: The `scale_*()` functions are used to customize the appearance of any of the aesthetics (x, y, color, fill, etc.). These functions can be used to change properties that are appropriate for the aesthetic and the information being represented. For example, the `scale_x_continuous()` function is used to customize the x-axis for continuous data. The `scale_y_discrete()` function is used to customize the y-axis for discrete data.
+
+- Class: cmd_question
+  Output: As an example, let's assume we would like the x-axis scale for the number of words to be formatted as a comma separated number. Type `pass_p + scale_x_continuous(labels = scales::comma)` to format the x-axis scale for the number of words as a comma separated number.
+  CorrectAnswer: pass_p + scale_x_continuous(labels = scales::comma)
+  AnswerTests: omnitest(correctExpr='pass_p + scale_x_continuous(labels = scales::comma)')
+  Hint: Type `pass_p + scale_x_continuous(labels = scales::comma)` to format the x-axis scale for the number of words as a comma separated number.
+
+- Class: cmd_question
+  Output: Now let's assume we would like the y-axis scale for the number of passives to include a smaller interval between labels. As it is now, the number of passives is only labeled at 10, 20, 30. Let's make the interval 5 and increase the limit to 40. Type `pass_p + scale_y_continuous(breaks = seq(0, 40, 5))` to make the interval 5.
+  CorrectAnswer: pass_p + scale_y_continuous(breaks = seq(0, 40, 5))
+  AnswerTests: omnitest(correctExpr='pass_p + scale_y_continuous(breaks = seq(0, 40, 5))')
+  Hint: Type `pass_p + scale_y_continuous(breaks = seq(0, 40, 5))` to make the interval 5.
+
+- Class: cmd_question
+  Output: In our `pass_p` plot we have also used a `color` aesthetic. The `scale_color_*()` functions are used to customize the appearance of the color aesthetic. Let's change the color scale to use the custom colors "red" and "blue". Type `pass_p + scale_color_manual(values = c("red", "blue"))` to change the color scale to use the custom colors "red" and "blue".
+  CorrectAnswer: pass_p + scale_color_manual(values = c("red", "blue"))
+  AnswerTests: omnitest(correctExpr='pass_p + scale_color_manual(values = c("red", "blue"))')
+  Hint: Type `pass_p + scale_color_manual(values = c("red", "blue"))` to change the color scale to use the custom colors "red" and "blue".
+
+# Labels
+
+- Class: cmd_question
+  Output: The `labs()` function is used to customize the appearance of the plot labels. These functions can be used to change the name of the axis or legend, add a title, or add a caption. Let's change the x- and y-axis labels to "Number of Words" and "Number of Passives", respectively. Type `pass_p + labs(x = "Number of Words", y = "Number of Passives")` to change the x- and y-axis labels.
+  CorrectAnswer: pass_p + labs(x = "Number of Words", y = "Number of Passives")
+  AnswerTests: omnitest(correctExpr='pass_p + labs(x = "Number of Words", y = "Number of Passives")')
+  Hint: Type `pass_p + labs(x = "Number of Words", y = "Number of Passives")` to change the x- and y-axis labels.
+
+- Class: cmd_question
+  Output: Now let's change the legend title to "Dialect". The legend is automatically created based on the `color` aesthetic so we specifiy the `color` aesthetic in the `labs()` function. Type `pass_p + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect")` to change the legend title to "Dialect".
+  CorrectAnswer: pass_p + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect")
+  AnswerTests: omnitest(correctExpr='pass_p + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect")')
+  Hint: Type `pass_p + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect")` to change the legend title to "Dialect".
+
+# Themes
+
+- Class: cmd_question
+  Output: A more general way to customize the appearance of a plot is to use a theme. A theme is a collection of appearance settings that can be applied to a plot wholesale. The `theme_*()` functions include options such as `theme_bw()` for a black and white theme, `theme_classic()` for a classic theme, and `theme_minimal()` for a minimal theme. Let's change the theme to `theme_bw()`. Type `pass_p + theme_bw()` to change the theme to `theme_bw()`.
+  CorrectAnswer: pass_p + theme_bw()
+  AnswerTests: omnitest(correctExpr='pass_p + theme_bw()')
+  Hint: Type `pass_p + theme_bw()` to change the theme to `theme_bw()`.
+
+- Class: text
+  Output: A more advanced way to customize the appearance of a plot is to use the `theme()` function. The `theme()` function is used to customize the appearance of specific plot elements. For example, we can use the `theme()` function to change the rotation of the x-axis labels. Let's change the rotation of the x-axis labels to 45 degrees. Type `pass_p + theme(axis.text.x = element_text(angle = 45))` to change the rotation of the x-axis labels to 45 degrees.
+  CorrectAnswer: pass_p + theme(axis.text.x = element_text(angle = 45))
+  AnswerTests: omnitest(correctExpr='pass_p + theme(axis.text.x = element_text(angle = 45))')
+  Hint: Type `pass_p + theme(axis.text.x = element_text(angle = 45))` to change the rotation of the x-axis labels to 45 degrees.
+
+- Class: cmd_question
+  Output: To finish, let's apply our customizations to the `pass_p` plot. This is a long command, so just copy and paste it. Type `pass_p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre) + scale_x_continuous(labels = scales::comma) + scale_y_continuous(breaks = seq(0, 40, 5)) + scale_color_manual(values = c("red", "blue")) + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect") + theme_bw() + theme(axis.text.x = element_text(angle = 45))` to apply our customizations to the `pass_p` plot.
+  CorrectAnswer: pass_p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre) + scale_x_continuous(labels = scales::comma) + scale_y_continuous(breaks = seq(0, 40, 5)) + scale_color_manual(values = c("red", "blue")) + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect") + theme_bw() + theme(axis.text.x = element_text(angle = 45))
+  AnswerTests: omnitest(correctExpr='pass_p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre) + scale_x_continuous(labels = scales::comma) + scale_y_continuous(breaks = seq(0, 40, 5)) + scale_color_manual(values = c("red", "blue")) + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect") + theme_bw() + theme(axis.text.x = element_text(angle = 45))')
+  Hint: Type `pass_p + geom_smooth(method = "lm", se = FALSE, aes(color = lang)) + facet_wrap(~ genre) + scale_x_continuous(labels = scales::comma) + scale_y_continuous(breaks = seq(0, 40, 5)) + scale_color_manual(values = c("red", "blue")) + labs(x = "Number of Words", y = "Number of Passives", color = "Dialect") + theme_bw() + theme(axis.text.x = element_text(angle = 45))` to apply our customizations to the `pass_p` plot.
+
+# Summary ---------------------------------------------------------------
+
+- Class: text
+  Output: In this lesson, we have learned how to customize ggplot2 plots using aesthetics and how to extend ggplot2 using functions from other packages. We have also learned how to customize the appearance of these plots in terms of the x and y scales and labels, the legend, and the overall theme.
+
+- Class: text
+  Output: There is much more to learn about ggplot2 and visualization in R. I encourage you to explore the documentation for ggplot2 and the other packages we have covered in this lesson. It will take time and practice to become proficient with ggplot2, but it is well worth the effort!

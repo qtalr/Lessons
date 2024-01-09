@@ -49,7 +49,7 @@
   Output: "play() and nxt() are really helpful if you want to stop the tutorial for a moment and play with R a bit before continuing on with the lesson!"
 
 - Class: text
-  Output: "You can also completely stop a lesson by hitting `CTRL + C` at any time. That is, the Control key and the C key at the same time."
+  Output: "You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`. That is, the Control key and the C key at the same time."
 
 # Lesson End
 - Class: text

@@ -1,20 +1,186 @@
 - Class: meta
   Course: Lessons
-  Lesson: Tables
-  Author: your name goes here
+  Lesson: Advanced Tables
+  Author: Jerid Francom
   Type: Standard
-  Organization: your organization's name goes here
+  Organization: Wake Forest University
   Version: 0.9.0
 
+# Overview --------------------------------------------------------
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: In this lesson, we will cover how to manipulate dataset summaries with the `janitor` package and then format them with the `kableExtra` package for effective presentation.
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
+
+# Manipulating Data ------------------------------------------------
+
+- Class: text
+  Output: "In addition to the `tabyl()` function for creating cross-tabulations, the `janitor` package provides a number of useful functions for manipulating data summaries in preparation for presentation. We will cover adding totals and percentages."
+
+- Class: cmd_question
+  Output: For this section, I've loaded a dataset `lan_df` that is a data frame with summaries on the use of passives in the Brown and LOB corpora. Type `lan_df` to see the data frame.
+  CorrectAnswer: lan_df
+  AnswerTests: omnitest(correctExpr='lan_df')
+  Hint: Type `lan_df`.
+
+# Adorn totals
+
+- Class: cmd_question
+  Output: To add totals to the data frame, use the `adorn_totals()` function. We need to specify if we want to add totals for the rows, columns, or both. In this case, we want to add totals for the rows. Enter `lan_df |> adorn_totals("row").`
+  CorrectAnswer: lan_df |> adorn_totals("row")
+  AnswerTests: omnitest(correctExpr='lan_df |> adorn_totals("row")')
+  Hint: Type `lan_df |> adorn_totals("row")`.
+
+- Class: text
+  Output: You can see that the totals have been added to the bottom of the data frame for the numeric columns. Totals can be helpful for quickly seeing the total number of observations in each category.
+
+# Adorn percentages
+
+- Class: cmd_question
+  Output: Another useful function is `adorn_percentages()`. This function will add percentages to the data frame. We must specify if we want to add percentages based on the rows or the columns, but not both. In this case, we want to add percentages by the columns (i.e., the total number of passives in each corpus). Enter `lan_df |> adorn_percentages("col").`
+  CorrectAnswer: lan_df |> adorn_percentages("col")
+  AnswerTests: omnitest(correctExpr='lan_df |> adorn_percentages("col")')
+  Hint: Type `lan_df |> adorn_percentages("col")`.
+
+- Class: cmd_question
+  Output: You can see that the percentages are actually provided as proportions of the column totals. For a more visually appealing table, we can use the `adorn_pct_formatting()` function to convert the proportions to the more familiar percentage format. Enter `lan_df |> adorn_percentages("col") |> adorn_pct_formatting()`.
+  CorrectAnswer: lan_df |> adorn_percentages("col") |> adorn_pct_formatting()
+  AnswerTests: omnitest(correctExpr='lan_df |> adorn_percentages("col") |> adorn_pct_formatting()')
+  Hint: Type `lan_df |> adorn_percentages("col") |> adorn_pct_formatting()`.
+
+# Adorn ns
+
+- Class: cmd_question
+  Output: By adding percentages, we have gained some useful information, but we have also lost some information. We no longer know the total number of observations in each category. To add this information back, we can use the `adorn_ns()` function. Let's add this to the previous command. Enter `lan_df |> adorn_percentages("col") |> adorn_pct_formatting() |> adorn_ns()`.
+  CorrectAnswer: lan_df |> adorn_percentages("col") |> adorn_pct_formatting() |> adorn_ns()
+  AnswerTests: omnitest(correctExpr='lan_df |> adorn_percentages("col") |> adorn_pct_formatting() |> adorn_ns()')
+  Hint: Type `lan_df |> adorn_percentages("col") |> adorn_pct_formatting() |> adorn_ns()`.
+
+- Class: text
+  Output: Using these functions we can manipulate summaries in data frames to make them more useful for presentation. However, the data frame is still not very visually appealing nor commonly used for presentation. For this, we will need to use the `kableExtra` package to create formatted tables.
+
+# Formatting Tables ------------------------------------------------
+
+- Class: text
+  Output: The `kableExtra` package provides a number of functions for formatting tables. We will cover the basics of creating a table, adjusting column names, aligning columns, adding grouping headers and grouping rows, and applying themes.
+
+- Class: cmd_question
+  Output: For this section, I've loaded a summary table `ame_bre_tbl` which includes the same linguistic information as before, but now grouped by language variety (AmE or BrE) and text genre (Adventure, General Fiction, etc). Type `ame_bre_tbl` to see the data frame.
+  CorrectAnswer: ame_bre_tbl
+  AnswerTests: omnitest(correctExpr='ame_bre_tbl')
+  Hint: Type `ame_bre_tbl`.
+
+- Class: text
+  Output: To create a table that will format for a literate programming document, we typicaly use the `kable()` function from the `knitr` package. `kable()` is great for creating simple tables, but it does not provide much flexibility for formatting. To extend the functionality of `kable()`, we can use the `kableExtra` package.
+
+- Class: cmd_question
+  Output: The first step is to convert the data frame to a `kableExtra` object using the `kbl()` function. Enter `ame_bre_tbl |> kbl()`.
+  CorrectAnswer: ame_bre_tbl |> kbl()
+  AnswerTests: omnitest(correctExpr='ame_bre_tbl |> kbl()')
+  Hint: Type `ame_bre_tbl |> kbl()`.
+
+- Class: text
+  Output: The kableExtra object should have appeared in the Viewer pane. You can see that the table is not very visually appealing. We will work on that. But before we do, we should take advantage of a couple of options that are available in `kbl()`.
+
+# Column names
+
+- Class: cmd_question
+  Output: Our original variable names don't make for very good header names. We can change the header names using the `col.names = ` argument and include a character vector with the new column names. Enter `ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"))`.
+  CorrectAnswer: ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"))
+  AnswerTests: omnitest(correctExpr='ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"))')
+  Hint: Type `ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"))`.
+
+# Column alignment
+
+- Class: cmd_question
+  Output: We can also change the alignment of the columns using the `align = ` argument. In academic tables, it is often the case that character columns are left-aligned and numeric columns are right-aligned. The letters 'l' and 'r' are used to specify left and right alignment, respectively. All we need to do is add a character string that specifies the alignment for each column. Enter `ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")`.
+  CorrectAnswer: ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")
+  AnswerTests: omnitest(correctExpr='ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")')
+  Hint: Type `ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")`.
+
+- Class: text
+  Output: Column names and alignment is bringing our table closer to a presentable format, but let's take it a step further. Let's explore functions we can use to layer on additional formatting to our kableExtra object. I say layer on because we can use the pipe operator to add additional functions to our kableExtra object in a similar way to how we add layers to our ggplot2 objects for plots!
+
+- Class: cmd_question
+  Output: Let's go ahead and assign our kableExtra object to a variable before we continue. Enter `ame_bre_kbl <- ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")`.
+  CorrectAnswer: ame_bre_kbl <- ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")
+  AnswerTests: omnitest(correctExpr='ame_bre_kbl <- ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")')
+  Hint: Type `ame_bre_kbl <- ame_bre_tbl |> kbl(col.names = c("Variety", "Genre", "Passives", "Words", "Sentences"), align = "llrrr")`.
+
+# Add grouping headers
+
+- Class: text
+  Output: Looking at the headers, it is sometimes helpful to group columns together with a header that spans above the columns. We can add grouping headers using the `add_header_above()` function. This function takes a vector of named integers that specify how many columns to group together and the name of the header above these columns. For example, `"Group 1" = 2`) would group the first two columns together under the header "Group 1".
+
+- Class: cmd_question
+  Output: In this case, we can group the first two columns together under "Metadata" and the last three columns together under "Linguistic Information". Enter `ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3))`.
+  CorrectAnswer: ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3))
+  AnswerTests: omnitest(correctExpr='ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3))')
+  Hint: Type `ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3))`.
+
+- Class: text
+  Output: If necessary, we can add additional grouping headers to the table, but this can get a bit messy so be careful.
+
+# Add grouping rows
+
+- Class: text
+  Output: In addition to grouping columns, we can also group rows together. This is useful for grouping together rows that share a common characteristic. For example, we can group together the rows for each variety. To do this, we add the `pack_rows()` function to the end of the pipe for each group of rows we want to group together. The `pack_rows()` function takes a character string as the group name, and then an integer for the start and end row number of the group. For example, `pack_rows("Section A", 1, 5)` would group together rows 1 through 5 under the group name "Section A".
+
+- Class: cmd_question
+  Output: 'In this case, we can group together the rows for each variety. Each variety has 9 rows, one for each genre. Add the `pack_rows()` functions to the end of kableExtra object, like this: `ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3)) |> pack_rows("American", 1, 9) |> pack_rows("British", 10, 18)`.'
+  CorrectAnswer: ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3)) |> pack_rows("American", 1, 9) |> pack_rows("British", 10, 18)
+  AnswerTests: omnitest(correctExpr='ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3)) |> pack_rows("American", 1, 9) |> pack_rows("British", 10, 18)')
+  Hint: Type `ame_bre_kbl |> add_header_above(c("Metadata" = 2, "Linguistic Information" = 3)) |> pack_rows("American", 1, 9) |> pack_rows("British", 10, 18)`.
+
+- Class: text
+  Output: There are many, many more options for formatting tables with `kableExtra`. We will not cover them all here, but I encourage you to check out the `kableExtra` documentation for more information and examples.
+
+# Themes -----------------------------------------------------------
+
+- Class: cmd_question
+  Output: In addition to formatting columns, headers and rows, `kableExtra` also provides a number of built-in themes for styling tables. Let's take a look at a couple of these themes. To do so, I've loaded a kableExtra object `ame_bre_kbl` that has been formatted with the steps we've applied above, and a few extra ajustments to get rid of the redundant 'Variety' column. Type `ame_bre_kbl` to see the kableExtra object.
+  CorrectAnswer: ame_bre_kbl
+  AnswerTests: omnitest(correctExpr='ame_bre_kbl')
+  Hint: Type `ame_bre_kbl`.
+
+# kable_styling()
+
+- Class: cmd_question
+  Output: The most versatile theme is the `kable_styling()` function. This function takes a number of arguments that can be used to style the table. To start, let's just apply the default values by passing the `ame_bre_kbe` object to the `kable_styling()` function. Enter `ame_bre_kbl |> kable_styling()`.
+  CorrectAnswer: ame_bre_kbl |> kable_styling()
+  AnswerTests: omnitest(correctExpr='ame_bre_kbl |> kable_styling()')
+  Hint: Type `ame_bre_kbl |> kable_styling()`.
+
+- Class: text
+  Output: We can see that the table now appears with a different overall appearance. In the Viewer pane preview, this may or may not look better than the default formatting. However, it is much better to judge the appearance of the table in the context of the rendered Quarto document.
+
+- Class: text
+  Output: Furthermore, it is important to note that some of the options for `kable_styling()`, and those of other themes, are dependent on the output format. This makes sense as the styling options for a PDF document are different than those for an HTML document. Let's focus on the HTML output format that we've been working with so far.
+
+- Class: cmd_question
+  Output: To change the overall appearance of the table, we can use the `bootstrap_options = ` argument. This argument takes a character string that specifies the bootstrap theme to use. Bootstrap is a popular CSS framework for styling web pages. Add the `"striped"` value to see what happens. Enter `ame_bre_kbe |> kable_styling(bootstrap_options = "striped")`.
+  CorrectAnswer: ame_bre_kbe |> kable_styling(bootstrap_options = "striped")
+  AnswerTests: omnitest(correctExpr='ame_bre_kbe |> kable_styling(bootstrap_options = "striped")')
+  Hint: Type `ame_bre_kbe |> kable_styling(bootstrap_options = "striped")`.
+
+- Class: text
+  Output: We can see that the table now has alternating row colors. This can be helpful for tables with many rows.
+
+- Class: text
+  Output: Other useful boostrap options include `"bordered"`, `"hover"`, and `"condensed"`. You can also combine options by passing a vector of options to the `bootstrap_options = ` argument. For example, `bootstrap_options = c("striped", "hover")`.
+
+- Class: cmd_question
+  Output: "There are other general themes that can be applied to a kableExtra object. These include: `kable_minimal()`, `kable_classic()`, `kable_material()`, and `kable_paper()`. Let's try out the `kable_minimal()` theme. Enter `ame_bre_kbe |> kable_minimal()`."
+  CorrectAnswer: ame_bre_kbe |> kable_minimal()
+  AnswerTests: omnitest(correctExpr='ame_bre_kbe |> kable_minimal()')
+  Hint: Type `ame_bre_kbe |> kable_minimal()`.
+
+# Summary -----------------------------------------------------------
+
+- Class: text
+  Output: In this lesson, we covered how to manipulate dataset summaries with the `janitor` package and then format them with the `kableExtra` package for effective presentation. In addition to plots, tables can be a powerful tool for presenting information if care is taken to format them in a way that is easy to read and understand.
+
+- Class: text
+  Output: In the next lesson, we will turn our attention to the bigger picture of reproducible research. We will cover setting up and managing reproducible computing environments, and how to use these environments to create reproducible documents.

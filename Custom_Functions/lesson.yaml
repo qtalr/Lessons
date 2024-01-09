@@ -14,7 +14,7 @@
   Output: In this lesson, we will explore creating custom functions in R, discussing their creation, usage, arguments, and return values.
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
 # Custom Functions -------------------------------------------------------
 

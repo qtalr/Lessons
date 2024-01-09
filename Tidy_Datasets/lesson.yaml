@@ -12,7 +12,7 @@
   Output: Welcome to the lesson on tidying data. This lesson will cover the basics of tidying data. We review and expand our knowledge of object types in R and demonstrate some common data manipulation techniques.
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
 # Object Types -----------------------------------------------------------
 

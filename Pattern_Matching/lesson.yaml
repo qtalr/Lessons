@@ -12,7 +12,7 @@
   Output: "In this lesson, we will introduce a fundamental concept for working with text data: pattern matching. The ability to match patterns in text is a powerful tool that can be used to find, extract, and replace text, among other things."
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
 # Pattern Matching ----------------------------------------------
 

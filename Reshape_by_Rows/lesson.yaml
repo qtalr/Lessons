@@ -12,7 +12,7 @@
   Output: Welcome to Reshape by Rows! In this lesson, you will learn how to increase and decrease the number of rows in a dataset. This will help you to reorganize your data into a format that is more useful for your analysis.
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
 # Reshape by Rows ---------------------------------------------
 

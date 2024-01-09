@@ -12,7 +12,7 @@
   Output: In this lesson we will continue to summarize data, but this time we will focus on visual summaries. We will learn how to create plots to summarize various relationships in datasets.
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
 # Importance of visual summaries ------------------------------------
 

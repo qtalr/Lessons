@@ -12,7 +12,7 @@
   Output: This lesson will cover advanced visualization techniques in R. We will build on our knowledge of ggplot2 and learn how to create more complex plots with features from ggplot2 and other packages which extend ggplot2 features.
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
 # Customizing ggplot2 plots -----------------------------------------------
 

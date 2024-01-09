@@ -1,4 +1,5 @@
 base64enc
+corpora
 ggplot2
 scales
 factoextra

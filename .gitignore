@@ -1,8 +1,17 @@
+# Mac
 .DS_Store
+
+# R/ RStudio
 .Rproj.user
+*.Rproj
 .Rhistory
+
+# VS Code
+*code-workspace
+.lintr
+
+# Misc
 _*
 outline.R
-*code-workspace
-*.Rproj
-.lintr
+test.*
+*_files/

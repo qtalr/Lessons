@@ -14,7 +14,7 @@
   Output: In this lesson we will learn about control statements. Control statements are used to control the flow of a program. They allow our code to make decisions and repeat actions dynamically. We will learn about conditional statements and iteration statements.
 
 - Class: text
-  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by hitting `CTRL + C` at any time."
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
 # Conditional statements -----------------------------------------
 

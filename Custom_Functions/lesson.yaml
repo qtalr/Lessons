@@ -89,15 +89,6 @@
 - Class: text
   Output: First, notice that the function takes one argument, `text`, which we expect to be a character string, say a sentence or paragraph of text. To ensure that the argument is a character string, we evaluate an `if` statement. If the argument is not a character string (`!is.character(text)`), then we return an error message using the `stop()` function and send an informative message to the console to the user.
 
-- Class: cmd_question
-  Output: To see what happens when we pass a numeric value to the `text` argument, type `create_word_tokens(text = 123)` in the console and hit enter.
-  CorrectAnswer: create_word_tokens(text = 123)
-  AnswerTests: omnitest(correctExpr='create_word_tokens(text = 123)')
-  Hint: Type `create_word_tokens(text = 123)` in the console and hit enter.
-
-- Class: text
-  Output: The function returns an error message and sends an informative message to the console. This is helpful for the user to know what went wrong and how to fix it.
-
 - Class: text
   Output: Second, to get individual words, we need to separate the text into word tokens. So, we use the `strsplit()` function to split the text into word tokens and assign the result to the `tokens` object. This variable is a character vector which has as many elements as the number of spaces between words in `text`. Importantly, since it is created and assigned inside the function, it is only available inside the function, unless we explicity return it.
 

@@ -198,18 +198,17 @@
 
 - Class: mult_question
   Output: Now, let's test your knowledge. Which of the following patterns would NOT match the string "the"?
-  AnswerChoices: the; \\w+; \\bthe\\b; \\bThe
-  CorrectAnswer: \\bThe
-  AnswerTests: omnitest(correctVal='\\bThe')
+  AnswerChoices: the;\\w+;\\bthe\\b;\\bThe
+  CorrectAnswer: \\\\bThe
+  AnswerTests: omnitest(correctVal='\\\\bThe')
   Hint: Remember, case matters!
 
 - Class: mult_question
-  Output: Which of the following patterns will match the string "3.14159"?
-  AnswerChoices: \\d+; \\d+\\.\\d+; \\d+.\\d+; \\d\\.\\d+
-  CorrectAnswer: \\d+\\.\\d+
-  AnswerTests: omnitest(correctVal='\\d+\\.\\d+')
-  Hint: Remember, the `.` character is a metacharacter and needs to be escaped!
+  Output: Which of the following patterns will match the string "31.14159"?
+  AnswerChoices: \\d+; \\d+\\.\\d+; \\d+.\\d; \\d\\.\\d+
+  CorrectAnswer: \\\\d+\\\\.\\\\d+'
+  AnswerTests: omnitest(correctVal='\\\\d+\\\\.\\\\d+')
+  Hint: Remember, the `+` quantifier matches one or more times.
 
 - Class: text
   Output: This concludes our lesson on pattern matching. In the next lesson, we will explore creating and manipulating data frammes. Our experience with pattern matching will come in handy when we start working with text data in data frames.
-

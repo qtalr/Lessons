@@ -105,8 +105,8 @@
 
 - Class: cmd_question
   Output: We can see that the punctuation has been replaced with spaces for all the rows in `sentences`. But this has removed the punctuation in the process. To retain the punctuation, we can declare our regex pattern as a group by surrounding it with parentheses and then use the `\\1` backreference in the replacement argument. Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))` to see the result.
-  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))
-  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])"," \\1"))')
+  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\\\1"))
+  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])"," \\\\1"))')
   Hint: Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))`.
 
 # Separate or collapse columns -------------------------------------------

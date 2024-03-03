@@ -204,8 +204,8 @@
 
 - Class: cmd_question
   Output: Before we move forward, let's assign the output of the `str_split()` operation to `ns_tbl`. Type `ns_tbl <- ns_tbl |> mutate(sentences = str_split(text, "\\n"))` and hit enter.
-  CorrectAnswer: ns_tbl <- ns_tbl |> mutate(sentences = str_split(text, "\\n"))
-  AnswerTests: omnitest(correctExpr='ns_tbl <- ns_tbl |> mutate(sentences = str_split(text, "\\n"))')
+  CorrectAnswer: ns_tbl <- ns_tbl |> mutate(sentences = str_split(text, "\\\\n"))
+  AnswerTests: omnitest(correctExpr='ns_tbl <- ns_tbl |> mutate(sentences = str_split(text, "\\\\n"))')
   Hint: Type `ns_tbl <- ns_tbl |> mutate(sentences = str_split(text, "\\n"))` and hit enter.
 
 - Class: cmd_question

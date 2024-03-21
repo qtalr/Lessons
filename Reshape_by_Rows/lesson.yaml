@@ -155,7 +155,7 @@
 - Class: exact_question
   Output: How many rows are in the dataset now?
   CorrectAnswer: 87
-  AnswerTests: omnitest(correctVal=18)
+  AnswerTests: omnitest(correctVal=87)
   Hint: Remember that tibble dimensions are given as `rows, columns`.
 
 - Class: text

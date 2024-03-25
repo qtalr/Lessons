@@ -58,28 +58,28 @@
   Output: Another set of functions that can be used to normalize text are the `str_remove()` and `str_replace()` functions. As the names suggest, these functions can be used to remove or replace text. We can use literals or regular expressions to specify the text to remove or replace.
 
 - Class: cmd_question
-  Output: In the fifth sentence, there is erroneous punctuation. (Punctuation,marks;are!Not used correctly here?) Use the `str_remove()` function to remove the punctuation. Type `str_remove(sentences, "[,;!]")`. (Note that the punctuation is specified using a regular expression.)
-  CorrectAnswer: str_remove(sentences, "[,;!]")
-  AnswerTests: omnitest(correctExpr='str_remove(sentences, "[,;!]")')
-  Hint: Type `str_remove(sentences, "[,;!]")`.
+  Output: In the fifth sentence, there is erroneous punctuation. (Punctuation,marks;are!Not used correctly here?) Use the `str_remove()` function to remove the punctuation. Type `str_remove(sentences, "[,.!]")`. (Note that the punctuation is specified using a regular expression.)
+  CorrectAnswer: str_remove(sentences, "[,.!]")
+  AnswerTests: omnitest(correctExpr='str_remove(sentences, "[,.!]")')
+  Hint: Type `str_remove(sentences, "[,.!]")`.
 
 - Class: cmd_question
-  Output: OK, this may not be what you expected. The `str_remove()` function removes the first instance of the specified text. To remove all instances of the specified text, we can use the `str_remove_all()` function. Type `str_remove_all(sentences, "[,;!]")` to see the result.
-  CorrectAnswer: str_remove_all(sentences, "[,;!]")
-  AnswerTests: omnitest(correctExpr='str_remove_all(sentences, "[,;!]")')
-  Hint: Type `str_remove_all(sentences, "[,;!]")`.
+  Output: OK, this may not be what you expected. The `str_remove()` function removes the first instance of the specified text. To remove all instances of the specified text, we can use the `str_remove_all()` function. Type `str_remove_all(sentences, "[,.!]")` to see the result.
+  CorrectAnswer: str_remove_all(sentences, "[,.!]")
+  AnswerTests: omnitest(correctExpr='str_remove_all(sentences, "[,.!]")')
+  Hint: Type `str_remove_all(sentences, "[,.!]")`.
 
 - Class: cmd_question
-  Output: Closer, as we now have removed all instances of the specified punctuation. However, `str_remove()` and `str_remove_all()` only remove the specified text. In this case, this leaves no space between the words. To remove the punctuation and replace it with a space, we can use the `str_replace()` and `str_replace_all()` functions. Type `str_replace_all(sentences, "[,;!]", " ")` to see the result.
-  CorrectAnswer: str_replace_all(sentences, "[,;!]", " ")
-  AnswerTests: omnitest(correctExpr='str_replace_all(sentences, "[,;!]"," ")')
-  Hint: Type `str_replace_all(sentences, "[,;!]", " ")`.
+  Output: Closer, as we now have removed all instances of the specified punctuation. However, `str_remove()` and `str_remove_all()` only remove the specified text. In this case, this leaves no space between the words. To remove the punctuation and replace it with a space, we can use the `str_replace()` and `str_replace_all()` functions. Type `str_replace_all(sentences, "[,.!]", " ")` to see the result.
+  CorrectAnswer: str_replace_all(sentences, "[,.!]", " ")
+  AnswerTests: omnitest(correctExpr='str_replace_all(sentences, "[,.!]"," ")')
+  Hint: Type `str_replace_all(sentences, "[,.!]", " ")`.
 
 - Class: cmd_question
-  Output: In these examples, we have applied the functions to the `sentences` vector one at a time. However, we can apply the functions in sequence using the pipe `|>` operator. Type `sentences |> str_to_sentence() |> str_replace_all("[,;!]", " ") |> str_trim()` to see the result.
-  CorrectAnswer: sentences |> str_to_sentence() |> str_replace_all("[,;!]", " ") |> str_trim()
-  AnswerTests: omnitest(correctExpr='sentences |> str_to_sentence() |> str_replace_all("[,;!]"," ") |> str_trim()')
-  Hint: Type `sentences |> str_to_sentence() |> str_replace_all("[,;!]", " ") |> str_trim()`.
+  Output: In these examples, we have applied the functions to the `sentences` vector one at a time. However, we can apply the functions in sequence using the pipe `|>` operator. Type `sentences |> str_to_sentence() |> str_replace_all("[,.!]", " ") |> str_trim()` to see the result.
+  CorrectAnswer: sentences |> str_to_sentence() |> str_replace_all("[,.!]", " ") |> str_trim()
+  AnswerTests: omnitest(correctExpr='sentences |> str_to_sentence() |> str_replace_all("[,.!]"," ") |> str_trim()')
+  Hint: Type `sentences |> str_to_sentence() |> str_replace_all("[,.!]", " ") |> str_trim()`.
 
 - Class: mult_question
   Output: In the previous output, the "N" in "Not" is erroneously capitalized. How can we fix this using the same functions?

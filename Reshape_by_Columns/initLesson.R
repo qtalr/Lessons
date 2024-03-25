@@ -97,5 +97,5 @@ sentences <- c(
   "  Leading and trailing spaces must be trimmed.    ",
   "Repetition repetition should be avoided avoided.",
   "CAPITALIZATION is not CONSISTENT in this Sentence.",
-  "Punctuation,marks;are!not used correctly here?"
+  "Punctuation,marks.are!not used correctly here?"
 )

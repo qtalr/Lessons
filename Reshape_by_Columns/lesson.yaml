@@ -98,16 +98,16 @@
   Output: Looking at the `sentence` column, we can see that the values are pretty clean overall. However, if we plan on tokenizing the sentences into words or phrases, we may want to introduce spaces between the punctuation and the words so that they are retained as tokens. We can do this using the `str_replace_all()` function inside the `mutate()` function. The code will take the generic form `data |> mutate(new_column = function(column))`.
 
 - Class: cmd_question
-  Output: The `mutate()` function allows us to iterate over each row in a data frame column and assign the result to a new column, or overwrite the existing column. Type `sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]", " "))` to see the result.
-  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]", " "))
-  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]"," "))')
-  Hint: Type `sla_df |> mutate(sentence = str_replace_all(sentence, "[,;!.]", " "))`.
+  Output: The `mutate()` function allows us to iterate over each row in a data frame column and assign the result to a new column, or overwrite the existing column. Type `sla_df |> mutate(sentence = str_replace_all(sentence, "[,.!]", " "))` to see the result.
+  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "[,.!]", " "))
+  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "[,.!]"," "))')
+  Hint: Type `sla_df |> mutate(sentence = str_replace_all(sentence, "[,.!]", " "))`.
 
 - Class: cmd_question
-  Output: We can see that the punctuation has been replaced with spaces for all the rows in `sentences`. But this has removed the punctuation in the process. To retain the punctuation, we can declare our regex pattern as a group by surrounding it with parentheses and then use the `\\1` backreference in the replacement argument. Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))` to see the result.
-  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\\\1"))
-  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])"," \\\\1"))')
-  Hint: Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,;!.])", " \\1"))`.
+  Output: We can see that the punctuation has been replaced with spaces for all the rows in `sentences`. But this has removed the punctuation in the process. To retain the punctuation, we can declare our regex pattern as a group by surrounding it with parentheses and then use the `\\1` backreference in the replacement argument. Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,.!])", " \\1"))` to see the result.
+  CorrectAnswer: sla_df |> mutate(sentence = str_replace_all(sentence, "([,.!])", " \\\\1"))
+  AnswerTests: omnitest(correctExpr='sla_df |> mutate(sentence = str_replace_all(sentence, "([,.!])"," \\\\1"))')
+  Hint: Type `sla_df |> mutate(sentence = str_replace_all(sentence, "([,.!])", " \\1"))`.
 
 # Separate or collapse columns -------------------------------------------
 

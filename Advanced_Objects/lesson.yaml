@@ -271,14 +271,14 @@
 
 - Class: cmd_question
   Output: Another way to write anonymous functions is to use the `\(x)` notation. Type `map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))` to see the number of words in each text message.
-  CorrectAnswer: map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))
-  AnswerTests: omnitest(correctExpr='map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))')
+  CorrectAnswer: map(ex_text_ls, \\(x) length(strsplit(x, " ")[[1]]))
+  AnswerTests: omnitest(correctExpr='map(ex_text_ls, \\(x) length(strsplit(x, " ")[[1]]))')
   Hint: Type `map(ex_text_ls, \(x) length(strsplit(x, " ")[[1]]))`.
 
 - Class: cmd_question
   Output: Anonymous functions are useful when we want to apply a function to a list but do not want to create a function that we will use again. Furthermore, just as regular functions, anonymous functions can have multiple arguments. In the case of lists, we can use the `imap()` function to apply a function to a list and also make the element index available to the function. Type `imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))` to see the text messages with the element index.
-  CorrectAnswer: imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))
-  AnswerTests: omnitest(correctExpr='imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))')
+  CorrectAnswer: imap(ex_text_ls, \\(x, i) paste(i, x, sep = "- "))
+  AnswerTests: omnitest(correctExpr='imap(ex_text_ls, \\(x, i) paste(i, x, sep = "- "))')
   Hint: Type `imap(ex_text_ls, \(x, i) paste(i, x, sep = "- "))`.
 
 # Summary --------------------------------------------------------------

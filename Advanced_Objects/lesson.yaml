@@ -236,7 +236,7 @@
   AnswerTests: omnitest(correctExpr='nchar(ex_text_ls)')
   Hint: Type `nchar(ex_text_ls)`.
 
-- Class: cmd_question
+- Class: text
   Output: The output is a vector of the number of characters in each text message. Note, however, that the output is no longer a list but rather a named character vector. This is because the `nchar()` function returns a vector and not a list.
 
 - Class: text

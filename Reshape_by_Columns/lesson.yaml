@@ -152,14 +152,15 @@
   Hint: Type `sla_sep_df`.
 
 # Calculating new columns
-- Class: cmd_question
-  Output: Say we want to recode the `age` and `months` into a variable `learner_months` where the values is the age of each learner in number of months. In essence, we want to multiply the `age` column by 12 and add the `months` column. We can do this using the `mutate()` function. Type `sla_sep_df |> mutate(learner_months = age * 12 + months)` to see the result.
-  CorrectAnswer: sla_sep_df |> mutate(learner_months = age * 12 + months)
-  AnswerTests: omnitest(correctExpr='sla_sep_df |> mutate(learner_months = age * 12 + months)')
-  Hint: Type `sla_sep_df |> mutate(learner_months = age * 12 + months)`.
+- Class: mult_question
+  Output: Say we want to recode the `age` and `months` into a variable `learner_months` where the values is the age of each learner in number of months. In essence, we want to multiply the `age` column by 12 and add the `months` column. But we will get an error if we try to do this. What is the reason for the error?
+  AnswerChoices: The `age` and `months` columns are of type character; The `age` and `months` columns are of type integer; The `age` and `months` columns are of type numeric
+  CorrectAnswer: The `age` and `months` columns are of type character
+  AnswerTests: omnitest(correctVal='The `age` and `months` columns are of type character')
+  Hint: You cannot perform mathematical operations on character columns!
 
 - Class: cmd_question
-  Output: Wow, OK. We get an error. This is because the `age` and `months` columns are of type character. We need to convert them to numeric before we can perform mathematical operations on them. We can do this by applying the `as.numeric()` function to the columns. Type `sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))` to see the result.
+  Output: Since the `age` and `months` columns are of type character, we need to convert them to numeric before we can perform mathematical operations on them. We can do this by applying the `as.numeric()` function to the columns. Type `sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))` to see the result.
   CorrectAnswer: sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))
   AnswerTests: omnitest(correctExpr='sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))')
   Hint: Type `sla_sep_df |> mutate(learner_months = as.numeric(age) * 12 + as.numeric(months))`.

@@ -2,6 +2,28 @@
 
 > R interactive lessons for the *[Introduction to Quantitative Text Analysis for Linguists](https://qtalr.github.io/book/)* textbook.
 
+## Installation
+
+Install `swirl` package from CRAN:
+
+```r
+install.packages("swirl")
+```
+
+Install `swirl` lessons from GitHub:
+
+```r
+library(swirl)
+install_course_github("qtalr/Lessons")
+```
+
+## Usage
+
+Run `swirl()` to start working on the lessons:
+
+```r
+swirl()
+```
 ## Overview
 
 | Lesson                 | Description                                                                                                                                                                                                                                                                               | Chapter                  |
@@ -25,25 +47,3 @@
 | Advanced Tables        | Explore how to enhance dataset summaries using {janitor} and present them effectively with {kableExtra}'s advanced formatting options.                                                                                                                                | Infer                |
 | Computing_Environment  | Introduces strategies for creating reproducible computing environments including hardware, operating system, and software using Docker and {renv}.                                                                                                                              | Contribute             |
 
-## Installation
-
-Install `swirl` package from CRAN:
-
-```r
-install.packages("swirl")
-```
-
-Install `swirl` lessons from GitHub:
-
-```r
-library(swirl)
-install_course_github("qtalr/Lessons")
-```
-
-## Usage
-
-Run `swirl()` to start working on the lessons:
-
-```r
-swirl()
-```

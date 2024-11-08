@@ -1,13 +1,10 @@
 # Mac
 .DS_Store
 
-# R/ RStudio
-.Rproj.user
-*.Rproj
+# R
 .Rhistory
 
 # VS Code
-*code-workspace
 .lintr
 
 # Misc
@@ -15,3 +12,4 @@ _*
 outline.R
 test.*
 *_files/
+.direnv/

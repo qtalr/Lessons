@@ -1,20 +1,16 @@
 - Class: meta
   Course: Lessons
-  Lesson: Collaborating
-  Author: your name goes here
+  Lesson: Computing Environment
+  Author: Jerid Francom
   Type: Standard
-  Organization: your organization's name goes here
+  Organization: Wake Forest University
   Version: 0.9.0
 
+# Overview ---------------------------------------------------------------
 
-# Plot example
-- Class: figure
-  Output: Check out this figure!
-  Figure: plot-ex.R
-  FigureType: new
+- Class: text
+  Output: This lesson ...
 
-# Page example
-- Class: figure
-  Output: Check out this content!
-  Figure: page-ex.R
-  FigureType: new
+- Class: text
+  Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
+

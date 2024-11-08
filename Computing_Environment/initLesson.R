@@ -13,7 +13,7 @@
 }
 
 .pathtofile <<- function(file_name) {
-  file.path( # nolint
+  file.path(
     .get_course_path(),
     "Lessons", "Computing_Environment",
     file_name
@@ -33,3 +33,50 @@
     utils::browseURL(temp)
   }
 }
+
+# Variables created in this file will be available to the user
+
+# I will be using the `renv` package to manage the project-specific library of packages. To do this I'm going to set up a temporary directory for the lesson. Then use the `quarto::quarto_create_project()` function to create a new project. I will add some code to the project to get the lesson started and ready to apply `renv` to the project.
+
+
+# Set up a temporary directory for the lesson
+
+# Create a temporary directory
+temp_dir <- tempdir()
+
+# Set the working directory to the temporary directory
+setwd(temp_dir)
+
+# Create a new project using `quarto::quarto_create_project()`
+
+# Create a new project
+quarto::quarto_create_project("project", type = "website", no_prompt = TRUE)
+
+# Set the working directory to the new project
+setwd("project")
+
+# Set up a mock project structure
+
+# Remove the `about.qmd` file
+fs::file_delete("about.qmd")
+
+# Remove the `styles.css` file
+fs::file_delete("styles.css")
+
+# Add some directories
+dirs <- c("data/original/", "data/derived/", "process/", "reports")
+
+purrr::walk(dirs, fs::dir_create)
+
+# Add a README.md file
+fs::file_create("README.md")
+
+# Add files to the `process/` directory
+files <- c("1_acquire.qmd", "2_curate.qmd", "3_transform.qmd", "4_analyze.qmd")
+path <- fs::path("process", files)
+
+purrr::walk(path, fs::file_create)
+
+fs::dir_tree()
+
+fs::file_show("_quarto.yml")

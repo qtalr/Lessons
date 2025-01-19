@@ -6,11 +6,23 @@
   Organization: Wake Forest University
   Version: 0.9.0
 
-# Overview ---------------------------------------------------------------
+# Overview
 
 - Class: text
-  Output: This lesson ...
+  Output: This lesson we will discuss how to safeguard your computing environment for sharing as part of a reproducible research project.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
+
+- Class: cmd_question
+  Output: "Let's first start by changing the current directory to a tmp/ directory with a project that has been provided for you. Type 'setwd('temp_dir')' to change the current directory to the tmp/ directory."
+  CorrectAnswer: setwd('temp_dir')
+  AnswerTests: omnitest(correctExpr='setwd("temp_dir")')
+  Hint: Type `setwd('temp_dir')` to change the current directory to the tmp/ directory.
+
+- Class: cmd_question
+  Output: "Great! Now that we are in the correct directory, let's take a look at the structure using the {fs} package. Type 'dir_ls()' to see the contents of the directory."
+  CorrectAnswer: dir_ls()
+  AnswerTests: omnitest(correctExpr='dir_ls()')
+  Hint: Type `dir_ls()` to see the contents of the directory.
 

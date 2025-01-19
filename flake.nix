@@ -12,6 +12,8 @@
         pkgs = import nixpkgs { inherit system; };
 
         packages = with pkgs; [
+          pandoc
+          quarto
           R
           radianWrapper
         ];

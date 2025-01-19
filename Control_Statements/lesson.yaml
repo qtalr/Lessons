@@ -61,7 +61,7 @@
 - Class: text
   Output: Beyond the standard logical operators (`<`, `>`, `==`, `!=`, `<=`, `>=`), there are functions which return logical values. For example, the `is.vector()` function returns `TRUE` if the object is a vector and `FALSE` otherwise. Others include `is.numeric()`, `is.character()`, `is.data.frame()`, etc.
 
-- Class: cmd_qestion
+- Class: cmd_question
   Output: To see this in action, let's use the `is.vector()` function with the `z_vec` variable. Type `is.vector(z_vec)` and hit Enter.
   CorrectAnswer: is.vector(z_vec)
   AnswerTests: omnitest(correctExpr='is.vector(z_vec)')

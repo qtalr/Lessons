@@ -38,45 +38,53 @@
 
 # I will be using the `renv` package to manage the project-specific library of packages. To do this I'm going to set up a temporary directory for the lesson. Then use the `quarto::quarto_create_project()` function to create a new project. I will add some code to the project to get the lesson started and ready to apply `renv` to the project.
 
+# FIX: Issue with creating a project, in the same swirl session
+
+# if (exists("temp_dir")) {
+#   # Remove the temporary directory if it exists
+#   fs::dir_delete(file.path(temp_dir, "project"))
+#   rm(temp_dir)
+# }
 
 # Set up a temporary directory for the lesson
-
+# curr_dir <- getwd()
 # Create a temporary directory
-temp_dir <- tempdir()
+# temp_dir <- tempdir()
 
 # Set the working directory to the temporary directory
-setwd(temp_dir)
+# setwd(temp_dir)
 
 # Create a new project using `quarto::quarto_create_project()`
 
 # Create a new project
-quarto::quarto_create_project("project", type = "website", no_prompt = TRUE)
+# quarto::quarto_create_project(name = "project", type = "website", no_prompt = TRUE, quiet = TRUE)
 
 # Set the working directory to the new project
-setwd("project")
+# setwd("project")
 
 # Set up a mock project structure
 
 # Remove the `about.qmd` file
-fs::file_delete("about.qmd")
+# fs::file_delete("about.qmd")
 
 # Remove the `styles.css` file
-fs::file_delete("styles.css")
+# fs::file_delete("styles.css")
 
 # Add some directories
-dirs <- c("data/original/", "data/derived/", "process/", "reports")
+# dirs <- c("data/original/", "data/derived/", "process/", "reports")
 
-purrr::walk(dirs, fs::dir_create)
+# purrr::walk(dirs, fs::dir_create)
 
 # Add a README.md file
-fs::file_create("README.md")
+# fs::file_create("README.md")
 
 # Add files to the `process/` directory
-files <- c("1_acquire.qmd", "2_curate.qmd", "3_transform.qmd", "4_analyze.qmd")
-path <- fs::path("process", files)
+# files <- c("1_acquire.qmd", "2_curate.qmd", "3_transform.qmd", "4_analyze.qmd")
+# path <- fs::path("process", files)
 
-purrr::walk(path, fs::file_create)
+# purrr::walk(path, fs::file_create)
 
-fs::dir_tree()
-
-fs::file_show("_quarto.yml")
+# Set back to the original working directory to start lesson
+# setwd(curr_dir)
+# fs::dir_tree()
+# fs::file_show("_quarto.yml")

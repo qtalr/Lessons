@@ -6,10 +6,6 @@
   Organization: Wake Forest University
   Version: 0.9.0
 
-# On installing the lesson ------------------------------
-# [ ] verify that the lesson.yaml file is valid YAML
-# [ ] verify that the `path_to_csv_file` variable loads correctly
-
 # Overview ----------------------------------------------
 
 - Class: text

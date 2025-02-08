@@ -13,3 +13,5 @@ outline.R
 test.*
 *_files/
 .direnv/
+.Courses/
+.user_data/

@@ -6,13 +6,55 @@
   Organization: Wake Forest University
   Version: 0.9.0
 
-# Overview
+# Overview ---------------------------------------------------------------
 
 - Class: text
   Output: This lesson we will discuss how to safeguard your computing environment for sharing as part of a reproducible research project.
 
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
+
+# Review ---------------------------------------------------------------
+# Computing environment components 
+
+# - Why reproducibility matters 
+  # - reliability, credibility
+  # - stability
+# - Computing environment components 
+  # - Hardware
+  # - OS
+  # - Software dependencies (including R)
+  # - R packages (this is where {renv} comes in)
+  # - Research compendium 
+
+# Pinning R packages with {renv} -------------------------------------------------------
+
+# - Pinning packages refers to establishing a link between a particular version of a package and maintaining that connection overtime. This is important as software changes over time, including R packages. This may introduce breaking changes and render your project's code inoperable at some point in the future. {renv} aims to address this issue.
+
+# - set up {renv}
+  # library(renv)
+  # renv::init()
+  # - generate a lock file
+  # renv::snapshot()
+  # creates: renv.lock and renv/ directory 
+  # - update the lock file
+  # renv:status()
+  # ...
+
+# - Share lockfile 
+  # - Add lockfile to Git/GitHub repo tracking
+  # The local R/ library is NOT added, it will be 
+  # recreated from the lockfile. 
+
+# - Using the lockfile 
+  # library(renv)
+  # renv::restore()
+
+# - Best practices 
+  # - regular updates 
+  # - collaboration (share lockfile)
+  # - version control 
+
 
 - Class: cmd_question
   Output: "Let's first start by changing the current directory to a tmp/ directory with a project that has been provided for you. Type 'setwd(temp_dir)' to change the current directory to the tmp/ directory."

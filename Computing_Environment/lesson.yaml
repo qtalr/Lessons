@@ -14,47 +14,70 @@
 - Class: text
   Output: "Don't forget that you can, temporarily, leave the lesson by typing `play()` and then return by typing `nxt()`. You can also completely stop a lesson by typing `bye()` or hitting `CTRL + C`."
 
-# Review ---------------------------------------------------------------
-# Computing environment components 
+# Why Reproducibility Matters -----------------------------------------------------
 
-# - Why reproducibility matters 
-  # - reliability, credibility
-  # - stability
-# - Computing environment components 
-  # - Hardware
-  # - OS
-  # - Software dependencies (including R)
-  # - R packages (this is where {renv} comes in)
-  # - Research compendium 
+- Class: text
+  Output: Reproducible research ensures others can verify and recreate your work. Key aspects include reliability (consistent results across environments), credibility (others can validate without hidden dependencies), and stability (code works long-term despite software updates).
+
+- Class: mult_question
+  Output: Which is NOT a benefit of reproducibility?
+  AnswerChoices: Faster debugging;Academic credibility;Hardware independence;Temporary convenience
+  CorrectAnswer: Temporary convenience
+  AnswerTests: omnitest(correctVal='Temporary convenience')
+  Hint: Think about long-term vs short-term advantages.
+
+# Computing Environment Components -------------------------------------------------
+
+- Class: text
+  Output: A computing environment consists of several key components that affect reproducibility - Hardware, Operating System, Software dependencies (including R), R packages, and the Research compendium structure.
+
+- Class: text
+  Output: While we can't control all aspects (like hardware), we can document and standardize many components to improve reproducibility.
+
+- Class: cmd_question
+  Output: Let's check your R version. Type 'R.version$version.string'
+  CorrectAnswer: R.version$version.string
+  AnswerTests: omnitest(correctExpr='R.version$version.string')
+  Hint: Just type exactly what's shown to see your R version information.
 
 # Pinning R packages with {renv} -------------------------------------------------------
 
-# - Pinning packages refers to establishing a link between a particular version of a package and maintaining that connection overtime. This is important as software changes over time, including R packages. This may introduce breaking changes and render your project's code inoperable at some point in the future. {renv} aims to address this issue.
+- Class: text
+  Output: "Pinning packages refers to establishing a link between a particular version of a package and maintaining that connection over time. This is important as software changes over time, including R packages. These changes may introduce breaking changes and render your project's code inoperable at some point in the future. The {renv} package aims to address this issue."
 
-# - set up {renv}
-  # library(renv)
-  # renv::init()
-  # - generate a lock file
-  # renv::snapshot()
-  # creates: renv.lock and renv/ directory 
-  # - update the lock file
-  # renv:status()
-  # ...
+- Class: cmd_question
+  Output: "First, let's load the renv package. Type 'library(renv)'"
+  CorrectAnswer: library(renv)
+  AnswerTests: omnitest(correctExpr='library(renv)')
+  Hint: Type 'library(renv)' to load the renv package.
 
-# - Share lockfile 
-  # - Add lockfile to Git/GitHub repo tracking
-  # The local R/ library is NOT added, it will be 
-  # recreated from the lockfile. 
+- Class: cmd_question
+  Output: "Now, let's initialize renv in our project. Type 'renv::init()'. Note: In a real project, this would create a private library, but we'll simulate this in the lesson."
+  CorrectAnswer: renv::init()
+  AnswerTests: omnitest(correctExpr='renv::init()')
+  Hint: Type 'renv::init()' to initialize renv in the project.
 
-# - Using the lockfile 
-  # library(renv)
-  # renv::restore()
+- Class: text
+  Output: "After initializing renv, it creates a lockfile (renv.lock) that records the exact versions of packages used in your project. You can update this lockfile with 'renv::snapshot()' whenever you add or update packages."
 
-# - Best practices 
-  # - regular updates 
-  # - collaboration (share lockfile)
-  # - version control 
+- Class: text
+  Output: "To check if your project's packages match what's recorded in the lockfile, you can use 'renv::status()'. This helps identify any discrepancies."
 
+- Class: text
+  Output: "When sharing your project, you should include the lockfile in your Git/GitHub repository. The local R library is NOT added to version control - it will be recreated from the lockfile using 'renv::restore()'."
+
+- Class: mult_question
+  Output: "Which command would you use to update the lockfile after installing a new package?"
+  AnswerChoices: renv::init();renv::snapshot();renv::restore();renv::install()
+  CorrectAnswer: renv::snapshot()
+  AnswerTests: omnitest(correctVal='renv::snapshot()')
+  Hint: Think about which command captures the current state of your packages.
+
+- Class: text
+  Output: "Best practices for using renv include: regular updates to the lockfile, sharing the lockfile with collaborators, and including it in version control. This ensures everyone working on the project uses the same package versions."
+
+
+# Hands-on Practice with renv -------------------------------------------------------
 
 - Class: cmd_question
   Output: "Let's first start by changing the current directory to a tmp/ directory with a project that has been provided for you. Type 'setwd(temp_dir)' to change the current directory to the tmp/ directory."
@@ -72,5 +95,32 @@
   Output: "Now that we have seen the contents of the directory, let's take a look at the contents of the project. Type 'dir_ls('project')' to see the contents of the project directory."
   CorrectAnswer: dir_ls('project')
   AnswerTests: omnitest(correctExpr='dir_ls("project")')
-  Hint: Type `dir_ls('project')` to see the contents of the project directory. 
+  Hint: Type `dir_ls('project')` to see the contents of the project directory.
+
+- Class: text
+  Output: "In this project, we can see the structure of a research compendium with code, data, and documentation. The renv.lock file ensures that anyone who uses this project will have the exact same package versions."
+
+- Class: cmd_question
+  Output: "Let's examine the lockfile. Type 'readLines(\"project/renv.lock\", n=20)' to see the first 20 lines of the lockfile."
+  CorrectAnswer: readLines("project/renv.lock", n=20)
+  AnswerTests: omnitest(correctExpr='readLines("project/renv.lock", n=20)')
+  Hint: Type `readLines("project/renv.lock", n=20)` to see the first 20 lines of the lockfile.
+
+# Integration with Research Workflow -------------------------------------------------------
+
+- Class: text
+  Output: "The renv package is just one part of a reproducible research workflow. It works best when combined with version control (Git), containerization (Docker), and a well-structured research compendium."
+
+- Class: text
+  Output: "When sharing your research, include the renv.lock file in your repository. Others can then use 'renv::restore()' to recreate your exact package environment."
+
+- Class: mult_question
+  Output: "Which of the following is NOT typically included in version control when using renv?"
+  AnswerChoices: renv.lock file;R script files;renv/library/ directory;.Rprofile
+  CorrectAnswer: renv/library/ directory
+  AnswerTests: omnitest(correctVal='renv/library/ directory')
+  Hint: Think about which components are large and can be recreated from other files.
+
+- Class: text
+  Output: "Congratulations! You've completed the Computing Environment lesson. You now understand how to use renv to create reproducible R environments for your research projects."
 
